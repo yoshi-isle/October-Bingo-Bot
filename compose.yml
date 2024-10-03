@@ -1,0 +1,11 @@
+version: '3'
+services:
+  discord-bot:
+    build:
+      dockerfile: src/Dockerfile
+    container_name: discord_bot_container
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - APP_SETTINGS_FILE=appSettings.local.json  # To specify the configuration file explicitly (optional)
+    restart: always
