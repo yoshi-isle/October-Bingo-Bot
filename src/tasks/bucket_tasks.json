@@ -1,0 +1,17 @@
+{
+    "tasks":
+    [
+        {
+            "Name": "Sunfire Fanatic Armor (Full set)",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Sunfire_fanatic_armour",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Sunfire_fanatic_armour_equipped_male.png/110px-Sunfire_fanatic_armour_equipped_male.png?7b83b"
+        },
+        {
+            "Name": "Voidwaker from scratch",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Voidwaker",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Voidwaker_detail.png/150px-Voidwaker_detail.png?01835"
+        }
+    ]
+}

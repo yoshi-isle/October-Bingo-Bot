@@ -1,0 +1,17 @@
+{
+    "tasks":
+    [
+        {
+            "Name": "Lightbearer",
+            "ShortDescription": "You hate to see it... at least it's worth points",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Lightbearer",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Lightbearer_detail.png/120px-Lightbearer_detail.png?3576d"
+        },
+        {
+            "Name": "Osmumten's Fang",
+            "ShortDescription": "The daily... at least it's worth points",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Osmumten%27s_fang",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Osmumten%27s_fang_detail.png/150px-Osmumten%27s_fang_detail.png?fa0de"
+        }
+    ]
+}

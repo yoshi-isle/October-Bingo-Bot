@@ -1,0 +1,23 @@
+{
+    "tasks":
+    [
+        {
+            "Name": "Any Jar",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Jar",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Jar_of_sand_detail.png/90px-Jar_of_sand_detail.png?7bdc6"
+        },
+        {
+            "Name": "Any ToB Weapon",
+            "ShortDescription": "Sanguinesti Staff, Ghrazi Rapier, Scythe of Vitur",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Theatre_of_Blood",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Sanguinesti_staff_%28uncharged%29_detail.png/180px-Sanguinesti_staff_%28uncharged%29_detail.png?6c90d"
+        },
+        {
+            "Name": "Any CoX Weapon",
+            "ShortDescription": "Dinh's Bulwark, Dragon Hunter Crossbow, Elder Maul, Twisted Bow",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Chambers_of_Xeric",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Dragon_hunter_crossbow_detail.png/171px-Dragon_hunter_crossbow_detail.png?246a5"
+        }
+    ]
+}

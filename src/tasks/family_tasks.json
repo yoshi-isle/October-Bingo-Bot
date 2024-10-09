@@ -1,0 +1,23 @@
+{
+    "tasks":
+    [
+        {
+            "Name": "Revenant Weapon (including Avarice)",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Revenants",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Craw%27s_bow_%28u%29_detail.png/180px-Craw%27s_bow_%28u%29_detail.png?bf1fd"
+        },
+        {
+            "Name": "3x Cerberus Crystals",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Cerberus",
+            "Image": "https://oldschool.runescape.wiki/w/Primordial_crystal"
+        },
+        {
+            "Name": "Any Pet (minus Chompy Chick)",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Pet",
+            "Image": "https://oldschool.runescape.wiki/w/Primordial_crystal"
+        }
+    ]
+}
