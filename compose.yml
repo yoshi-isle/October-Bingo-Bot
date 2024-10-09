@@ -7,5 +7,10 @@ services:
     volumes:
       - .:/usr/src/app
     environment:
-      - APP_SETTINGS_FILE=appSettings.local.json  # To specify the configuration file explicitly (optional)
+      - APP_SETTINGS_FILE=appSettings.local.json
     restart: always
+  mongodb:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=pass
