@@ -42,6 +42,7 @@ async def dashboard1(interaction: discord.Interaction):
 
 @bot.tree.command(name="random_dashboard", description="Generates a random dashboard for testing")
 async def random_dashboard(interaction: discord.Interaction):
+    await interaction.response.send_message("Generating random board")
     await bot.dashboard_service.generate_random_board(interaction)
 
 # Main function to start the bot
