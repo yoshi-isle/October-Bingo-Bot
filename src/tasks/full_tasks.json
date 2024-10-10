@@ -42,7 +42,30 @@
             "ShortDescription": "",
             "WikiUrl": "https://oldschool.runescape.wiki/w/The_Whisperer",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Virtus_robe_top_detail.png/150px-Virtus_robe_top_detail.png?b2b4a"
+        },
+        {
+            "Name": "Any GWD Hilt",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/God_Wars_Dungeon",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Saradomin_hilt_detail.png/120px-Saradomin_hilt_detail.png?f9ce8"
+        },
+        {
+            "Name": "Armadyl Crossbow",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Commander_Zilyana",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Armadyl_crossbow_detail.png/150px-Armadyl_crossbow_detail.png?de091"
+        },
+        {
+            "Name": "3x Spirit shield or Elixer",
+            "ShortDescription": "3 spirit shields or 1 elixer",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Spirit_shield",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Spirit_shield_detail.png/120px-Spirit_shield_detail.png?3524f"
+        },
+        {
+            "Name": "2 Bandos Uniques",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/General_Graardor",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Bandos_boots_detail.png/120px-Bandos_boots_detail.png?9bcc8"
         }
-        
     ]
 }

@@ -42,6 +42,54 @@
             "ShortDescription": "",
             "WikiUrl": "https://oldschool.runescape.wiki/w/King_Black_Dragon",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Kbd_heads_detail.png/130px-Kbd_heads_detail.png?a6345"
+        },
+        {
+            "Name": "2x Saradomin Sword/Godsword Shard",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Commander_Zilyana",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Saradomin_sword_detail.png/140px-Saradomin_sword_detail.png?5539e"
+        },    
+        {
+            "Name": "Any 3 Godsword Shards",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Godsword_shard_1",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Godsword_shard_1_detail.png/120px-Godsword_shard_1_detail.png?5e19c"
+        },
+        {
+            "Name": "Dragon Pickaxe",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Dragon_pickaxe",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Dragon_pickaxe_detail.png/140px-Dragon_pickaxe_detail.png?4f4ee"
+        },
+        {
+            "Name": "5x Fire Capes",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Fire_cape",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Fire_cape_detail.png/150px-Fire_cape_detail.png?f1d08"
+        },
+        {
+            "Name": "Bandos Unique",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/General_Graardor",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Bandos_tassets_detail.png/120px-Bandos_tassets_detail.png?abaeb"
+        },
+        {
+            "Name": "Infernal Cape",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Infernal_cape",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Infernal_cape_detail.png/150px-Infernal_cape_detail.png?03de7"
+        },
+        {
+            "Name": "Dragon Chainbody",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Dragon_chainbody",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Dragon_chainbody_detail.png/130px-Dragon_chainbody_detail.png?35048"
+        },
+        {
+            "Name": "Armadyl Armor",
+            "ShortDescription": "Any piece of armor from Kree'ara",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Kree%27arra",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Armadyl_helmet_detail.png/100px-Armadyl_helmet_detail.png?8793d"
         }
     ]
 }

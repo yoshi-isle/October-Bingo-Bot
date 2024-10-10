@@ -24,6 +24,18 @@
             "ShortDescription": "",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Last_Man_Standing",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Last_Man_Standing_logo.png/100px-Last_Man_Standing_logo.png?1e913"
+        },
+        {
+            "Name": "Dragon 2h",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Dragon_2h_sword",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Dragon_2h_sword_detail.png/120px-Dragon_2h_sword_detail.png?6ed9d"
+        },
+        {
+            "Name": "2 seeds from Gauntlet",
+            "ShortDescription": "any 2 seeds from the gauntlet",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/The_Gauntlet",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Crystal_armour_seed_detail.png/120px-Crystal_armour_seed_detail.png?fa149"
         }
     ]
 }
