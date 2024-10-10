@@ -12,6 +12,18 @@
             "ShortDescription": "",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Avernic_defender_hilt",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Avernic_defender_hilt_detail.png/160px-Avernic_defender_hilt_detail.png?6d350"
+        },
+        {
+            "Name": "Nex Unique",
+            "ShortDescription": "Nihil shards do not count",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Nex",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Ancient_hilt_detail.png/120px-Ancient_hilt_detail.png?87a43"
+        },
+        {
+            "Name": "Zulrah Unique",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Zulrah",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Magic_fang_detail.png/114px-Magic_fang_detail.png?cd4e3"
         }
     ]
 }
