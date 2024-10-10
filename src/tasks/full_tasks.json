@@ -24,6 +24,18 @@
             "ShortDescription": "4 Pieces from Moons of Peril",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Moons_of_Peril",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Dual_macuahuitl_detail.png/150px-Dual_macuahuitl_detail.png?be5ad"
+        },
+        {
+            "Name": "Peach Conjurer CA",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Peach_Conjurer",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Combat_achievements_detail.png/150px-Combat_achievements_detail.png?d8b9a"
+        },
+        {
+            "Name": "Personal Space CA",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Personal_Space",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Combat_achievements_detail.png/150px-Combat_achievements_detail.png?d8b9a"
         }
     ]
 }
