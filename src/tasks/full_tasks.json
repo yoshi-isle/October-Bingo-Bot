@@ -66,6 +66,24 @@
             "ShortDescription": "",
             "WikiUrl": "https://oldschool.runescape.wiki/w/General_Graardor",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Bandos_boots_detail.png/120px-Bandos_boots_detail.png?9bcc8"
+        },
+        {
+            "Name": "2x Armadyl Armor",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Kree%27arra",
+            "Image": "https://oldschool.runescape.wiki/w/File:Armadyl_chainskirt_detail.png"
+        },
+        {
+            "Name": "2x Zammy Weapon",
+            "ShortDescription": "Spear or Staves",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/K%27ril_Tsutsaroth",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Zamorakian_spear_detail.png/150px-Zamorakian_spear_detail.png?29623"
+        },
+        {
+            "Name": "Staff of the Dead",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Staff_of_the_dead",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Staff_of_the_dead_detail.png/98px-Staff_of_the_dead_detail.png?aa8b8"
         }
     ]
 }
