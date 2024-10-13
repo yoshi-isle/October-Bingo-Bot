@@ -18,6 +18,54 @@
             "ShortDescription": "",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Pet",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Pet_dagannoth_rex_detail.png/90px-Pet_dagannoth_rex_detail.png?20365"
+        },
+        {
+            "Name": "Any Inquisitor piece",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Inquisitor%27s_armour",
+            "Image": "https://oldschool.runescape.wiki/images/Inquisitor%27s_great_helm_chathead.png?92067"
+        },
+        {
+            "Name": "Wildy Shield from Scratch",
+            "ShortDescription": "Malediction ward or Odium Ward",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_shield",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Odium_ward_detail.png/150px-Odium_ward_detail.png?49661"
+        },
+        {
+            "Name": "Giant Mole pet",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Baby_mole",
+            "Image": "https://oldschool.runescape.wiki/images/Baby_mole_chathead.png?5af8a"
+        },
+        {
+            "Name": "DT2 Quartz",
+            "ShortDescription": "1 of each quartz from DT2 bosses",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Boss#The_Forgotten_Four",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Ice_quartz_detail.png/130px-Ice_quartz_detail.png?99817"
+        },
+        {
+            "Name": "Any axe piece",
+            "ShortDescription": "Any axe piece from DT2 bosses",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Boss#The_Forgotten_Four",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Soulreaper_axe_detail.png/150px-Soulreaper_axe_detail.png?27b3b"
+        },
+        {
+            "Name": "Any Rev weapon",
+            "ShortDescription": "no avarice",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Revenants",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Craw%27s_bow_%28u%29_detail.png/180px-Craw%27s_bow_%28u%29_detail.png?bf1fd"
+        },
+        {
+            "Name": "HMT kit or dust",
+            "ShortDescription": "Hard Mode Theatre of Blood",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Theatre_of_Blood",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Holy_ornament_kit_detail.png/150px-Holy_ornament_kit_detail.png?17b1d"
+        },
+        {
+            "Name": "Tumeken's Shadow",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Tumeken%27s_shadow#Uncharged",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Tumeken%27s_shadow_%28uncharged%29_detail.png/180px-Tumeken%27s_shadow_%28uncharged%29_detail.png?24f11"
         }
     ]
 }

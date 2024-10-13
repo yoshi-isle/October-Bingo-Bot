@@ -84,6 +84,42 @@
             "ShortDescription": "",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Staff_of_the_dead",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Staff_of_the_dead_detail.png/98px-Staff_of_the_dead_detail.png?aa8b8"
+        },
+        {
+            "Name": "Full Pyromancer set",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Pyromancer_outfit",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Pyromancer_garb_detail.png/160px-Pyromancer_garb_detail.png?0e275"
+        },
+        {
+            "Name": "Zalcano Unique",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Zalcano",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Zalcano_shard_detail.png/150px-Zalcano_shard_detail.png?f52af"
+        },
+        {
+            "Name": "Twisted kit or dust",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Twisted_ancestral_colour_kit",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Twisted_ancestral_colour_kit_detail.png/170px-Twisted_ancestral_colour_kit_detail.png?d72c4"
+        },
+        {
+            "Name": "Any ancestral piece",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Ancestral_hat",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Ancestral_hat_detail.png/130px-Ancestral_hat_detail.png?b438f"
+        },
+        {
+            "Name": "Any pieceo of Justiciar",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Justiciar_faceguard",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Justiciar_faceguard_detail.png/140px-Justiciar_faceguard_detail.png?b297a"
+        },
+        {
+            "Name": "Any masori armor",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Masori_chaps",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Masori_chaps_detail.png/90px-Masori_chaps_detail.png?34c7a"
         }
     ]
 }

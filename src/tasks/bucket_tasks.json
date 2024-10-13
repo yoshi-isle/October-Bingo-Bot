@@ -18,6 +18,30 @@
             "ShortDescription": "5x crystal weapon seeds, or 1 enhanced crystal weapon seed",
             "WikiUrl": "https://oldschool.runescape.wiki/w/The_Gauntlet#Corrupted_Gauntlet",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Crystal_weapon_seed_detail.png/130px-Crystal_weapon_seed_detail.png?85ac9"
+        },
+        {
+            "Name": "Any Nightmare Orb",
+            "ShortDescription": "Eldritch, Harmonised or Volatile orb",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Eldritch_orb",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Harmonised_orb_detail.png/150px-Harmonised_orb_detail.png?83d4d"
+        },
+        {
+            "Name": "Any Mutagen",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Tanzanite_mutagen",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Tanzanite_mutagen_detail.png/80px-Tanzanite_mutagen_detail.png?c7236"
+        },
+        {
+            "Name": "Any CoX mega rare",
+            "ShortDescription": "Kodai, Elder Maul or Twisted bow",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Chambers_of_Xeric",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Twisted_bow_detail.png/150px-Twisted_bow_detail.png?7aa10"
+        },
+        {
+            "Name": "Scythe of Vitur",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Scythe_of_vitur",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Scythe_of_vitur_%28uncharged%29_detail.png/200px-Scythe_of_vitur_%28uncharged%29_detail.png?939b9"
         }
     ]
 }
