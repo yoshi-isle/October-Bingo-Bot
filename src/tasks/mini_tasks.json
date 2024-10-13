@@ -60,6 +60,36 @@
             "ShortDescription": "",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Dark_relic",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Dark_relic_detail.png/150px-Dark_relic_detail.png?623e8"
+        },
+        {
+            "Name": "Any Jewel",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Eye_of_the_corruptor",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Eye_of_the_corruptor_detail.png/100px-Eye_of_the_corruptor_detail.png?bcda1"
+        },
+        {
+            "Name": "Abyssal Lantern or a Dye",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Abyssal_lantern",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Abyssal_lantern_detail.png/150px-Abyssal_lantern_detail.png?eca08"
+        },
+        {
+            "Name": "3x Rogue Kits",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Rogue_kit",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Rogue_kit_detail.png/170px-Rogue_kit_detail.png?d576d"
+        },
+        {
+            "Name": "Elder Chaos Robe",
+            "ShortDescription": "1 piece",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Elder_chaos_robe",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Elder_chaos_robe_detail.png/100px-Elder_chaos_robe_detail.png?4f4ee"
+        },
+        {
+            "Name": "Dragon Defender",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Dragon_defender",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Dragon_defender_detail.png/150px-Dragon_defender_detail.png?c7be1"
         }
     ]
 }

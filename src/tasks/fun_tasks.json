@@ -198,6 +198,30 @@
             "ShortDescription": "",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Cursed_phalanx",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Cursed_phalanx_detail.png/150px-Cursed_phalanx_detail.png?8957f"
+        },
+        {
+            "Name": "Grand Seed Pod",
+            "ShortDescription": "Must be obtained at gnome restaurant",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Grand_seed_pod",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Grand_seed_pod_detail.png/150px-Grand_seed_pod_detail.png?19a96"
+        },
+        {
+            "Name": "5x Strange lockpick or Ring of Endurance",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Strange_old_lockpick",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Strange_old_lockpick_%28full%29_detail.png/120px-Strange_old_lockpick_%28full%29_detail.png?1925a"
+        },
+        {
+            "Name": "Any lock",
+            "ShortDescription": "Shades of Mor'ton minigame",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Gold_locks",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Gold_locks_detail.png/170px-Gold_locks_detail.png?28d67"
+        },
+        {
+            "Name": "Any Zealot robe piece",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Zealot%27s_robes",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Zealot%27s_robe_top_detail.png/150px-Zealot%27s_robe_top_detail.png?972ac"
         }
     ]
 }

@@ -110,16 +110,46 @@
             "Image": "https://oldschool.runescape.wiki/images/thumb/Ancestral_hat_detail.png/130px-Ancestral_hat_detail.png?b438f"
         },
         {
-            "Name": "Any pieceo of Justiciar",
+            "Name": "Any piece of Justiciar",
             "ShortDescription": "",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Justiciar_faceguard",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Justiciar_faceguard_detail.png/140px-Justiciar_faceguard_detail.png?b297a"
         },
         {
-            "Name": "Any masori armor",
+            "Name": "Any Masori armor",
             "ShortDescription": "",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Masori_chaps",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Masori_chaps_detail.png/90px-Masori_chaps_detail.png?34c7a"
+        },
+        {
+            "Name": "Golden Tench",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Golden_tench",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Golden_tench_detail.png/130px-Golden_tench_detail.png?27700"
+        },
+        {
+            "Name": "Imcando hammer",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Imcando_hammer",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Imcando_hammer_detail.png/120px-Imcando_hammer_detail.png?78a88"
+        },
+        {
+            "Name": "Any champion scroll",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Champion%27s_scroll",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Imp_champion_scroll_detail.png/150px-Imp_champion_scroll_detail.png?48913"
+        },
+        {
+            "Name": "Full Elder Chaos set",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Elder_chaos_hood",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Elder_chaos_hood_detail.png/100px-Elder_chaos_hood_detail.png?61d46"
+        },
+        {
+            "Name": "Gold egg, Fox whistle, or Petal Garland",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Golden_pheasant_egg",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Golden_pheasant_egg_detail.png/120px-Golden_pheasant_egg_detail.png?db719"
         }
     ]
 }
