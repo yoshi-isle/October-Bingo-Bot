@@ -150,6 +150,24 @@
             "ShortDescription": "",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Golden_pheasant_egg",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Golden_pheasant_egg_detail.png/120px-Golden_pheasant_egg_detail.png?db719"
+        },
+        {
+            "Name": "Ancient Ceremonial Robes",
+            "ShortDescription": "Full set from scratch",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Ancient_ceremonial_robes",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Ancient_ceremonial_top_detail.png/150px-Ancient_ceremonial_top_detail.png?87a43"
+        },
+        {
+            "Name": "",
+            "ShortDescription": "",
+            "WikiUrl": "",
+            "Image": ""
+        },
+        {
+            "Name": "Insanity CA",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Insanity",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Combat_achievements_detail.png/150px-Combat_achievements_detail.png?d8b9a"
         }
     ]
 }

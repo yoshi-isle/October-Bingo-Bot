@@ -90,6 +90,66 @@
             "ShortDescription": "",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Dragon_defender",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Dragon_defender_detail.png/150px-Dragon_defender_detail.png?c7be1"
+        },
+        {
+            "Name": "Granite Legs",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Granite_legs",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Granite_legs_detail.png/150px-Granite_legs_detail.png?cd4e3"
+        },
+        {
+            "Name": "Dragon Boots",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Dragon_boots",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Dragon_boots_detail.png/150px-Dragon_boots_detail.png?35048"
+        },
+        {
+            "Name": "Sulphur Blades",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Sulphur_blades",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Sulphur_blades_detail.png/130px-Sulphur_blades_detail.png?f6d50"
+        },
+        {
+            "Name": "Grow kitten from Gertrude",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Gertrude",
+            "Image": "https://oldschool.runescape.wiki/images/Cat_%28grey_and_black%29_chathead.png?5878b"
+        },
+        {
+            "Name": "Picture of your pet",
+            "ShortDescription": "If no pet, go outside and take picture of an animal (all teammates participate)",
+            "WikiUrl": "",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Cat_%28grey_and_black%29.png/180px-Cat_%28grey_and_black%29.png?ae447"
+        },
+        {
+            "Name": "Describe yourself",
+            "ShortDescription": "tell us about yourself! Hobbies/interests (all teammates participate)",
+            "WikiUrl": "",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Seagull.png/250px-Seagull.png?4a534"
+        },
+        {
+            "Name": "Watch Spooky movie together",
+            "ShortDescription": "2 people minimum, more are encouraged :)",
+            "WikiUrl": "",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Draynor_Manor.png/300px-Draynor_Manor.png?55c43"
+        },
+        {
+            "Name": "Fashionscape TOB",
+            "ShortDescription": "Theatre of blood",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Theatre_of_Blood",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Theatre_of_Blood_logo.png/250px-Theatre_of_Blood_logo.png?e6e68"
+        },
+        {
+            "Name": "Fashionscape COX",
+            "ShortDescription": "Chambers of Xeric",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Chambers_of_Xeric",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Chambers_of_Xeric_logo.png/250px-Chambers_of_Xeric_logo.png?34a98"
+        },
+        {
+            "Name": "Fashionscape TOA",
+            "ShortDescription": "Tombs of Amascut",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Tombs_of_Amascut",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Tombs_of_Amascut.png/300px-Tombs_of_Amascut.png?f9992"
         }
     ]
 }
