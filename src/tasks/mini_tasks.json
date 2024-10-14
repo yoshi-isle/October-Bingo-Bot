@@ -150,6 +150,30 @@
             "ShortDescription": "Tombs of Amascut",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Tombs_of_Amascut",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Tombs_of_Amascut.png/300px-Tombs_of_Amascut.png?f9992"
+        },
+        {
+            "Name": "1 Penance Queen kill",
+            "ShortDescription": "all members of kitty must be present",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Barbarian_Assault",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Penance_Fighter_%28wave_4%29.png/110px-Penance_Fighter_%28wave_4%29.png?24043"
+        },
+        {
+            "Name": "Tempoross Unique",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Tempoross",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Tome_of_water_%28empty%29_detail.png/160px-Tome_of_water_%28empty%29_detail.png?2502c"
+        },
+        {
+            "Name": "Mage Training Arena Unique",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Mage_Training_Arena",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Infinity_hat_detail.png/120px-Infinity_hat_detail.png?78ba5"
+        },
+        {
+            "Name": "5 Collection log slots",
+            "ShortDescription": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Collection_log",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Collection_log_detail.png/130px-Collection_log_detail.png?70bda"
         }
     ]
 }
