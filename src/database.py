@@ -30,8 +30,6 @@ class Database:
         return self.teams_collection.find_one({"ChannelId": str(channel_id)})
 
     async def get_all_teams(self):
-        print("getting...")
-        print(self.teams_collection)
         return [result for result in self.teams_collection.find()]
 
 class Team:

@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
 import discord
 from enum import Enum
-from constants.candytier import CandyTier
+from constants.candy_tier import CandyTier
 from database import Team
 
 class TaskLoader:
@@ -39,7 +39,7 @@ class DashboardService:
     """
     async def generate_board(self, team: Team):
         # Helper
-        async def fetch_image(self, session, url):
+        async def fetch_image(session, url):
             async with session.get(url) as response:
                 return await response.read()
             
@@ -78,11 +78,11 @@ class DashboardService:
             return final_dashboard
         
     async def get_random_task(self, tier: CandyTier):
-        if tier == CandyTier.MINI:
+        if tier == CandyTier.CANDYTIER["Mini-sized"]:
             return random.choice(self.task_loader.mini_tasks)
-        if tier == CandyTier.FUN:
+        if tier == CandyTier.CANDYTIER["Fun-sized"]:
             return random.choice(self.task_loader.fun_tasks)
-        if tier == CandyTier.FULL:
+        if tier == CandyTier.CANDYTIER["Full-sized"]:
             return random.choice(self.task_loader.full_tasks)
-        if tier == CandyTier.FAMILY:
+        if tier == CandyTier.CANDYTIER["Family-sized"]:
             return random.choice(self.task_loader.family_tasks)
