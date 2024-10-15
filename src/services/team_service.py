@@ -37,5 +37,5 @@ class TeamService:
             updated = database.teams_collection.update_one({"_id": ObjectId(team._id)}, update_data)
             return updated
         except Exception as e:
-            print(e)
+            print(f"Failed to update database record {e}")
        

@@ -43,12 +43,13 @@ bot = Bot()
 async def ping(interaction: discord.Interaction):
     await interaction.response.send_message("pong")
 
-@bot.tree.command(name="myteam", description="Team")
+@bot.tree.command(name="board", description="Your team's board")
 async def my_team(interaction: discord.Interaction):
     team = await bot.teams_service.get_team_from_channel_id(interaction, bot.database)
     if team is None:
         await interaction.response.send_message("No team info found")
-    await interaction.response.send_message(f"```{team.name, team.channel_id, team.members}```")
+        return
+    await interaction.channel.send(file = await bot.dashboard_service.generate_board(team))
 
 @bot.tree.command(name="submit", description="Submit a drop!")
 async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
