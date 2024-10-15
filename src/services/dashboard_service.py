@@ -31,16 +31,12 @@ class DashboardService:
         self.slot3_box = [627, 656, 882, 911]    # Shifted
         self.slot4_box = [1047, 656, 1302, 911]  # Shifted
 
-
         self.text1_coords = [600, 516]
         self.text2_coords = [1025, 516]
         self.text3_coords = [600, 888]
         self.text4_coords = [1025, 888]
         self.max_image_size = (200, 200)
 
-    """
-    Generate the team's bingo board image
-    """
     async def generate_board(self, team: Team):
         try:
             response_mini = requests.get(team.mini_task[0]['Image'])
@@ -85,7 +81,7 @@ class DashboardService:
                 draw.text(self.text3_coords, team.full_task[0]['Name'], font=font, fill=text_color)
                 draw.text(self.text4_coords, team.family_task[0]['Name'], font=font, fill=text_color)
 
-                # Save final image and return the file object to be sent to Discord
+                # Save final image
                 img.save("final_dashboard.png")
                 final_dashboard = discord.File("final_dashboard.png")
                 return final_dashboard
@@ -93,15 +89,15 @@ class DashboardService:
         except Exception as e:
             print(f"Error generating dashboard: {e}")
 
+    """Resize the image while maintaining aspect ratio."""
     @staticmethod
     def _resize_image(image):
-        """Resize the image while maintaining aspect ratio."""
-        image.thumbnail((200, 200))  # Resize while keeping aspect ratio
+        image.thumbnail((200, 200))
         return image
 
+    """Calculate the top-left corner coordinates to center the image in the given region box."""
     @staticmethod
     def _get_center_coords(region_box, image_size):
-        """Calculate the top-left corner coordinates to center the image in the given region box."""
         region_width = region_box[2] - region_box[0]
         region_height = region_box[3] - region_box[1]
         
