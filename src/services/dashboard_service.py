@@ -25,16 +25,18 @@ class TaskLoader:
 
 class DashboardService:
     def __init__(self):
-        self.task_loader = TaskLoader()  # Initialize task loader
-        self.slot1_coords = [688, 344]
-        self.slot2_coords = [1102, 344]
-        self.slot3_coords = [682, 711]
-        self.slot4_coords = [1102, 711]
+        self.task_loader = TaskLoader()
+        self.slot1_box = [633, 289, 888, 544]   # Shifted right 25px and down 25px
+        self.slot2_box = [1047, 289, 1302, 544]  # Shifted
+        self.slot3_box = [627, 656, 882, 911]    # Shifted
+        self.slot4_box = [1047, 656, 1302, 911]  # Shifted
+
+
         self.text1_coords = [600, 516]
         self.text2_coords = [1025, 516]
         self.text3_coords = [600, 888]
         self.text4_coords = [1025, 888]
-        self.image_size = (300, 300)
+        self.max_image_size = (200, 200)
 
     """
     Generate the team's bingo board image
@@ -59,31 +61,30 @@ class DashboardService:
                 img_full = Image.open(BytesIO(response_full.content))
                 img_family = Image.open(BytesIO(response_family.content))
 
-                img_mini = img_mini.resize(self.image_size)
-                img_fun = img_fun.resize(self.image_size)
-                img_full = img_full.resize(self.image_size)
-                img_family = img_family.resize(self.image_size)
+                # Resize images while maintaining aspect ratio
+                img_mini = self._resize_image(img_mini)
+                img_fun = self._resize_image(img_fun)
+                img_full = self._resize_image(img_full)
+                img_family = self._resize_image(img_family)
 
-                img_mini = img_mini.convert("RGBA")
-                img_fun = img_fun.convert("RGBA")
-                img_full = img_full.convert("RGBA")
-                img_family = img_family.convert("RGBA")
+                # Calculate the center coordinates for each image based on the region box
+                mini_coords = self._get_center_coords(self.slot1_box, img_mini.size)
+                fun_coords = self._get_center_coords(self.slot2_box, img_fun.size)
+                full_coords = self._get_center_coords(self.slot3_box, img_full.size)
+                family_coords = self._get_center_coords(self.slot4_box, img_family.size)
 
-                print("4")
-                # Paste images onto the base image at the designated coordinates
-                img.paste(img_mini, self.slot1_coords, img_mini)
-                img.paste(img_fun, self.slot2_coords, img_fun)
-                img.paste(img_full, self.slot3_coords, img_full)
-                img.paste(img_family, self.slot4_coords, img_family)
+                # Paste images onto the base image at the calculated coordinates
+                img.paste(img_mini, mini_coords, img_mini)
+                img.paste(img_fun, fun_coords, img_fun)
+                img.paste(img_full, full_coords, img_full)
+                img.paste(img_family, family_coords, img_family)
 
-                print("5")
                 # Add task names as text
                 draw.text(self.text1_coords, team.mini_task[0]['Name'], font=font, fill=text_color)
                 draw.text(self.text2_coords, team.fun_task[0]['Name'], font=font, fill=text_color)
                 draw.text(self.text3_coords, team.full_task[0]['Name'], font=font, fill=text_color)
                 draw.text(self.text4_coords, team.family_task[0]['Name'], font=font, fill=text_color)
 
-                print("6")
                 # Save final image and return the file object to be sent to Discord
                 img.save("final_dashboard.png")
                 final_dashboard = discord.File("final_dashboard.png")
@@ -91,6 +92,26 @@ class DashboardService:
 
         except Exception as e:
             print(f"Error generating dashboard: {e}")
+
+    @staticmethod
+    def _resize_image(image):
+        """Resize the image while maintaining aspect ratio."""
+        image.thumbnail((200, 200))  # Resize while keeping aspect ratio
+        return image
+
+    @staticmethod
+    def _get_center_coords(region_box, image_size):
+        """Calculate the top-left corner coordinates to center the image in the given region box."""
+        region_width = region_box[2] - region_box[0]
+        region_height = region_box[3] - region_box[1]
+        
+        image_width, image_height = image_size
+        
+        # Calculate the top-left corner for centering
+        left = region_box[0] + (region_width - image_width) // 2
+        top = region_box[1] + (region_height - image_height) // 2
+        
+        return (left, top)
 
     async def get_random_task(self, tier: CandyTier):
         if tier == CandyTier.CANDYTIER["Mini-sized"]:
