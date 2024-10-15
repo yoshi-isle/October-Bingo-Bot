@@ -1,85 +1,88 @@
 import json
-import discord
 import random
-import requests
+import aiohttp
+import asyncio
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
+import discord
+from enum import Enum
+from constants.candytier import CandyTier
+from database import Team
+
+class TaskLoader:
+    def __init__(self):
+        self.mini_tasks = self.load_tasks('src/tasks/mini_tasks.json')
+        self.fun_tasks = self.load_tasks('src/tasks/fun_tasks.json')
+        self.full_tasks = self.load_tasks('src/tasks/full_tasks.json')
+        self.family_tasks = self.load_tasks('src/tasks/family_tasks.json')
+
+    @staticmethod
+    def load_tasks(file_path):
+        with open(file_path, 'r') as file:
+            return json.load(file)["tasks"]
 
 class DashboardService:
-    async def post_empty_dashboard(self, interaction: discord.Interaction):
+    def __init__(self):
+        # Cache tasks
+        self.task_loader = TaskLoader()
+        self.slot1_coords = [688, 344]
+        self.slot2_coords = [1102, 344]
+        self.slot3_coords = [682, 711]
+        self.slot4_coords = [1102, 711]
+        self.text1_coords = [600, 516]
+        self.text2_coords = [1025, 516]
+        self.text3_coords = [600, 888]
+        self.text4_coords = [1025, 888]
+
+    """
+    Generate the team's bingo board image
+    """
+    async def generate_board(self, team: Team):
+        # Helper
+        async def fetch_image(self, session, url):
+            async with session.get(url) as response:
+                return await response.read()
+            
+        async with aiohttp.ClientSession() as session:
+            response_mini, response_fun, response_full, response_family = await asyncio.gather(
+                fetch_image(session, team.tasks.get('MiniTask')['Image']),
+                fetch_image(session, team.tasks.get('FunTask')['Image']),
+                fetch_image(session, team.tasks.get('FullTask')['Image']),
+                fetch_image(session, team.tasks.get('FamilyTask')['Image']),
+            )
+
         with Image.open("src/images/dashboard.png") as img:
-            img.save("dashboard.png")
-            final_image = discord.File("dashboard.png")
-            await interaction.channel.send(file=final_image)
-
-    async def generate_random_board(self, interaction: discord.Interaction):
-        # Open the base dashboard image
-        # Find the coordinates for mini, fun, full, family
-        # For each tier, pick a random task
-
-        slot1_coords = [700, 370]
-        slot2_coords = [1115, 370]
-        slot3_coords = [700, 740]
-        slot4_coords = [1115, 740]
-
-        random_mini_task = None
-        random_fun_task = None
-        random_full_task = None
-        random_family_task = None
-
-        # Get random tasks
-        with open('src/tasks/mini_tasks.json', 'r') as file:
-            data = json.load(file)
-            random_mini_task = random.choice(data["tasks"])
-        with open('src/tasks/fun_tasks.json', 'r') as file:
-            data = json.load(file)
-            random_fun_task = random.choice(data["tasks"])
-        with open('src/tasks/full_tasks.json', 'r') as file:
-            data = json.load(file)
-            random_full_task = random.choice(data["tasks"])
-        with open('src/tasks/family_tasks.json', 'r') as file:
-            data = json.load(file)
-            random_family_task = random.choice(data["tasks"])
-        
-        with Image.open("src/images/dashboard.png") as img:
-            # Fetch the wiki image from the URL
-            response_mini = requests.get(random_mini_task['Image'])
-            response_fun = requests.get(random_fun_task['Image'])
-            response_full = requests.get(random_full_task['Image'])
-            response_family = requests.get(random_family_task['Image'])
-
-            # Font
+            # Font and draw setup
             draw = ImageDraw.Draw(img)
+            font = ImageFont.truetype("src/fonts/vinque rg.otf", 28)
             text_color = (255, 255, 255)
-            font = ImageFont.truetype("src/fonts/vinque rg.otf", 40)
 
-            # Paste layer
-            img_mini = Image.open(BytesIO(response_mini.content))
-            img_mini.save("mini_image.png")
-            position_mini = slot1_coords
-            
-            img_fun = Image.open(BytesIO(response_fun.content))
-            img_fun.save("fun_image.png")
-            position_fun = slot2_coords
-            
-            img_full = Image.open(BytesIO(response_full.content))
-            img_full.save("full_image.png")
-            position_full= slot3_coords
+            # Open images from memory and paste them
+            img_mini = Image.open(BytesIO(response_mini))
+            img_fun = Image.open(BytesIO(response_fun))
+            img_full = Image.open(BytesIO(response_full))
+            img_family = Image.open(BytesIO(response_family))
 
-            img_family = Image.open(BytesIO(response_family.content))
-            img_family.save("family_image.png")
-            position_family = slot4_coords
-
-            img.paste(img_mini, position_mini, img_mini)
-            draw.text((600,500), random_mini_task['Name'], font=font, fill=text_color)
-            img.paste(img_fun, position_fun, img_fun)
-            img.paste(img_full, position_full, img_full)
-            img.paste(img_family, position_family, img_family)
+            img.paste(img_mini, self.slot1_coords, img_mini)
+            img.paste(img_fun, self.slot2_coords, img_fun)
+            img.paste(img_full, self.slot3_coords, img_full)
+            img.paste(img_family, self.slot4_coords, img_family)
+            draw.text(self.text1_coords, random_mini_task['Name'], font=font, fill=text_color)
+            draw.text(self.text2_coords, random_fun_task['Name'], font=font, fill=text_color)
+            draw.text(self.text3_coords, random_full_task['Name'], font=font, fill=text_color)
+            draw.text(self.text4_coords, random_family_task['Name'], font=font, fill=text_color)
 
             img.save("final_dashboard.png")
             final_dashboard = discord.File("final_dashboard.png")
 
-            await interaction.channel.send(file=final_dashboard)
-
+            return final_dashboard
         
-        
+    async def get_random_task(self, tier: CandyTier):
+        if tier == CandyTier.MINI:
+            return random.choice(self.task_loader.mini_tasks)
+        if tier == CandyTier.FUN:
+            return random.choice(self.task_loader.fun_tasks)
+        if tier == CandyTier.FULL:
+            return random.choice(self.task_loader.full_tasks)
+        if tier == CandyTier.FAMILY:
+            return random.choice(self.task_loader.family_tasks)

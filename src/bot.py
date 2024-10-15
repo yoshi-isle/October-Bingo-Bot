@@ -1,9 +1,13 @@
 import json
+import typing
 import discord
 import asyncio
+from database import Database
 from services.dashboard_service import DashboardService
+from services.team_service import TeamService
 from discord.ext import commands
-from discord import app_commands
+from discord import Enum, app_commands
+
 
 class Bot(commands.Bot):
     def __init__(self, *args, **kwargs):
@@ -13,7 +17,9 @@ class Bot(commands.Bot):
         super().__init__(command_prefix="!", intents=intents, *args, **kwargs)
 
         # Services
+        self.database = Database()
         self.dashboard_service = DashboardService()
+        self.teams_service = TeamService()
 
         # Load bot token and public key from configuration
         with open('appSettings.local.json', 'r') as file:
@@ -31,19 +37,37 @@ class Bot(commands.Bot):
 
 bot = Bot()
 
+# Autofills
+class AutoComplete:
+    CANDY_TIER = Enum("CANDY_TIERS", ["Mini", "Fun", "Full", "Family"])
+    
 # Slash Commands
 @bot.tree.command(name="ping", description="Responds with pong.")
 async def ping(interaction: discord.Interaction):
     await interaction.response.send_message("pong")
 
-@bot.tree.command(name="dashboard1", description="Posts the BG for dashboard")
-async def dashboard1(interaction: discord.Interaction):
-    await bot.dashboard_service.post_empty_dashboard(interaction)
+@bot.tree.command(name="myteam", description="Team")
+async def my_team(interaction: discord.Interaction):
+    team_info = await bot.teams_service.get_team_from_channel_id(interaction, bot.database)
+    if team_info is None:
+        await interaction.response.send_message("No team info found")
+    await interaction.response.send_message(f"```{team_info}```")
 
-@bot.tree.command(name="random_dashboard", description="Generates a random dashboard for testing")
+@bot.tree.command(name="submit", description="Submit a drop!")
+async def submit(interaction: discord.Interaction, tier: AutoComplete.CANDYTIER):
+    team_info = await bot.teams_service.get_team_from_channel_id(interaction, bot.database)
+    if team_info is None:
+        await interaction.response.send_message("No team info found")
+    await interaction.response.send_message(f"```{team_info}```")
+    await interaction.response.send_message(f"Submitting a {tier.value} yoshepggers")
+
+@bot.tree.command(name="random_dashboard", description="[TESTING ONLY] Generates a random dashboard for testing")
 async def random_dashboard(interaction: discord.Interaction):
-    await interaction.response.send_message("Generating random board")
-    await bot.dashboard_service.generate_random_board(interaction)
+    await interaction.channel.send(content = "Randomly generated board", file = await bot.dashboard_service.generate_random_board())
+    
+@bot.tree.command(name="all_teams", description="[TESTING ONLY] Get all teams")
+async def get_all_teams(interaction: discord.Interaction):
+    await bot.teams_service.get_all_teams(interaction, bot.database)
 
 # Main function to start the bot
 async def main():
