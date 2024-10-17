@@ -27,10 +27,10 @@ class DashboardService:
     def __init__(self):
         self.task_loader = TaskLoader()
 
-        self.slot1_box = [633, 289, 888, 544]   # Shifted right 25px and down 25px
-        self.slot2_box = [1047, 289, 1302, 544]  # Shifted
-        self.slot3_box = [627, 656, 882, 911]    # Shifted
-        self.slot4_box = [1047, 656, 1302, 911]  # Shifted
+        self.slot1_box = [633, 289, 888, 544]
+        self.slot2_box = [1047, 289, 1302, 544]
+        self.slot3_box = [627, 656, 882, 911]
+        self.slot4_box = [1047, 656, 1302, 911]
 
         self.taskname1_coords = [600, 516]
         self.taskname2_coords = [1025, 516]
@@ -67,10 +67,10 @@ class DashboardService:
                 text_color_green = (0, 255, 0)
 
                 # Convert fetched images into RGBA format to ensure transparency is preserved
-                img_mini = Image.open(BytesIO(response_mini.content))
-                img_fun = Image.open(BytesIO(response_fun.content))
-                img_full = Image.open(BytesIO(response_full.content))
-                img_family = Image.open(BytesIO(response_family.content))
+                img_mini = Image.open(BytesIO(response_mini.content)).convert("RGBA")
+                img_fun = Image.open(BytesIO(response_fun.content)).convert("RGBA")
+                img_full = Image.open(BytesIO(response_full.content)).convert("RGBA")
+                img_family = Image.open(BytesIO(response_family.content)).convert("RGBA")
 
                 # Resize images while maintaining aspect ratio
                 img_mini = self._resize_image(img_mini)
@@ -97,10 +97,10 @@ class DashboardService:
                 draw.text(self.taskname4_coords, team.family_task[0]['Name'], font=small_font, fill=text_color_white)
 
                 # Add task point amounts as text
-                draw.text(self.pointamount1_coords, "+1", font=big_font, fill=text_color_green)
-                draw.text(self.pointamount2_coords, "+3", font=big_font, fill=text_color_green)
-                draw.text(self.pointamount3_coords, "+6", font=big_font, fill=text_color_green)
-                draw.text(self.pointamount4_coords, "+12", font=big_font, fill=text_color_green)
+                draw.text(self.pointamount1_coords, "+5", font=big_font, fill=text_color_green)
+                draw.text(self.pointamount2_coords, "+30", font=big_font, fill=text_color_green)
+                draw.text(self.pointamount3_coords, "+120", font=big_font, fill=text_color_green)
+                draw.text(self.pointamount4_coords, "+250", font=big_font, fill=text_color_green)
 
                 # Add task tier names as text
                 draw.text(self.tasktier1_coords, "Mini-sized", font=small_font, fill=text_color_orange)
@@ -108,7 +108,6 @@ class DashboardService:
                 draw.text(self.tasktier3_coords, "Full-sized", font=small_font, fill=text_color_orange)
                 draw.text(self.tasktier4_coords, "Family-sized", font=small_font, fill=text_color_orange)
                 
-
                 # Save final image
                 img.save("final_dashboard.png")
                 final_dashboard = discord.File("final_dashboard.png")
