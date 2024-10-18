@@ -77,24 +77,32 @@ class TeamService:
         try:
             if tier == CandyTier.CANDYTIER["Mini-sized"]:
                 if team.mini_task[1] > datetime.now():
-                    return "Your team cannot re-roll that slot yet."
+                    return False
+                else:
+                    await self.assign_task(team, tier, database, dashboard_service)
             if tier == CandyTier.CANDYTIER["Fun-sized"]:
                 if team.fun_task[1] > datetime.now():
-                    return "Your team cannot re-roll that slot yet."
+                    return False
+                else:
+                    await self.assign_task(team, tier, database, dashboard_service)
             if tier == CandyTier.CANDYTIER["Full-sized"]:
                 if team.full_task[1] > datetime.now():
-                    return "Your team cannot re-roll that slot yet."
+                    return False
+                else:
+                    await self.assign_task(team, tier, database, dashboard_service)
             if tier == CandyTier.CANDYTIER["Family-sized"]:
                 if team.family_task[1] > datetime.now():
-                    return "Your team cannot re-roll that slot yet."
-            return "Re-rolling!"
+                    return False
+                else:
+                    await self.assign_task(team, tier, database, dashboard_service)
+            return True
         
         except Exception as e:
             print(f"Error while re-rolling task: {e}")         
         
 
 
-    async def assign_task(self, team: Team, tier: CandyTier, database: Database, dashboard_service: DashboardService):
+    async def assign_task(self, team: Team, tier: CandyTier, database: Database, dashboard_service: DashboardService, bucket_chance = False):
         twelve_hours_from_now = datetime.now() + timedelta(hours=12)
         random_task = await dashboard_service.get_random_task(tier)
         try:

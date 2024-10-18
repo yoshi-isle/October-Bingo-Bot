@@ -94,7 +94,20 @@ async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
             await interaction.response.send_message(f"You can't re-roll a candy bucket.", ephemeral=True)
             return
         
-        await interaction.response.send_message(await bot.teams_service.reroll_task(team, tier, bot.database, bot.dashboard_service))
+        reroll = await bot.teams_service.reroll_task(team, tier, bot.database, bot.dashboard_service)
+        
+        if reroll:
+            await interaction.response.send_message(f"{interaction.user.mention} is re-rolling the {tier.name} slot for the team!")
+            #Todo - reduce db call
+            team = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
+            await interaction.channel.send(file = await bot.dashboard_service.generate_board(team))
+            await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
+        else:
+            await interaction.response.send_message("Your team cannot re-roll that slot yet.")
+        
+        
+        
+        
         
         # await interaction.response.send_message(f"Thank your for your submission. Your board will be updated shortly in {bot.get_channel(int(team.channel_id)).mention}", ephemeral=True)
         # await bot.teams_service.award_points(team, bot.database, tier)
