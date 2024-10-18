@@ -69,7 +69,13 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
             await interaction.response.send_message(f"No team info found for you. Please contact <@726237123857874975>")
             return
         
+        # Check to ensure bucket or not
+        if tier == CandyTier.CANDYTIER["Candy-bucket"] and not team.bucket_task:
+            await interaction.response.send_message(f"You don't have a candy bucket. Wrong option maybe?", ephemeral=True)
+            return
+        
         await interaction.response.send_message(f"Thank your for your submission. Your board will be updated shortly in {bot.get_channel(int(team.channel_id)).mention}", ephemeral=True)
+        await bot.teams_service.award_points(team, bot.database, tier)
         await bot.teams_service.assign_task(team, tier, bot.database, bot.dashboard_service)        
         await interaction.channel.send(f"{interaction.user.mention} submitted for {team.name}.\n {info[tier.name][0]['Name']}", file=await image.to_file())
     except Exception as e:

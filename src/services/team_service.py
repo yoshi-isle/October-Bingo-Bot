@@ -115,3 +115,25 @@ class TeamService:
             return team, team_data
         else:
             return None, None
+        
+    async def award_points(self, team: Team, database, tier: CandyTier):
+        try:
+            add_amount = 0
+            if tier == CandyTier.CANDYTIER["Mini-sized"]:
+                add_amount = 5
+            elif tier == CandyTier.CANDYTIER["Fun-sized"]:
+                add_amount = 30
+            elif tier == CandyTier.CANDYTIER["Full-sized"]:
+                add_amount = 120
+            elif tier == CandyTier.CANDYTIER["Family-sized"]:
+                add_amount = 250
+            
+            update_data = {"$set": {"Points": team.points + add_amount}}
+
+            return database.teams_collection.find_one_and_update(
+                {"_id": ObjectId(team._id)},
+                update_data,
+                return_document=ReturnDocument.AFTER
+            )
+        except Exception as e:
+            print(e)

@@ -51,7 +51,7 @@ class DashboardService:
         self.bucket_box = [1445, 400, 1700, 655]
         self.bucketpanel = [1560, 500]
         self.bucketname_coords = [1500, 714]
-        self.bucketamount_coords = [1708, 450]
+        self.bucketamount_coords = [1711, 438]
         self.buckettasktier_coords = [1500, 450]
 
         self.max_image_size = (200, 200)
