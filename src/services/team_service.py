@@ -1,4 +1,5 @@
 # from datetime import timedelta
+import operator
 import discord
 from bson.objectid import ObjectId
 from constants.candy_tier import CandyTier
@@ -9,8 +10,11 @@ from datetime import datetime, timedelta
 from pymongo import ReturnDocument
 
 class TeamService:
-    async def get_all_teams(self, interaction: discord.Interaction, database: Database):
-        await interaction.response.send_message(await database.get_all_teams())
+    async def get_all_teams(self, database: Database):
+        # Sorted by points
+        all_teams = [result for result in database.teams_collection.find()]
+        # all_teams = (result for result in data)
+        return sorted(all_teams, key=operator.itemgetter("Points"), reverse=True)
     
     async def get_team_from_channel_id(self, channel_id: str, database: Database) -> Team:
         team_data = database.teams_collection.find_one({"ChannelId": str(channel_id)})
@@ -26,7 +30,8 @@ class TeamService:
                 fun_task=team_data.get("Fun-sized", ""),
                 full_task=team_data.get("Full-sized", ""),
                 family_task=team_data.get("Family-sized", ""),
-                bucket_task=team_data.get("Candy-bucket", ""))
+                bucket_task=team_data.get("Candy-bucket", ""),
+                submission_history=team_data.get("SubmissionHistory", ""))
             return team
         else:
             return None
@@ -66,8 +71,28 @@ class TeamService:
             return created_team
 
         except Exception as e:
-            # Handle exceptions as needed
             print(f"An error occurred: {e}")
+        
+    async def reroll_task(self, team: Team, tier: CandyTier, database: Database, dashboard_service: DashboardService):
+        try:
+            if tier == CandyTier.CANDYTIER["Mini-sized"]:
+                if team.mini_task[1] > datetime.now():
+                    return "Your team cannot re-roll that slot yet."
+            if tier == CandyTier.CANDYTIER["Fun-sized"]:
+                if team.fun_task[1] > datetime.now():
+                    return "Your team cannot re-roll that slot yet."
+            if tier == CandyTier.CANDYTIER["Full-sized"]:
+                if team.full_task[1] > datetime.now():
+                    return "Your team cannot re-roll that slot yet."
+            if tier == CandyTier.CANDYTIER["Family-sized"]:
+                if team.family_task[1] > datetime.now():
+                    return "Your team cannot re-roll that slot yet."
+            return "Re-rolling!"
+        
+        except Exception as e:
+            print(f"Error while re-rolling task: {e}")         
+        
+
 
     async def assign_task(self, team: Team, tier: CandyTier, database: Database, dashboard_service: DashboardService):
         twelve_hours_from_now = datetime.now() + timedelta(hours=12)
@@ -92,7 +117,8 @@ class TeamService:
                 fun_task=updated_team.get("Fun-sized", ""),
                 full_task=updated_team.get("Full-sized", ""),
                 family_task=updated_team.get("Family-sized", ""),
-                bucket_task=updated_team.get("Candy-bucket", ""))
+                bucket_task=updated_team.get("Candy-bucket", ""),
+                submission_history=updated_team.get("SubmissionHistory", ""))
 
             return team
         except Exception as e:
@@ -111,25 +137,46 @@ class TeamService:
                 fun_task=team_data.get("Fun-sized", ""),
                 full_task=team_data.get("Full-sized", ""),
                 family_task=team_data.get("Family-sized", ""),
-                bucket_task=team_data.get("Candy-bucket", ""))
+                bucket_task=team_data.get("Candy-bucket", ""),
+                submission_history=team_data.get("SubmissionHistory", ""))
+                
             return team, team_data
         else:
             return None, None
         
     async def award_points(self, team: Team, database, tier: CandyTier):
         try:
-            add_amount = 0
             if tier == CandyTier.CANDYTIER["Mini-sized"]:
                 add_amount = 5
+                new_submission_history = team.submission_history or []
+                new_submission_history.append([team.mini_task[0]["Name"], add_amount])
+                update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
+
             elif tier == CandyTier.CANDYTIER["Fun-sized"]:
                 add_amount = 30
+                new_submission_history = team.submission_history or []
+                new_submission_history.append([team.fun_task[0]["Name"], add_amount])
+                update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
+
             elif tier == CandyTier.CANDYTIER["Full-sized"]:
                 add_amount = 120
+                new_submission_history = team.submission_history or []
+                new_submission_history.append([team.full_task[0]["Name"], add_amount])
+                update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
+
             elif tier == CandyTier.CANDYTIER["Family-sized"]:
                 add_amount = 250
-            
-            update_data = {"$set": {"Points": team.points + add_amount}}
+                new_submission_history = team.submission_history or []
+                new_submission_history.append([team.family_task[0]["Name"], add_amount])
+                update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
 
+            elif tier == CandyTier.CANDYTIER["Candy-bucket"]:
+                add_amount = 600
+                new_submission_history = team.submission_history or []
+                new_submission_history.append([team.bucket_task[0]["Name"], add_amount])
+                update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
+
+            print(update_data)
             return database.teams_collection.find_one_and_update(
                 {"_id": ObjectId(team._id)},
                 update_data,
