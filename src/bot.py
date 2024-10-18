@@ -4,6 +4,7 @@ import asyncio
 from constants.candy_tier import CandyTier
 from database import Database, Team
 from services.dashboard_service import DashboardService
+from services.embed_generator import EmbedGenerator
 from services.team_service import TeamService
 from discord.ext import commands
 from discord import app_commands
@@ -18,6 +19,7 @@ class Bot(commands.Bot):
         self.database = Database()
         self.dashboard_service = DashboardService()
         self.teams_service = TeamService()
+        self.embed_generator = EmbedGenerator()
 
         # Load bot token and public key from configuration
         with open('appSettings.local.json', 'r') as file:
@@ -43,12 +45,16 @@ async def ping(interaction: discord.Interaction):
 
 @bot.tree.command(name="board", description="Your team's board")
 async def my_team(interaction: discord.Interaction):
-    team = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
-    print(team)
-    if team is None:
-        await interaction.response.send_message("No team info found")
-        return
-    await interaction.channel.send(file = await bot.dashboard_service.generate_board(team))
+    try:
+        team = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
+        print(team)
+        if team is None:
+            await interaction.response.send_message("No team info found")
+            return
+        await interaction.channel.send(file = await bot.dashboard_service.generate_board(team))
+        await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
+    except Exception as e:
+        print(e)
 
 @bot.tree.command(name="submit", description="Submit a drop!")
 async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, image: discord.Attachment):
@@ -60,7 +66,7 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
 
         team, info = await bot.teams_service.get_team_from_user_id(str(interaction.user.id), bot.database)
         if team is None:
-            await interaction.response.send_message(f"No team info found for you. Please contact @726237123857874975")
+            await interaction.response.send_message(f"No team info found for you. Please contact <@726237123857874975>")
             return
         
         await interaction.response.send_message(f"Thank your for your submission. Your board will be updated shortly in {bot.get_channel(int(team.channel_id)).mention}", ephemeral=True)

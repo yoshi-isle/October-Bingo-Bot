@@ -32,20 +32,27 @@ class DashboardService:
         self.slot3_box = [627, 656, 882, 911]
         self.slot4_box = [1047, 656, 1302, 911]
 
-        self.taskname1_coords = [600, 516]
-        self.taskname2_coords = [1025, 516]
-        self.taskname3_coords = [600, 888]
-        self.taskname4_coords = [1025, 888]
+        self.taskname1_coords = [600, 530]
+        self.taskname2_coords = [1025, 530]
+        self.taskname3_coords = [600, 900]
+        self.taskname4_coords = [1025, 900]
 
-        self.pointamount1_coords = [850, 280]
-        self.pointamount2_coords = [1270, 280]
-        self.pointamount3_coords = [850, 655]
-        self.pointamount4_coords = [1270, 655]
+        self.pointamount1_coords = [850, 260]
+        self.pointamount2_coords = [1250, 260]
+        self.pointamount3_coords = [820, 640]
+        self.pointamount4_coords = [1230, 640]
 
         self.tasktier1_coords = [600, 280]
         self.tasktier2_coords = [1025, 280]
         self.tasktier3_coords = [600, 655]
         self.tasktier4_coords = [1025, 655]
+        
+        # Bucket task coordinates
+        self.bucket_box = [1445, 400, 1700, 655]
+        self.bucketpanel = [1560, 500]
+        self.bucketname_coords = [1500, 714]
+        self.bucketamount_coords = [1708, 450]
+        self.buckettasktier_coords = [1500, 450]
 
         self.max_image_size = (200, 200)
 
@@ -55,59 +62,83 @@ class DashboardService:
             response_fun = requests.get(team.fun_task[0]['Image'])
             response_full = requests.get(team.full_task[0]['Image'])
             response_family = requests.get(team.family_task[0]['Image'])
+            response_bucket = None
+            if team.bucket_task:
+                response_bucket = requests.get(team.bucket_task[0]['Image'])
 
             # Open base dashboard image
             with Image.open("src/images/dashboard.png") as img:
                 # Font and draw setup
                 draw = ImageDraw.Draw(img)
+                
                 small_font = ImageFont.truetype("src/fonts/vinque rg.otf", 26)
                 big_font = ImageFont.truetype("src/fonts/vinque rg.otf", 40)
+                
                 text_color_white = (255, 255, 255)
                 text_color_orange = (255, 165, 0)
                 text_color_green = (0, 255, 0)
+                text_color_yellow = (255, 255, 0)
 
                 # Convert fetched images into RGBA format to ensure transparency is preserved
                 img_mini = Image.open(BytesIO(response_mini.content)).convert("RGBA")
                 img_fun = Image.open(BytesIO(response_fun.content)).convert("RGBA")
                 img_full = Image.open(BytesIO(response_full.content)).convert("RGBA")
                 img_family = Image.open(BytesIO(response_family.content)).convert("RGBA")
+                img_bucket = None
+                if team.bucket_task:
+                    img_bucket = Image.open(BytesIO(response_bucket.content)).convert("RGBA")
 
                 # Resize images while maintaining aspect ratio
                 img_mini = self._resize_image(img_mini)
                 img_fun = self._resize_image(img_fun)
                 img_full = self._resize_image(img_full)
                 img_family = self._resize_image(img_family)
+                if team.bucket_task:
+                    img_bucket = self._resize_image(img_bucket)
 
                 # Calculate the center coordinates for each image based on the region box
                 mini_coords = self._get_center_coords(self.slot1_box, img_mini.size)
                 fun_coords = self._get_center_coords(self.slot2_box, img_fun.size)
                 full_coords = self._get_center_coords(self.slot3_box, img_full.size)
                 family_coords = self._get_center_coords(self.slot4_box, img_family.size)
+                bucket_coords = None
+                if team.bucket_task:
+                    bucket_coords = self._get_center_coords(self.bucket_box, img_bucket.size)
 
                 # Paste images onto the base image at the calculated coordinates
                 img.paste(img_mini, mini_coords, img_mini)
                 img.paste(img_fun, fun_coords, img_fun)
                 img.paste(img_full, full_coords, img_full)
                 img.paste(img_family, family_coords, img_family)
+                if team.bucket_task:
+                    starpanel = Image.open("src/images/star.png")
+                    img.paste(starpanel, bucket_coords, starpanel)
+                    img.paste(img_bucket,  self.bucketpanel, img_bucket)
 
                 # Add task names as text
                 draw.text(self.taskname1_coords, team.mini_task[0]['Name'], font=small_font, fill=text_color_white)
                 draw.text(self.taskname2_coords, team.fun_task[0]['Name'], font=small_font, fill=text_color_white)
                 draw.text(self.taskname3_coords, team.full_task[0]['Name'], font=small_font, fill=text_color_white)
                 draw.text(self.taskname4_coords, team.family_task[0]['Name'], font=small_font, fill=text_color_white)
-
-                # Add task point amounts as text
+                if team.bucket_task:
+                    draw.text(self.bucketname_coords, team.bucket_task[0]['Name'], font=small_font, fill=text_color_yellow)
+                    
+                # # Add task point amounts as text
                 draw.text(self.pointamount1_coords, "+5", font=big_font, fill=text_color_green)
                 draw.text(self.pointamount2_coords, "+30", font=big_font, fill=text_color_green)
                 draw.text(self.pointamount3_coords, "+120", font=big_font, fill=text_color_green)
                 draw.text(self.pointamount4_coords, "+250", font=big_font, fill=text_color_green)
-
+                if team.bucket_task:
+                    draw.text(self.bucketamount_coords, "+600", font=big_font, fill=text_color_yellow)
+                    
                 # Add task tier names as text
                 draw.text(self.tasktier1_coords, "Mini-sized", font=small_font, fill=text_color_orange)
                 draw.text(self.tasktier2_coords, "Fun-sized", font=small_font, fill=text_color_orange)
                 draw.text(self.tasktier3_coords, "Full-sized", font=small_font, fill=text_color_orange)
                 draw.text(self.tasktier4_coords, "Family-sized", font=small_font, fill=text_color_orange)
-                
+                if team.bucket_task:
+                    draw.text(self.buckettasktier_coords, "Candy bucket", font=small_font, fill=text_color_yellow)
+                    
                 # Save final image
                 img.save("final_dashboard.png")
                 final_dashboard = discord.File("final_dashboard.png")

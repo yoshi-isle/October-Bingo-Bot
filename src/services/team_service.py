@@ -25,7 +25,8 @@ class TeamService:
                 mini_task=team_data.get("Mini-sized", ""),
                 fun_task=team_data.get("Fun-sized", ""),
                 full_task=team_data.get("Full-sized", ""),
-                family_task=team_data.get("Family-sized", ""))
+                family_task=team_data.get("Family-sized", ""),
+                bucket_task=team_data.get("Candy-bucket", ""))
             return team
         else:
             return None
@@ -48,7 +49,9 @@ class TeamService:
                 "Mini-sized": None,
                 "Fun-sized": None,
                 "Full-sized": None,
-                "Family-sized": None
+                "Family-sized": None,
+                "Candy-bucket": None,
+                "SubmissionHistory": []
             })
 
             created_team = await self.get_team_from_channel_id(channel_id, database)
@@ -88,7 +91,8 @@ class TeamService:
                 mini_task=updated_team.get("Mini-sized", ""),
                 fun_task=updated_team.get("Fun-sized", ""),
                 full_task=updated_team.get("Full-sized", ""),
-                family_task=updated_team.get("Family-sized", ""))
+                family_task=updated_team.get("Family-sized", ""),
+                bucket_task=updated_team.get("Candy-bucket", ""))
 
             return team
         except Exception as e:
@@ -106,8 +110,8 @@ class TeamService:
                 mini_task=team_data.get("Mini-sized", ""),
                 fun_task=team_data.get("Fun-sized", ""),
                 full_task=team_data.get("Full-sized", ""),
-                family_task=team_data.get("Family-sized", ""))
+                family_task=team_data.get("Family-sized", ""),
+                bucket_task=team_data.get("Candy-bucket", ""))
             return team, team_data
         else:
-            return None
-        return team
+            return None, None
