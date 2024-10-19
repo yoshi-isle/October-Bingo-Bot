@@ -1,5 +1,6 @@
 # from datetime import timedelta
 import operator
+import random
 import discord
 from bson.objectid import ObjectId
 from constants.candy_tier import CandyTier
@@ -99,22 +100,79 @@ class TeamService:
         
         except Exception as e:
             print(f"Error while re-rolling task: {e}")         
-        
-
 
     async def assign_task(self, team: Team, tier: CandyTier, database: Database, dashboard_service: DashboardService, bucket_chance = False):
         twelve_hours_from_now = datetime.now() + timedelta(hours=12)
         random_task = await dashboard_service.get_random_task(tier)
         try:
             
+            # Bucket chance
+            """
+            Easy 1/50 
+            Medium 1/30
+            Hard 1/20
+            Elite 1/10
+            """
+                
+            if not team.bucket_task and bucket_chance:
+                if tier == CandyTier.CANDYTIER["Mini-sized"]:
+                    if random.randint(1, 50) == 1:
+                        print("Bucket!")
+                        await self.assign_bucket_task(team, database, dashboard_service)
+                if tier == CandyTier.CANDYTIER["Fun-sized"]:
+                    if random.randint(1, 30) == 1:
+                        print("Bucket!")
+                        await self.assign_bucket_task(team, database, dashboard_service)
+                if tier == CandyTier.CANDYTIER["Full-sized"]:
+                    if random.randint(1, 20) == 1:
+                        print("Bucket!")
+                        await self.assign_bucket_task(team, database, dashboard_service)
+                if tier == CandyTier.CANDYTIER["Family-sized"]:
+                    if random.randint(1, 1) == 1:
+                        print("Bucket!")
+                        await self.assign_bucket_task(team, database, dashboard_service)
+            
             update_data = {"$set": {tier.name: [random_task, twelve_hours_from_now]}}
 
+             # Are we submitting a bucket task?
+            if tier == CandyTier.CANDYTIER["Candy-bucket"]:
+                update_data = {"$set": {"Candy-bucket": []}}
+                
             updated_team = database.teams_collection.find_one_and_update(
                 {"_id": ObjectId(team._id)},
                 update_data,
                 return_document=ReturnDocument.AFTER
             )
 
+            team = Team(
+                _id=updated_team.get("_id", ""),
+                name=updated_team.get("Name", ""),
+                members=updated_team.get("Members", []),
+                points=updated_team.get("Points", 0),
+                channel_id=updated_team.get("ChannelId", ""),
+                mini_task=updated_team.get("Mini-sized", ""),
+                fun_task=updated_team.get("Fun-sized", ""),
+                full_task=updated_team.get("Full-sized", ""),
+                family_task=updated_team.get("Family-sized", ""),
+                bucket_task=updated_team.get("Candy-bucket", ""),
+                submission_history=updated_team.get("SubmissionHistory", ""))
+
+            return team
+        except Exception as e:
+            print(f"Failed to update database record {e}")
+    
+    async def assign_bucket_task(self, team: Team, database: Database, dashboard_service: DashboardService):
+        twenty_four_hours_from_now = datetime.now() + timedelta(hours=24)
+        random_task = await dashboard_service.get_random_task(CandyTier.CANDYTIER["Candy-bucket"])
+        try:
+            update_data = {"$set": {"Candy-bucket": [random_task, twenty_four_hours_from_now]}}
+
+            updated_team = database.teams_collection.find_one_and_update(
+                {"_id": ObjectId(team._id)},
+                update_data,
+                return_document=ReturnDocument.AFTER
+            )
+            
             team = Team(
                 _id=updated_team.get("_id", ""),
                 name=updated_team.get("Name", ""),

@@ -50,7 +50,9 @@ async def my_team(interaction: discord.Interaction):
         if team is None:
             await interaction.response.send_message("No team info found")
             return
-        await interaction.channel.send(file = await bot.dashboard_service.generate_board(team))
+        
+        dashboard_service = DashboardService()
+        await interaction.channel.send(file = await dashboard_service.generate_board(team))
         await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
     except Exception as e:
         print(e)
@@ -75,11 +77,10 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
         
         await interaction.response.send_message(f"Thank your for your submission. Your board will be updated shortly in {bot.get_channel(int(team.channel_id)).mention}", ephemeral=True)
         await bot.teams_service.award_points(team, bot.database, tier)
-        await bot.teams_service.assign_task(team, tier, bot.database, bot.dashboard_service)        
+        await bot.teams_service.assign_task(team, tier, bot.database, bot.dashboard_service, True)
         await interaction.channel.send(f"{interaction.user.mention} submitted for {team.name}.\n {info[tier.name][0]['Name']}", file=await image.to_file())
     except Exception as e:
         print(e)
-    # await interaction.channel.send(file = await bot.dashboard_service.generate_board(updated_team))
 
 @bot.tree.command(name="reroll", description="Re-roll a slot")
 async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
@@ -105,17 +106,8 @@ async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
         else:
             await interaction.response.send_message("Your team cannot re-roll that slot yet.")
         
-        
-        
-        
-        
-        # await interaction.response.send_message(f"Thank your for your submission. Your board will be updated shortly in {bot.get_channel(int(team.channel_id)).mention}", ephemeral=True)
-        # await bot.teams_service.award_points(team, bot.database, tier)
-        # await bot.teams_service.assign_task(team, tier, bot.database, bot.dashboard_service)        
-        # await interaction.channel.send(f"{interaction.user.mention} submitted for {team.name}.\n {info[tier.name][0]['Name']}", file=await image.to_file())
     except Exception as e:
         print(e)
-    # await interaction.channel.send(file = await bot.dashboard_service.generate_board(updated_team))
 
 @bot.tree.command(name="initialize_team", description="Create a team record in the database from this channel")
 @app_commands.checks.has_permissions(administrator=True)
@@ -135,7 +127,6 @@ async def leaderboard(interaction: discord.Interaction):
     try:
         teams = await bot.teams_service.get_all_teams(bot.database)
         await interaction.channel.send(embed = await bot.embed_generator.make_topteams_embed(teams))
-        # await interaction.response.send_message(teams)
     except Exception as e:
         print(e)
 

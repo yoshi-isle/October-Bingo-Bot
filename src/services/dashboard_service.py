@@ -6,6 +6,7 @@ import discord
 import requests
 from constants.candy_tier import CandyTier
 from database import Team
+import gc
 
 class TaskLoader:
     def __init__(self):
@@ -17,6 +18,7 @@ class TaskLoader:
         self.fun_tasks = self._load_tasks_from_file('src/tasks/fun_tasks.json')
         self.full_tasks = self._load_tasks_from_file('src/tasks/full_tasks.json')
         self.family_tasks = self._load_tasks_from_file('src/tasks/family_tasks.json')
+        self.candy_bucket_tasks = self._load_tasks_from_file('src/tasks/bucket_tasks.json')
 
     @staticmethod
     def _load_tasks_from_file(file_path):
@@ -62,11 +64,11 @@ class DashboardService:
             response_fun = requests.get(team.fun_task[0]['Image'])
             response_full = requests.get(team.full_task[0]['Image'])
             response_family = requests.get(team.family_task[0]['Image'])
-            response_bucket = None
+            
             if team.bucket_task:
                 response_bucket = requests.get(team.bucket_task[0]['Image'])
-
-            # Open base dashboard image
+                star_panel = Image.open("src/images/star.png").convert("RGBA")
+                
             with Image.open("src/images/dashboard.png") as img:
                 # Font and draw setup
                 draw = ImageDraw.Draw(img)
@@ -84,7 +86,6 @@ class DashboardService:
                 img_fun = Image.open(BytesIO(response_fun.content)).convert("RGBA")
                 img_full = Image.open(BytesIO(response_full.content)).convert("RGBA")
                 img_family = Image.open(BytesIO(response_family.content)).convert("RGBA")
-                img_bucket = None
                 if team.bucket_task:
                     img_bucket = Image.open(BytesIO(response_bucket.content)).convert("RGBA")
 
@@ -101,7 +102,6 @@ class DashboardService:
                 fun_coords = self._get_center_coords(self.slot2_box, img_fun.size)
                 full_coords = self._get_center_coords(self.slot3_box, img_full.size)
                 family_coords = self._get_center_coords(self.slot4_box, img_family.size)
-                bucket_coords = None
                 if team.bucket_task:
                     bucket_coords = self._get_center_coords(self.bucket_box, img_bucket.size)
 
@@ -111,8 +111,7 @@ class DashboardService:
                 img.paste(img_full, full_coords, img_full)
                 img.paste(img_family, family_coords, img_family)
                 if team.bucket_task:
-                    starpanel = Image.open("src/images/star.png")
-                    img.paste(starpanel, bucket_coords, starpanel)
+                    img.paste(star_panel, bucket_coords, star_panel)
                     img.paste(img_bucket,  self.bucketpanel, img_bucket)
 
                 # Add task names as text
@@ -123,7 +122,7 @@ class DashboardService:
                 if team.bucket_task:
                     draw.text(self.bucketname_coords, team.bucket_task[0]['Name'], font=small_font, fill=text_color_yellow)
                     
-                # # Add task point amounts as text
+                # Add task point amounts as text
                 draw.text(self.pointamount1_coords, "+5", font=big_font, fill=text_color_green)
                 draw.text(self.pointamount2_coords, "+30", font=big_font, fill=text_color_green)
                 draw.text(self.pointamount3_coords, "+120", font=big_font, fill=text_color_green)
@@ -142,6 +141,7 @@ class DashboardService:
                 # Save final image
                 img.save("final_dashboard.png")
                 final_dashboard = discord.File("final_dashboard.png")
+                gc.collect()
                 return final_dashboard
 
         except Exception as e:
@@ -176,3 +176,5 @@ class DashboardService:
             return random.choice(self.task_loader.full_tasks)
         if tier == CandyTier.CANDYTIER["Family-sized"]:
             return random.choice(self.task_loader.family_tasks)
+        if tier == CandyTier.CANDYTIER["Candy-bucket"]:
+                return random.choice(self.task_loader.candy_bucket_tasks)
