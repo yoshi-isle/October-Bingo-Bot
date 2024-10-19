@@ -80,7 +80,7 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
         await interaction.channel.send(f"{interaction.user.mention} submitted for {team.name}.\n {info[tier.name][0]['Name']}", file=await image.to_file())
         
         # Wait 30 and update team board
-        await asyncio.sleep(30)
+        await asyncio.sleep(15)
         team = await bot.teams_service.assign_task(team, tier, bot.database, bot.dashboard_service, True)
         print(team)
         print(team.channel_id)
