@@ -48,7 +48,7 @@ async def my_team(interaction: discord.Interaction):
     try:
         team = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
         if team is None:
-            await interaction.response.send_message("No team info found")
+            await interaction.response.send_message("Please use this command in your team's channel")
             return
         
         dashboard_service = DashboardService()
@@ -67,7 +67,7 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
 
         team, info = await bot.teams_service.get_team_from_user_id(str(interaction.user.id), bot.database)
         if team is None:
-            await interaction.response.send_message(f"No team info found for you. Please contact <@726237123857874975>")
+            await interaction.response.send_message(f"No team information was found for you. Please contact <@726237123857874975>", ephemeral=True)
             return
         
         # Check to ensure bucket or not
@@ -77,8 +77,18 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
         
         await interaction.response.send_message(f"Thank your for your submission. Your board will be updated shortly in {bot.get_channel(int(team.channel_id)).mention}", ephemeral=True)
         await bot.teams_service.award_points(team, bot.database, tier)
-        await bot.teams_service.assign_task(team, tier, bot.database, bot.dashboard_service, True)
         await interaction.channel.send(f"{interaction.user.mention} submitted for {team.name}.\n {info[tier.name][0]['Name']}", file=await image.to_file())
+        
+        # Wait 30 and update team board
+        await asyncio.sleep(30)
+        team = await bot.teams_service.assign_task(team, tier, bot.database, bot.dashboard_service, True)
+        print(team)
+        print(team.channel_id)
+        team_channel = bot.get_channel(int(team.channel_id))
+        dashboard_service = DashboardService()
+        await team_channel.send(file = await dashboard_service.generate_board(team))
+        await team_channel.send(embed = await bot.embed_generator.make_team_embed(team))
+        
     except Exception as e:
         print(e)
 
@@ -87,7 +97,7 @@ async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
     try:
         team = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
         if team is None:
-            await interaction.response.send_message("No team info found. Please use this command in your team's channel", ephemeral = True)
+            await interaction.response.send_message("Please use this command in your team's channel", ephemeral = True)
             return
 
         # Check to ensure bucket or not
@@ -101,7 +111,8 @@ async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
             await interaction.response.send_message(f"{interaction.user.mention} is re-rolling the {tier.name} slot for the team!")
             #Todo - reduce db call
             team = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
-            await interaction.channel.send(file = await bot.dashboard_service.generate_board(team))
+            dashboard_service = DashboardService()
+            await interaction.channel.send(file = await dashboard_service.generate_board(team))
             await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
         else:
             await interaction.response.send_message("Your team cannot re-roll that slot yet.")
