@@ -32,7 +32,8 @@ class TeamService:
                 full_task=team_data.get("Full-sized", ""),
                 family_task=team_data.get("Family-sized", ""),
                 bucket_task=team_data.get("Candy-bucket", ""),
-                submission_history=team_data.get("SubmissionHistory", ""))
+                submission_history=team_data.get("SubmissionHistory", ""),
+                updating=team_data.get("Updating", ""))
             return team
         else:
             return None
@@ -57,7 +58,8 @@ class TeamService:
                 "Full-sized": None,
                 "Family-sized": None,
                 "Candy-bucket": None,
-                "SubmissionHistory": []
+                "SubmissionHistory": [],
+                "Updating": False
             })
 
             created_team = await self.get_team_from_channel_id(channel_id, database)
@@ -155,7 +157,8 @@ class TeamService:
                 full_task=updated_team.get("Full-sized", ""),
                 family_task=updated_team.get("Family-sized", ""),
                 bucket_task=updated_team.get("Candy-bucket", ""),
-                submission_history=updated_team.get("SubmissionHistory", ""))
+                submission_history=updated_team.get("SubmissionHistory", ""),
+                updating=updated_team.get("Updating", ""))
 
             return team
         except Exception as e:
@@ -184,7 +187,8 @@ class TeamService:
                 full_task=updated_team.get("Full-sized", ""),
                 family_task=updated_team.get("Family-sized", ""),
                 bucket_task=updated_team.get("Candy-bucket", ""),
-                submission_history=updated_team.get("SubmissionHistory", ""))
+                submission_history=updated_team.get("SubmissionHistory", ""),
+                updating=updated_team.get("Updating", ""))
 
             return team
         except Exception as e:
@@ -204,7 +208,8 @@ class TeamService:
                 full_task=team_data.get("Full-sized", ""),
                 family_task=team_data.get("Family-sized", ""),
                 bucket_task=team_data.get("Candy-bucket", ""),
-                submission_history=team_data.get("SubmissionHistory", ""))
+                submission_history=team_data.get("SubmissionHistory", ""),
+                updating=team_data.get("Updating", ""))
                 
             return team, team_data
         else:
@@ -242,7 +247,6 @@ class TeamService:
                 new_submission_history.append([team.bucket_task[0]["Name"], add_amount])
                 update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
 
-            print(update_data)
             return database.teams_collection.find_one_and_update(
                 {"_id": ObjectId(team._id)},
                 update_data,
@@ -250,3 +254,33 @@ class TeamService:
             )
         except Exception as e:
             print(e)
+    
+    # True - updating, False - not updating
+    async def updating_team(self, team: Team, database: Database, updating: bool):
+        try:
+            update_data = {"$set": {"Updating": updating}}
+
+            team = database.teams_collection.find_one_and_update(
+                {"_id": ObjectId(team._id)},
+                update_data,
+                return_document=ReturnDocument.AFTER
+            )
+
+            updated_team = Team(
+                _id=team.get("_id", ""),
+                name=team.get("Name", ""),
+                members=team.get("Members", []),
+                points=team.get("Points", 0),
+                channel_id=team.get("ChannelId", ""),
+                mini_task=team.get("Mini-sized", ""),
+                fun_task=team.get("Fun-sized", ""),
+                full_task=team.get("Full-sized", ""),
+                family_task=team.get("Family-sized", ""),
+                bucket_task=team.get("Candy-bucket", ""),
+                submission_history=team.get("SubmissionHistory", ""),
+                updating=team.get("Updating", ""))
+
+            return updated_team
+        except Exception as e:
+            print(f"Failed to update database record {e}")
+    
