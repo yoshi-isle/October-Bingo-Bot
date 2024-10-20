@@ -1,4 +1,5 @@
 import json
+from bson import ObjectId
 import discord
 import asyncio
 from constants.candy_tier import CandyTier
@@ -8,6 +9,9 @@ from services.embed_generator import EmbedGenerator
 from services.team_service import TeamService
 from discord.ext import commands
 from discord import app_commands
+from discord.ext import tasks
+from datetime import datetime, timedelta
+
 class Bot(commands.Bot):
     def __init__(self, *args, **kwargs):
         intents = discord.Intents.all()
@@ -28,6 +32,8 @@ class Bot(commands.Bot):
         self.bot_token = data["bot"]["token"]
         self.public_key = data["bot"]["publickey"]
         self.submit_channel_id = data["channels"]["submit"]
+        self.leaderboard_message_id = data["bot"]["leaderboard_message_id"]
+        self.leaderboard_channel_id = data["bot"]["leaderboard_channel_id"]
 
     # Sync slash commands when the bot is ready
     async def setup_hook(self):
@@ -35,6 +41,8 @@ class Bot(commands.Bot):
 
     async def on_ready(self):
         print(f'Bot is ready! Logged in as {self.user}')
+        check_bucket_expiry.start()
+        update_leaderboard.start()
 
 bot = Bot()
     
@@ -156,6 +164,62 @@ async def leaderboard(interaction: discord.Interaction):
         await interaction.channel.send(embed = await bot.embed_generator.make_topteams_embed(teams))
     except Exception as e:
         print(e)
+
+@tasks.loop(seconds=10)
+async def update_leaderboard():
+    try:
+        channel = bot.get_channel(int(bot.leaderboard_channel_id))
+        leaderboard_message = await channel.fetch_message(int(bot.leaderboard_message_id))
+
+        teams = await bot.teams_service.get_all_teams(bot.database)
+        embed = await bot.embed_generator.make_topteams_embed(teams)
+
+        current_time = datetime.now() + timedelta(minutes=5)
+        discord_timestamp = f"<t:{int(current_time.timestamp())}:R>"
+
+        embed.description += f"\n\nNext update {discord_timestamp}"
+
+        await leaderboard_message.edit(embed=embed)
+    except Exception as e:
+        print(e)
+
+
+    
+@tasks.loop(minutes=30)
+async def check_bucket_expiry():
+    try:
+        # Fetch all teams from the database
+        teams = await bot.teams_service.get_all_teams(bot.database)
+        current_time = datetime.now()
+
+        for team in teams:
+            if "Candy-bucket" in team and team["Candy-bucket"]:
+                if current_time > team["Candy-bucket"][1]:
+                    updated_team = Team(
+                        _id=team.get("_id", ""),
+                        name=team.get("Name", ""),
+                        members=team.get("Members", []),
+                        points=team.get("Points", 0),
+                        channel_id=team.get("ChannelId", ""),
+                        mini_task=team.get("Mini-sized", ""),
+                        fun_task=team.get("Fun-sized", ""),
+                        full_task=team.get("Full-sized", ""),
+                        family_task=team.get("Family-sized", ""),
+                        bucket_task=team.get("Candy-bucket", ""),
+                        submission_history=team.get("SubmissionHistory", ""),
+                        updating=team.get("Updating", ""))
+                    team = bot.database.teams_collection.find_one_and_update(
+                        {"_id": ObjectId(updated_team._id)},
+                        {"$set": {"Candy-bucket": []}}
+                    )
+                    team_channel = bot.get_channel(int(updated_team.channel_id))
+                    await team_channel.send("## Your Candy-bucket task has expired.")
+                    dashboard_service = DashboardService()
+                    await team_channel.send(file = await dashboard_service.generate_board(updated_team))
+                    await team_channel.send(embed = await bot.embed_generator.make_team_embed(updated_team))
+                    
+    except Exception as e:
+        print(f"Failed to run bucket expiry function {e}")
 
 # Main function to start the bot
 async def main():

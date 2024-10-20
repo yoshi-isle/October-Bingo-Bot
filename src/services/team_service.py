@@ -283,4 +283,3 @@ class TeamService:
             return updated_team
         except Exception as e:
             print(f"Failed to update database record {e}")
-    

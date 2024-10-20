@@ -44,21 +44,33 @@ class EmbedGenerator:
 
     async def make_topteams_embed(self, teams):
         try:
+            teams.sort(key=lambda x: x['Points'], reverse=True)
+            
             placement = 1
+            last_score = None
             desc = ""
-            for team in teams:
+
+            for index, team in enumerate(teams):
+                # Check if the current team has the same score as the last one
+                if last_score is not None and team['Points'] != last_score:
+                    placement += 1
+
+                last_score = team['Points']
                 if placement == 1:
                     desc += "🥇"
                 elif placement == 2:
                     desc += "🥈"
                 elif placement == 3:
-                    desc += "🥉" 
-                desc += f"{team['Name']}\n"
-                placement += 1
-            
-            embed = discord.Embed(title=f"🏆 **Current Top Teams** 🏆",
-            description= str(desc) ,
-            colour=0xfcf403)
+                    desc += "🥉"
+
+                desc += f"**{team['Name']}**\n"
+
+            embed = discord.Embed(
+                title="🏆 **Current Top Teams** 🏆",
+                description=desc,
+                colour=0xfcf403
+            )
             return embed
         except Exception as e:
             print(e)
+
