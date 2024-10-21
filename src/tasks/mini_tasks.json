@@ -546,6 +546,13 @@
             "WikiUrl": "https://oldschool.runescape.wiki/w/Herb_box",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Herb_box_detail.png/130px-Herb_box_detail.png?0470b",
             "CompletionCounter": 1
+        },
+        {
+            "Name": "God Egg (Forestry)",
+            "Description": "God Egg from a Forestry event",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Bird%27s_egg",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Bird%27s_egg_%28red%29_detail.png/120px-Bird%27s_egg_%28red%29_detail.png?0934a",
+            "CompletionCounter": 1
         }
     ]
 }
