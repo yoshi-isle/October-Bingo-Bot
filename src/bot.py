@@ -149,7 +149,8 @@ async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
 async def initialize_team(interaction: discord.Interaction):
     team = await bot.teams_service.initialize_team(interaction.channel.name, interaction.channel_id, bot.database, bot.dashboard_service)
     await interaction.channel.send(file = await bot.dashboard_service.generate_board(team))
-    await interaction.response.send_message(f"Created team!")
+    await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
+    await interaction.response.send_message(f"Created team!", ephemeral=True)
 
 @initialize_team.error
 async def get_all_teams_error(interaction: discord.Interaction, error):
