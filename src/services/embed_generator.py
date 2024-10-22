@@ -28,12 +28,12 @@ class EmbedGenerator:
 
     
             desc = f"""Submit any of the following drops in https://discord.com/channels/1290136938115891220/1298045930150428783 to get candy!
-                    \n**Mini-sized candy bar** (+5)\n{team.mini_task[0]["Name"]} - [wiki]({team.mini_task[0]["WikiUrl"]})\n{mini_reroll_text}
-                    \n**Fun-sized candy bar** (+30)\n{team.fun_task[0]["Name"]} - [wiki]({team.fun_task[0]["WikiUrl"]})\n{fun_reroll_text}
-                    \n**Full-sized candy bar** (+120)\n{team.full_task[0]["Name"]} - [wiki]({team.full_task[0]["WikiUrl"]})\n{full_reroll_text}
-                    \n**Family-sized candy bar** (+250)\n{team.family_task[0]["Name"]} - [wiki]({team.family_task[0]["WikiUrl"]})\n{family_reroll_text}"""
+                    \n**Mini-sized candy bar** (+5)\n{team.mini_task[0]["Description"]} - [wiki]({team.mini_task[0]["WikiUrl"]})\n{mini_reroll_text}
+                    \n**Fun-sized candy bar** (+30)\n{team.fun_task[0]["Description"]} - [wiki]({team.fun_task[0]["WikiUrl"]})\n{fun_reroll_text}
+                    \n**Full-sized candy bar** (+120)\n{team.full_task[0]["Description"]} - [wiki]({team.full_task[0]["WikiUrl"]})\n{full_reroll_text}
+                    \n**Family-sized candy bar** (+250)\n{team.family_task[0]["Description"]} - [wiki]({team.family_task[0]["WikiUrl"]})\n{family_reroll_text}"""
             if team.bucket_task:
-                desc += f"""\n\n**Candy bucket** (+600)\n{team.bucket_task[0]["Name"]} - [wiki]({team.bucket_task[0]["WikiUrl"]})"""
+                desc += f"""\n\n**Candy bucket** (+600)\n{team.bucket_task[0]["Description"]} - [wiki]({team.bucket_task[0]["WikiUrl"]})"""
            
             embed = discord.Embed(title=f"{team.name}",
                         description= str(desc) ,
