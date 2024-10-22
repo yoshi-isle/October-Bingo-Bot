@@ -34,6 +34,7 @@ class Bot(commands.Bot):
         self.submit_channel_id = data["channels"]["submit"]
         self.leaderboard_message_id = data["bot"]["leaderboard_message_id"]
         self.leaderboard_channel_id = data["bot"]["leaderboard_channel_id"]
+        self.changelog_channel_id = data["bot"]["leaderboard_channel_id"]
 
     # Sync slash commands when the bot is ready
     async def setup_hook(self):
@@ -93,13 +94,17 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
         
         await interaction.response.send_message(f"Thank your for your submission. Your board will be updated shortly in {bot.get_channel(int(team.channel_id)).mention}", ephemeral=True)
         await bot.teams_service.award_points(team, bot.database, tier)
-        await interaction.channel.send(f"{interaction.user.mention} submitted for {team.name}.\n {info[tier.name][0]['Name']}", file=await image.to_file())
         
         # Updating team
         await bot.teams_service.updating_team(team, bot.database, True)
         
-        # Wait 30 and update team board
+        # Wait 15 and update team board
         await asyncio.sleep(15)
+        
+        # Show changelog        
+        changelog_channel = bot.get_channel(int(bot.changelog_channel_id))
+        await changelog_channel.send(f"{interaction.user.mention} submitted for {team.name}.\n {info[tier.name][0]['Name']}", file=await image.to_file())
+        
         team = await bot.teams_service.assign_task(team, tier, bot.database, bot.dashboard_service, True)
         team_channel = bot.get_channel(int(team.channel_id))
         dashboard_service = DashboardService()
