@@ -34,7 +34,7 @@ class Bot(commands.Bot):
         self.submit_channel_id = data["channels"]["submit"]
         self.leaderboard_message_id = data["bot"]["leaderboard_message_id"]
         self.leaderboard_channel_id = data["bot"]["leaderboard_channel_id"]
-        self.changelog_channel_id = data["bot"]["leaderboard_channel_id"]
+        self.changelog_channel_id = data["bot"]["changelog_channel_id"]
 
     # Sync slash commands when the bot is ready
     async def setup_hook(self):
