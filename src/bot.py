@@ -8,7 +8,7 @@ from services.dashboard_service import DashboardService
 from services.embed_generator import EmbedGenerator
 from services.team_service import TeamService
 from discord.ext import commands
-from discord import app_commands
+from discord import app_commands, Message
 from discord.ext import tasks
 from datetime import datetime, timedelta
 
@@ -103,9 +103,16 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
         team = await bot.teams_service.assign_task(team, tier, bot.database, bot.dashboard_service, True)
         team_channel = bot.get_channel(int(team.channel_id))
         dashboard_service = DashboardService()
-        await team_channel.send(file = await dashboard_service.generate_board(team))
+        message: Message = await team_channel.send(file = await dashboard_service.generate_board(team))
         await team_channel.send(embed = await bot.embed_generator.make_team_embed(team))
         
+        # Pin new board to channel
+        pins: list[Message] = await team_channel.pins()
+        while pins > 0:
+            await pins[0].unpin(reason=None)
+        await message.pin(reason=None)
+        await team_channel.send(f"Tile Updated!")
+            
          # Updating team
         await bot.teams_service.updating_team(team, bot.database, False)
         
