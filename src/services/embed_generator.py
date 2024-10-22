@@ -11,11 +11,14 @@ class EmbedGenerator:
             fun_task_disc_dt = f"<t:{round(team.fun_task[1].timestamp())}:R>"
             full_task_disc_dt = f"<t:{round(team.full_task[1].timestamp())}:R>"
             family_task_disc_dt = f"<t:{round(team.family_task[1].timestamp())}:R>"
+            bucket_task_disc_dt = f"<t:{round(team.bucket_task[1].timestamp())}:R>"
             
             mini_reroll_text = f"Reroll: {mini_task_disc_dt}"
             fun_reroll_text = f"Reroll: {fun_task_disc_dt}"
             full_reroll_text = f"Reroll: {full_task_disc_dt}"
             family_reroll_text = f"Reroll: {family_task_disc_dt}"
+            bucket_expire_text = f"Expires: {bucket_task_disc_dt}"
+            
             
             if team.mini_task[1] < datetime.now():
                 mini_reroll_text = "*You can re-roll*"
@@ -33,7 +36,7 @@ class EmbedGenerator:
                     \n**Full-sized candy bar** (+120)\n{team.full_task[0]["Name"]} - [wiki]({team.full_task[0]["WikiUrl"]})\n{full_reroll_text}
                     \n**Family-sized candy bar** (+250)\n{team.family_task[0]["Name"]} - [wiki]({team.family_task[0]["WikiUrl"]})\n{family_reroll_text}"""
             if team.bucket_task:
-                desc += f"""\n\n**Candy bucket** (+600)\n{team.bucket_task[0]["Name"]} - [wiki]({team.bucket_task[0]["WikiUrl"]})"""
+                desc += f"""\n\n**Candy bucket** (+600)\n{team.bucket_task[0]["Name"]} - [wiki]({team.bucket_task[0]["WikiUrl"]})\n{bucket_expire_text}"""
            
             embed = discord.Embed(title=f"{team.name}",
                         description= str(desc) ,
