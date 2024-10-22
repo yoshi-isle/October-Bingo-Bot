@@ -11,13 +11,15 @@ class EmbedGenerator:
             fun_task_disc_dt = f"<t:{round(team.fun_task[1].timestamp())}:R>"
             full_task_disc_dt = f"<t:{round(team.full_task[1].timestamp())}:R>"
             family_task_disc_dt = f"<t:{round(team.family_task[1].timestamp())}:R>"
-            bucket_task_disc_dt = f"<t:{round(team.bucket_task[1].timestamp())}:R>"
+            if team.bucket_task:
+                bucket_task_disc_dt = f"<t:{round(team.bucket_task[1].timestamp())}:R>"
             
             mini_reroll_text = f"Reroll: {mini_task_disc_dt}"
             fun_reroll_text = f"Reroll: {fun_task_disc_dt}"
             full_reroll_text = f"Reroll: {full_task_disc_dt}"
             family_reroll_text = f"Reroll: {family_task_disc_dt}"
-            bucket_expire_text = f"Expires: {bucket_task_disc_dt}"
+            if team.bucket_task:
+                bucket_expire_text = f"Expires: {bucket_task_disc_dt}"
             
             
             if team.mini_task[1] < datetime.now():

@@ -122,6 +122,7 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
         await bot.teams_service.updating_team(team, bot.database, False)
         
     except Exception as e:
+        await bot.teams_service.updating_team(team, bot.database, False)
         print(e)
 
 @bot.tree.command(name="reroll", description="Re-roll a slot")
