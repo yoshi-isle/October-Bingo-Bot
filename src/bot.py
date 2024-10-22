@@ -223,7 +223,7 @@ async def check_bucket_expiry():
                         fun_task=team.get("Fun-sized", ""),
                         full_task=team.get("Full-sized", ""),
                         family_task=team.get("Family-sized", ""),
-                        bucket_task=team.get("Candy-bucket", ""),
+                        bucket_task=None,
                         submission_history=team.get("SubmissionHistory", ""),
                         updating=team.get("Updating", ""))
                     team_channel = bot.get_channel(int(updated_team.channel_id))
