@@ -30,7 +30,7 @@ class EmbedGenerator:
                 family_reroll_text = "*You can re-roll*"
 
     
-            desc = f"""Submit any of the following drops in https://discord.com/channels/1290136938115891220/1298045930150428783 to get candy!
+            desc = f"""Submit any of the following drops in https://discord.com/channels/1290136938115891220/1295850896009330698 to get candy!
                     \n**Mini-sized candy bar** (+5)\n{team.mini_task[0]["Description"]} - [wiki]({team.mini_task[0]["WikiUrl"]})\n{mini_reroll_text}
                     \n**Fun-sized candy bar** (+30)\n{team.fun_task[0]["Description"]} - [wiki]({team.fun_task[0]["WikiUrl"]})\n{fun_reroll_text}
                     \n**Full-sized candy bar** (+120)\n{team.full_task[0]["Description"]} - [wiki]({team.full_task[0]["WikiUrl"]})\n{full_reroll_text}
