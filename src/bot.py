@@ -209,6 +209,10 @@ async def check_bucket_expiry():
         for team in teams:
             if "Candy-bucket" in team and team["Candy-bucket"]:
                 if current_time > team["Candy-bucket"][1]:
+                    team = bot.database.teams_collection.find_one_and_update(
+                        {"_id": ObjectId(team["_id"])},
+                        {"$set": {"Candy-bucket": []}}
+                    )
                     updated_team = Team(
                         _id=team.get("_id", ""),
                         name=team.get("Name", ""),
@@ -222,10 +226,6 @@ async def check_bucket_expiry():
                         bucket_task=team.get("Candy-bucket", ""),
                         submission_history=team.get("SubmissionHistory", ""),
                         updating=team.get("Updating", ""))
-                    team = bot.database.teams_collection.find_one_and_update(
-                        {"_id": ObjectId(updated_team._id)},
-                        {"$set": {"Candy-bucket": []}}
-                    )
                     team_channel = bot.get_channel(int(updated_team.channel_id))
                     await team_channel.send("## Your Candy-bucket task has expired.")
                     dashboard_service = DashboardService()
