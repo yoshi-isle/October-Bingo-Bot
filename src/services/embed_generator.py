@@ -50,12 +50,12 @@ class EmbedGenerator:
                     partial_counter_text_bucket = f"Requires **{team.bucket_task[0]['CompletionCounter']}** submissions"
     
             desc = f"""Submit any of the following drops in https://discord.com/channels/1290136938115891220/1295850896009330698 to get candy!
-                    \n🍬 **Mini-sized candy bar** (+5)\n>{team.mini_task[0]["Description"]} - [wiki]({team.mini_task[0]["WikiUrl"]})\n>{partial_counter_text_mini}\n>{mini_reroll_text}
-                    \n🍭**Fun-sized candy bar** (+30)\n>{team.fun_task[0]["Description"]} - [wiki]({team.fun_task[0]["WikiUrl"]})\n>{partial_counter_text_fun}\n>{fun_reroll_text}
-                    \n🍭**Full-sized candy bar** (+120)\n>{team.full_task[0]["Description"]} - [wiki]({team.full_task[0]["WikiUrl"]})\n>{partial_counter_text_full}\n>{full_reroll_text}
-                    \n🍫**Family-sized candy bar** (+250)\n>{team.family_task[0]["Description"]} - [wiki]({team.family_task[0]["WikiUrl"]})\n>{partial_counter_text_family}\n>{family_reroll_text}"""
+                    \n🍬 **Mini-sized candy bar** (+5)\n> {team.mini_task[0]["Description"]} - [wiki]({team.mini_task[0]["WikiUrl"]})\n> {partial_counter_text_mini}\n> {mini_reroll_text}
+                    \n🍭**Fun-sized candy bar** (+30)\n> {team.fun_task[0]["Description"]} - [wiki]({team.fun_task[0]["WikiUrl"]})\n> {partial_counter_text_fun}\n> {fun_reroll_text}
+                    \n🍭**Full-sized candy bar** (+120)\n> {team.full_task[0]["Description"]} - [wiki]({team.full_task[0]["WikiUrl"]})\n> {partial_counter_text_full}\n> {full_reroll_text}
+                    \n🍫**Family-sized candy bar** (+250)\n> {team.family_task[0]["Description"]} - [wiki]({team.family_task[0]["WikiUrl"]})\n> {partial_counter_text_family}\n> {family_reroll_text}"""
             if team.bucket_task:
-                desc += f"""\n\n🪣 **Candy bucket** (+600)\n>{team.bucket_task[0]["Name"]} - [wiki]({team.bucket_task[0]["WikiUrl"]})\n>{partial_counter_text_bucket}\n>{bucket_expire_text}"""
+                desc += f"""\n\n🪣 **Candy bucket** (+600)\n> {team.bucket_task[0]["Name"]} - [wiki]({team.bucket_task[0]["WikiUrl"]})\n> {partial_counter_text_bucket}\n> {bucket_expire_text}"""
            
             embed = discord.Embed(title=f"{team.name}",
                         description= str(desc) ,
