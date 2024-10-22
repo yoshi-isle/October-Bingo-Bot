@@ -108,10 +108,10 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
         
         # Pin new board to channel
         pins: list[Message] = await team_channel.pins()
-        while len(pins) > 0:
-            await pins[0].unpin(reason=None)
+        for pin in range(len(pins)):
+            await pins[pin].unpin(reason=None)
         await message.pin(reason=None)
-        await team_channel.send(f"Tile Updated!")
+        await team_channel.send(f"Tile Updated! @here")
             
          # Updating team
         await bot.teams_service.updating_team(team, bot.database, False)
