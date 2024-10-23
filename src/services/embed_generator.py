@@ -49,7 +49,7 @@ class EmbedGenerator:
                 if int(team.bucket_task[0]['CompletionCounter']) > 1:
                     partial_counter_text_bucket = f"Requires **{team.bucket_task[0]['CompletionCounter']}** submissions"
     
-            desc = f"""Submit any of the following drops in https://discord.com/channels/1290136938115891220/1295850896009330698 to get candy!
+            desc = f"""Use the /submit command for any of the following drops to get candy!
                     \n**Mini-sized candy bar** (+5)\n> {team.mini_task[0]["Description"]} - [wiki]({team.mini_task[0]["WikiUrl"]})\n> {partial_counter_text_mini}\n> {mini_reroll_text}
                     \n**Fun-sized candy bar** (+30)\n> {team.fun_task[0]["Description"]} - [wiki]({team.fun_task[0]["WikiUrl"]})\n> {partial_counter_text_fun}\n> {fun_reroll_text}
                     \n**Full-sized candy bar** (+120)\n> {team.full_task[0]["Description"]} - [wiki]({team.full_task[0]["WikiUrl"]})\n> {partial_counter_text_full}\n> {full_reroll_text}

@@ -34,9 +34,9 @@ class TeamService:
                 bucket_task=team_data.get("Candy-bucket", ""),
                 submission_history=team_data.get("SubmissionHistory", ""),
                 updating=team_data.get("Updating", ""))
-            return team
+            return team, team_data
         else:
-            return None
+            return None, None
     
     async def initialize_team(self, channel_name: str, channel_id: str, database: Database, dashboard_service: DashboardService):
         try:
@@ -211,36 +211,36 @@ class TeamService:
         else:
             return None, None
         
-    async def award_points(self, team: Team, database, tier: CandyTier):
+    async def award_points(self, team: Team, database, tier: CandyTier, user: str):
         try:
             if tier == CandyTier.CANDYTIER["Mini-sized"]:
                 add_amount = 5
                 new_submission_history = team.submission_history or []
-                new_submission_history.append([team.mini_task[0]["Name"], add_amount])
+                new_submission_history.append([team.mini_task[0]["Description"], add_amount, user])
                 update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
 
             elif tier == CandyTier.CANDYTIER["Fun-sized"]:
                 add_amount = 30
                 new_submission_history = team.submission_history or []
-                new_submission_history.append([team.fun_task[0]["Name"], add_amount])
+                new_submission_history.append([team.fun_task[0]["Description"], add_amount, user])
                 update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
 
             elif tier == CandyTier.CANDYTIER["Full-sized"]:
                 add_amount = 120
                 new_submission_history = team.submission_history or []
-                new_submission_history.append([team.full_task[0]["Name"], add_amount])
+                new_submission_history.append([team.full_task[0]["Description"], add_amount, user])
                 update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
 
             elif tier == CandyTier.CANDYTIER["Family-sized"]:
                 add_amount = 250
                 new_submission_history = team.submission_history or []
-                new_submission_history.append([team.family_task[0]["Name"], add_amount])
+                new_submission_history.append([team.family_task[0]["Description"], add_amount, user])
                 update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
 
             elif tier == CandyTier.CANDYTIER["Candy-bucket"]:
                 add_amount = 600
                 new_submission_history = team.submission_history or []
-                new_submission_history.append([team.bucket_task[0]["Name"], add_amount])
+                new_submission_history.append([team.bucket_task[0]["Description"], add_amount, user])
                 update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
 
             return database.teams_collection.find_one_and_update(

@@ -53,7 +53,7 @@ bot = Bot()
 @bot.tree.command(name="board", description="Your team's board")
 async def my_team(interaction: discord.Interaction):
     try:
-        team = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
+        team, info = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
         if team is None:
             await interaction.response.send_message("Please use this command in your team's channel")
             return
@@ -79,12 +79,7 @@ async def my_team(interaction: discord.Interaction):
 @bot.tree.command(name="submit", description="Submit a drop!")
 async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, image: discord.Attachment):
     try:
-        submit_channel = bot.get_channel(bot.submit_channel_id)
-        if interaction.channel.id != bot.submit_channel_id:
-                await interaction.response.send_message(f"Wrong channel. Please go to {submit_channel.mention}")
-                return
-
-        team, info = await bot.teams_service.get_team_from_user_id(str(interaction.user.id), bot.database)
+        team, info  = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
         if team is None:
             await interaction.response.send_message(f"No team information was found for you. Please contact <@726237123857874975>", ephemeral=True)
             return
@@ -109,8 +104,8 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
                     )
         if update[tier.name][0]["CompletionCounter"] <= 0:
             # Tile complete past this point
-            await interaction.response.send_message(f"Tile Complete! Your board will be updated shortly in {bot.get_channel(int(team.channel_id)).mention}", ephemeral=True)
-            await bot.teams_service.award_points(team, bot.database, tier)
+            await interaction.response.send_message(f"**{tier.name}** complete! Your board will be updated shortly.")
+            await bot.teams_service.award_points(team, bot.database, tier, interaction.user.name)
             
             # Updating team
             await bot.teams_service.updating_team(team, bot.database, True)
@@ -122,7 +117,7 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
             changelog_channel = bot.get_channel(int(bot.changelog_channel_id))
             
             embed = Embed(
-                title=f"✅Tile Completed",
+                title=f"Tile Completed! ✅",
                 description=f"**{team.name}**",
                 color=0x00ff00,
             )
@@ -175,7 +170,7 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
 @bot.tree.command(name="reroll", description="Re-roll a slot")
 async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
     try:
-        team = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
+        team, info = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
         if team is None:
             await interaction.response.send_message("Please use this command in your team's channel", ephemeral = True)
             return
@@ -193,7 +188,7 @@ async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
         
         if reroll:
             await interaction.response.send_message(f"{interaction.user.mention} is re-rolling the {tier.name} slot for the team!")
-            team = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
+            team, info = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
             dashboard_service = DashboardService()
             message = await interaction.channel.send(file = await dashboard_service.generate_board(team))
             await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
