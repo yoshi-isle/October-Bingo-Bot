@@ -232,6 +232,47 @@ async def leaderboard(interaction: discord.Interaction):
         await interaction.channel.send(embed = await bot.embed_generator.make_topteams_embed(teams))
     except Exception as e:
         print("Error with /leaderboard command", e)
+        
+@bot.tree.command(name="add", description="Add a user to a team")
+@app_commands.checks.has_permissions(administrator=True)
+async def add_member(interaction: discord.Interaction, user: discord.Member):
+    try:
+        team, info  = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
+        if team is None:
+            await interaction.response.send_message(f"No team information was found for you. Please contact <@726237123857874975>", ephemeral=True)
+            return
+        
+        members = team.members or []
+        members.append(str(user.id))
+        
+        update = bot.database.teams_collection.find_one_and_update(
+                        {"_id": ObjectId(team._id)},
+                        {"$set": {"Members": members}},
+                        return_document = ReturnDocument.AFTER
+                    )
+        
+        # teams = await bot.teams_service.get_all_teams(bot.database)
+        await interaction.response.send_message(f"Successfully added {user.display_name} ({user.name})", ephemeral=True)
+    except Exception as e:
+        print("Error with /add command", e)
+
+@bot.tree.command(name="list_users", description="List team members")
+@app_commands.checks.has_permissions(administrator=True)
+async def list_members(interaction: discord.Interaction):
+    try:
+        team, info  = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
+        if team is None:
+            await interaction.response.send_message(f"No team information was found for you. Please contact <@726237123857874975>", ephemeral=True)
+            return
+        
+        members = ""
+        for i in range(len(team.members)):
+            members += f"{bot.get_user(int(team.members[i])).display_name} ({bot.get_user(int(team.members[i]))})\n"
+        
+        await interaction.response.send_message(members, ephemeral=True)
+        
+    except Exception as e:
+        print("Error with /list_users command", e)
 
 @tasks.loop(minutes=5)
 async def update_leaderboard():
