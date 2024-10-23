@@ -59,7 +59,7 @@ async def my_team(interaction: discord.Interaction):
     try:
         team, info = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
         if team is None:
-            await interaction.response.send_message("Please use this command in your team's channel")
+            await interaction.response.send_message("Please use this command in your team's channel", ephemeral=True)
             return
         
         if team.updating:
@@ -109,7 +109,7 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
         if update[tier.name][0]["CompletionCounter"] <= 0:
             # Tile complete past this point
             await interaction.response.send_message(f"**{tier.name}** complete! Your board will be updated shortly.")
-            await bot.teams_service.award_points(team, bot.database, tier, interaction.user.name)
+            await bot.teams_service.award_points(team, bot.database, tier, interaction.user.name, bot.user_sheet_service, image.url)
             
             # Updating team
             await bot.teams_service.updating_team(team, bot.database, True)
@@ -166,6 +166,7 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
             )
             
             await team_channel.send(embed = embed)        
+            bot.user_sheet_service.add_submission(team.spreadsheet, interaction.user.name, f"Partial: {info[tier.name][0]['Description']}", 0, image.url)
         
     except Exception as e:
         print("Error with /submit command", e)
@@ -241,13 +242,42 @@ async def leaderboard(interaction: discord.Interaction):
 @app_commands.checks.has_permissions(administrator=True)
 async def create_sheet(interaction: discord.Interaction):
     try:
+        team, info  = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
+        if team is None:
+            await interaction.response.send_message(f"No team information was found for you. Please contact <@726237123857874975>", ephemeral=True)
+            return
+        
+        if team.spreadsheet:
+            await interaction.response.send_message(f"There's already a sheet for this team", ephemeral=True)
+            return
+        
         # Acknowledge the interaction to prevent timeout
         await interaction.response.defer()
         
         url = bot.user_sheet_service.create_sheet(interaction.channel.name)
         
         # Send the final response with the sheet URL
-        await interaction.followup.send(str(url), ephemeral=True)
+        update = bot.database.teams_collection.find_one_and_update(
+                        {"_id": ObjectId(team._id)},
+                        {"$set": {"Spreadsheet": url}},
+                        return_document = ReturnDocument.AFTER
+                    )
+        await interaction.followup.send(str(url))
+        
+    except Exception as e:
+        print("Error with /create_sheet command", e)
+
+@bot.tree.command(name="get_sheet", description="Get sheet for team")
+@app_commands.checks.has_permissions(administrator=True)
+async def get_sheet(interaction: discord.Interaction):
+    try:
+        team, info  = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
+        if team is None:
+            await interaction.response.send_message(f"No team information was found for you. Please contact <@726237123857874975>", ephemeral=True)
+            return
+        
+        await interaction.response.send_message(team.spreadsheet, ephemeral=True)
+        
     except Exception as e:
         print("Error with /create_sheet command", e)
         
@@ -313,7 +343,7 @@ async def update_leaderboard():
         current_time = datetime.now() + timedelta(minutes=5)
         discord_timestamp = f"<t:{int(current_time.timestamp())}:R>"
 
-        embed.description += f"\n\nNext update {discord_timestamp}"
+        embed.description += f"\nNext update {discord_timestamp}"
 
         await leaderboard_message.edit(embed=embed)
     except Exception as e:
@@ -345,7 +375,8 @@ async def check_bucket_expiry():
                         family_task=team.get("Family-sized", ""),
                         bucket_task=None,
                         submission_history=team.get("SubmissionHistory", ""),
-                        updating=team.get("Updating", ""))
+                        updating=team.get("Updating", ""),
+                        spreadsheet=team.get("Spreadsheet", ""))
                     team_channel = bot.get_channel(int(updated_team.channel_id))
                     await team_channel.send("## Your Candy-bucket task has expired.")
                     dashboard_service = DashboardService()

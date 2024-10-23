@@ -10,6 +10,8 @@ from services.dashboard_service import DashboardService
 from datetime import datetime, timedelta
 from pymongo import ReturnDocument
 
+from services.user_sheet_service import UserSheetsService
+
 class TeamService:
     async def get_all_teams(self, database: Database):
         # Sorted by points
@@ -33,7 +35,8 @@ class TeamService:
                 family_task=team_data.get("Family-sized", ""),
                 bucket_task=team_data.get("Candy-bucket", ""),
                 submission_history=team_data.get("SubmissionHistory", ""),
-                updating=team_data.get("Updating", ""))
+                updating=team_data.get("Updating", ""),
+                spreadsheet=team_data.get("Spreadsheet", ""))
             return team, team_data
         else:
             return None, None
@@ -41,8 +44,9 @@ class TeamService:
     async def initialize_team(self, channel_name: str, channel_id: str, database: Database, dashboard_service: DashboardService):
         try:
             channel_id = str(channel_id)
+            
             # If it already exists, throw
-            exists = await self.get_team_from_channel_id(channel_id, database)
+            exists, data = await self.get_team_from_channel_id(channel_id, database)
 
             if exists:
                 print("Team already exists.")
@@ -59,17 +63,17 @@ class TeamService:
                 "Family-sized": None,
                 "Candy-bucket": None,
                 "SubmissionHistory": [],
-                "Updating": False
+                "Updating": False,
+                "Spreadsheet": None
             })
 
-            created_team = await self.get_team_from_channel_id(channel_id, database)
+            created_team, data = await self.get_team_from_channel_id(channel_id, database)
+            await self.assign_task(created_team, CandyTier.CANDYTIER["Mini-sized"], database, dashboard_service, False, True)
+            await self.assign_task(created_team, CandyTier.CANDYTIER["Fun-sized"], database, dashboard_service, False, True)
+            await self.assign_task(created_team, CandyTier.CANDYTIER["Full-sized"], database, dashboard_service, False, True)
+            await self.assign_task(created_team, CandyTier.CANDYTIER["Family-sized"], database, dashboard_service, False, True)
 
-            await self.assign_task(created_team, CandyTier.CANDYTIER["Mini-sized"], database, dashboard_service)
-            await self.assign_task(created_team, CandyTier.CANDYTIER["Fun-sized"], database, dashboard_service)
-            await self.assign_task(created_team, CandyTier.CANDYTIER["Full-sized"], database, dashboard_service)
-            await self.assign_task(created_team, CandyTier.CANDYTIER["Family-sized"], database, dashboard_service)
-
-            created_team = await self.get_team_from_channel_id(channel_id, database)
+            created_team, data = await self.get_team_from_channel_id(channel_id, database)
 
             return created_team
 
@@ -103,20 +107,20 @@ class TeamService:
         except Exception as e:
             print(f"Error while re-rolling task: {e}")         
 
-    async def assign_task(self, team: Team, tier: CandyTier, database: Database, dashboard_service: DashboardService, bucket_chance = False):
+    async def assign_task(self, team: Team, tier: CandyTier, database: Database, dashboard_service: DashboardService, bucket_chance = False, init = False):
         twelve_hours_from_now = datetime.now() + timedelta(hours=12)
         
-        team_data = database.teams_collection.find_one({"ChannelId": str(team.channel_id)})
-        
-        # Dupe protection
-        while True:
+        # Dupe protection for new tiles
+        if not init:
+            team_data = database.teams_collection.find_one({"ChannelId": str(team.channel_id)})
+            while True:
+                random_task = await dashboard_service.get_random_task(tier)
+                if random_task["Name"] != team_data[tier.name][0]["Name"]:
+                    break
+        else:
             random_task = await dashboard_service.get_random_task(tier)
-            if random_task["Name"] != team_data[tier.name][0]["Name"]:
-                break
-
-        
+                    
         try:
-            
             # Bucket chance
             """
             Easy 1/50 
@@ -163,7 +167,8 @@ class TeamService:
                 family_task=updated_team.get("Family-sized", ""),
                 bucket_task=updated_team.get("Candy-bucket", ""),
                 submission_history=updated_team.get("SubmissionHistory", ""),
-                updating=updated_team.get("Updating", ""))
+                updating=updated_team.get("Updating", ""),
+                spreadsheet=updated_team.get("Spreadsheet", ""))
 
             return team
         except Exception as e:
@@ -193,7 +198,8 @@ class TeamService:
                 family_task=updated_team.get("Family-sized", ""),
                 bucket_task=updated_team.get("Candy-bucket", ""),
                 submission_history=updated_team.get("SubmissionHistory", ""),
-                updating=updated_team.get("Updating", ""))
+                updating=updated_team.get("Updating", ""),
+                spreadsheet=updated_team.get("Spreadsheet", ""))
 
             return team
         except Exception as e:
@@ -214,42 +220,48 @@ class TeamService:
                 family_task=team_data.get("Family-sized", ""),
                 bucket_task=team_data.get("Candy-bucket", ""),
                 submission_history=team_data.get("SubmissionHistory", ""),
-                updating=team_data.get("Updating", ""))
+                updating=team_data.get("Updating", ""),
+                spreadsheet=team_data.get("Spreadsheet", ""))
                 
             return team, team_data
         else:
             return None, None
         
-    async def award_points(self, team: Team, database, tier: CandyTier, user: str):
+    async def award_points(self, team: Team, database, tier: CandyTier, user: str, sheet_service: UserSheetsService, image_url: str):
         try:
             if tier == CandyTier.CANDYTIER["Mini-sized"]:
                 add_amount = 5
                 new_submission_history = team.submission_history or []
                 new_submission_history.append([team.mini_task[0]["Description"], add_amount, user])
+                sheet_service.add_submission(team.spreadsheet, user, f"Complete: {team.mini_task[0]['Description']}", add_amount, image_url)
                 update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
 
             elif tier == CandyTier.CANDYTIER["Fun-sized"]:
                 add_amount = 30
                 new_submission_history = team.submission_history or []
                 new_submission_history.append([team.fun_task[0]["Description"], add_amount, user])
+                sheet_service.add_submission(team.spreadsheet, user, f"Complete: {team.fun_task[0]['Description']}", add_amount, image_url)
                 update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
 
             elif tier == CandyTier.CANDYTIER["Full-sized"]:
                 add_amount = 120
                 new_submission_history = team.submission_history or []
                 new_submission_history.append([team.full_task[0]["Description"], add_amount, user])
+                sheet_service.add_submission(team.spreadsheet, user, f"Complete: {team.full_task[0]['Description']}", add_amount, image_url)
                 update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
 
             elif tier == CandyTier.CANDYTIER["Family-sized"]:
                 add_amount = 250
                 new_submission_history = team.submission_history or []
                 new_submission_history.append([team.family_task[0]["Description"], add_amount, user])
+                sheet_service.add_submission(team.spreadsheet, user, f"Complete: {team.family_task[0]['Description']}", add_amount, image_url)
                 update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
 
             elif tier == CandyTier.CANDYTIER["Candy-bucket"]:
                 add_amount = 600
                 new_submission_history = team.submission_history or []
                 new_submission_history.append([team.bucket_task[0]["Description"], add_amount, user])
+                sheet_service.add_submission(team.spreadsheet, user, f"Complete: {team.bucket_task[0]['Description']}", add_amount, image_url)
                 update_data = {"$set": {"Points": team.points + add_amount, "SubmissionHistory": new_submission_history}}
 
             return database.teams_collection.find_one_and_update(
@@ -283,7 +295,8 @@ class TeamService:
                 family_task=team.get("Family-sized", ""),
                 bucket_task=team.get("Candy-bucket", ""),
                 submission_history=team.get("SubmissionHistory", ""),
-                updating=team.get("Updating", ""))
+                updating=team.get("Updating", ""),
+                spreadsheet=team.get("Spreadsheet", ""))
 
             return updated_team
         except Exception as e:

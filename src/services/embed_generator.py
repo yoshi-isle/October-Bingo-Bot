@@ -19,7 +19,7 @@ class EmbedGenerator:
             full_reroll_text = f"Reroll: {full_task_disc_dt}"
             family_reroll_text = f"Reroll: {family_task_disc_dt}"
             if team.bucket_task:
-                bucket_expire_text = f"⚠️ Expires: {bucket_task_disc_dt}"
+                bucket_expire_text = f"Expires: {bucket_task_disc_dt}"
             
             
             if team.mini_task[1] < datetime.now():
