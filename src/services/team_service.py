@@ -108,16 +108,12 @@ class TeamService:
         
         team_data = database.teams_collection.find_one({"ChannelId": str(team.channel_id)})
         
-        print("Dupe checking")
-        is_dupe = True
-        while is_dupe:
+        # Dupe protection
+        while True:
             random_task = await dashboard_service.get_random_task(tier)
-            print(random_task["Name"])
-            print("compared to")
-            print(team_data[tier.name][0]["Name"])
             if random_task["Name"] != team_data[tier.name][0]["Name"]:
-                is_dupe = False
-                print("Dupe protected")
+                break
+
         
         try:
             
