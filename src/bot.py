@@ -48,10 +48,6 @@ class Bot(commands.Bot):
 bot = Bot()
     
 # Slash Commands
-@bot.tree.command(name="ping", description="Responds with pong.")
-async def ping(interaction: discord.Interaction):
-    await interaction.response.send_message("pong")
-
 @bot.tree.command(name="board", description="Your team's board")
 async def my_team(interaction: discord.Interaction):
     try:
@@ -64,11 +60,19 @@ async def my_team(interaction: discord.Interaction):
             await interaction.response.send_message(f"Your team's board is already being updated. Please wait ~30 seconds.", ephemeral=True)
             return
         
+        await interaction.response.send_message("Grabbing your latest board", ephemeral=True)
         dashboard_service = DashboardService()
-        await interaction.channel.send(file = await dashboard_service.generate_board(team))
+        message = await interaction.channel.send(file = await dashboard_service.generate_board(team))
         await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
+        
+        # Pin new board to channel
+        pins: list[Message] = await interaction.channel.pins()
+        for pin in range(len(pins)):
+            await pins[pin].unpin(reason=None)
+        await message.pin(reason=None)     
+                    
     except Exception as e:
-        print(e)
+        print("Error with /board command", e)
         
 @bot.tree.command(name="submit", description="Submit a drop!")
 async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, image: discord.Attachment):
@@ -116,14 +120,13 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
         for pin in range(len(pins)):
             await pins[pin].unpin(reason=None)
         await message.pin(reason=None)
-        await team_channel.send(f"Tile Updated! @here")
             
          # Updating team
         await bot.teams_service.updating_team(team, bot.database, False)
         
     except Exception as e:
+        print("Error with /submit command", e)
         await bot.teams_service.updating_team(team, bot.database, False)
-        print(e)
 
 @bot.tree.command(name="reroll", description="Re-roll a slot")
 async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
@@ -146,24 +149,30 @@ async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
         
         if reroll:
             await interaction.response.send_message(f"{interaction.user.mention} is re-rolling the {tier.name} slot for the team!")
-            #Todo - reduce db call
             team = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
             dashboard_service = DashboardService()
-            await interaction.channel.send(file = await dashboard_service.generate_board(team))
+            message = await interaction.channel.send(file = await dashboard_service.generate_board(team))
             await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
+            
+            # Pin new board to channel
+            pins: list[Message] = await interaction.channel.pins()
+            for pin in range(len(pins)):
+                await pins[pin].unpin(reason=None)
+            await message.pin(reason=None)
+            
         else:
             await interaction.response.send_message("Your team cannot re-roll that slot yet.")
         
     except Exception as e:
-        print(e)
+        print("Error with /reroll command", e)
 
 @bot.tree.command(name="initialize_team", description="Create a team record in the database from this channel")
 @app_commands.checks.has_permissions(administrator=True)
 async def initialize_team(interaction: discord.Interaction):
     team = await bot.teams_service.initialize_team(interaction.channel.name, interaction.channel_id, bot.database, bot.dashboard_service)
+    await interaction.response.send_message(f"Created team!", ephemeral=True)
     await interaction.channel.send(file = await bot.dashboard_service.generate_board(team))
     await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
-    await interaction.response.send_message(f"Created team!", ephemeral=True)
 
 @initialize_team.error
 async def get_all_teams_error(interaction: discord.Interaction, error):
@@ -177,9 +186,9 @@ async def leaderboard(interaction: discord.Interaction):
         teams = await bot.teams_service.get_all_teams(bot.database)
         await interaction.channel.send(embed = await bot.embed_generator.make_topteams_embed(teams))
     except Exception as e:
-        print(e)
+        print("Error with /leaderboard command", e)
 
-@tasks.loop(seconds=10)
+@tasks.loop(minutes=5)
 async def update_leaderboard():
     try:
         channel = bot.get_channel(int(bot.leaderboard_channel_id))
@@ -195,10 +204,8 @@ async def update_leaderboard():
 
         await leaderboard_message.edit(embed=embed)
     except Exception as e:
-        print(e)
+        print("Error with update_leaderboard timer", e)
 
-
-    
 @tasks.loop(minutes=30)
 async def check_bucket_expiry():
     try:
@@ -229,11 +236,17 @@ async def check_bucket_expiry():
                     team_channel = bot.get_channel(int(updated_team.channel_id))
                     await team_channel.send("## Your Candy-bucket task has expired.")
                     dashboard_service = DashboardService()
-                    await team_channel.send(file = await dashboard_service.generate_board(updated_team))
+                    message = await team_channel.send(file = await dashboard_service.generate_board(updated_team))
                     await team_channel.send(embed = await bot.embed_generator.make_team_embed(updated_team))
                     
+                    # Pin new board to channel
+                    pins: list[Message] = await team_channel.pins()
+                    for pin in range(len(pins)):
+                        await pins[pin].unpin(reason=None)
+                    await message.pin(reason=None)
+                    
     except Exception as e:
-        print(f"Failed to run bucket expiry function {e}")
+        print("Error with check_bucket_expiry timer", e)
 
 # Main function to start the bot
 async def main():
