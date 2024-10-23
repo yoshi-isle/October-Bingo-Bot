@@ -105,7 +105,20 @@ class TeamService:
 
     async def assign_task(self, team: Team, tier: CandyTier, database: Database, dashboard_service: DashboardService, bucket_chance = False):
         twelve_hours_from_now = datetime.now() + timedelta(hours=12)
-        random_task = await dashboard_service.get_random_task(tier)
+        
+        team_data = database.teams_collection.find_one({"ChannelId": str(team.channel_id)})
+        
+        print("Dupe checking")
+        is_dupe = True
+        while is_dupe:
+            random_task = await dashboard_service.get_random_task(tier)
+            print(random_task["Name"])
+            print("compared to")
+            print(team_data[tier.name][0]["Name"])
+            if random_task["Name"] != team_data[tier.name][0]["Name"]:
+                is_dupe = False
+                print("Dupe protected")
+        
         try:
             
             # Bucket chance
