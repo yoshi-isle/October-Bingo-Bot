@@ -2,6 +2,7 @@ import json
 from bson import ObjectId
 import discord
 import asyncio
+from pymongo import ReturnDocument
 from constants.candy_tier import CandyTier
 from database import Database, Team
 from services.dashboard_service import DashboardService
@@ -11,6 +12,7 @@ from discord.ext import commands
 from discord import app_commands, Message
 from discord.ext import tasks
 from datetime import datetime, timedelta
+from discord import Embed
 
 class Bot(commands.Bot):
     def __init__(self, *args, **kwargs):
@@ -95,34 +97,76 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
         if tier == CandyTier.CANDYTIER["Candy-bucket"] and not team.bucket_task:
             await interaction.response.send_message(f"You don't have a candy bucket. Wrong option maybe?", ephemeral=True)
             return
-        
-        await interaction.response.send_message(f"Thank your for your submission. Your board will be updated shortly in {bot.get_channel(int(team.channel_id)).mention}", ephemeral=True)
-        await bot.teams_service.award_points(team, bot.database, tier)
-        
-        # Updating team
-        await bot.teams_service.updating_team(team, bot.database, True)
-        
-        # Wait 15 and update team board
-        await asyncio.sleep(15)
-        
-        # Show changelog        
-        changelog_channel = bot.get_channel(int(bot.changelog_channel_id))
-        await changelog_channel.send(f"{interaction.user.mention} completed a tile for {team.name}.\n {info[tier.name][0]['Description']}", file=await image.to_file())
-        
-        team = await bot.teams_service.assign_task(team, tier, bot.database, bot.dashboard_service, True)
+    
         team_channel = bot.get_channel(int(team.channel_id))
-        dashboard_service = DashboardService()
-        message: Message = await team_channel.send(file = await dashboard_service.generate_board(team))
-        await team_channel.send(embed = await bot.embed_generator.make_team_embed(team))
         
-        # Pin new board to channel
-        pins: list[Message] = await team_channel.pins()
-        for pin in range(len(pins)):
-            await pins[pin].unpin(reason=None)
-        await message.pin(reason=None)
+        # Subtract CompletionCounter
+        info[tier.name][0]["CompletionCounter"] -= 1
+        update = bot.database.teams_collection.find_one_and_update(
+                        {"_id": ObjectId(team._id)},
+                        {"$set": {tier.name: [info[tier.name][0], team.mini_task[1]]}},
+                        return_document = ReturnDocument.AFTER
+                    )
+        if update[tier.name][0]["CompletionCounter"] <= 0:
+            # Tile complete past this point
+            await interaction.response.send_message(f"Tile Complete! Your board will be updated shortly in {bot.get_channel(int(team.channel_id)).mention}", ephemeral=True)
+            await bot.teams_service.award_points(team, bot.database, tier)
             
-         # Updating team
-        await bot.teams_service.updating_team(team, bot.database, False)
+            # Updating team
+            await bot.teams_service.updating_team(team, bot.database, True)
+            
+            # Wait 15 and update team board
+            await asyncio.sleep(15)
+            
+            # Show changelog        
+            changelog_channel = bot.get_channel(int(bot.changelog_channel_id))
+            
+            embed = Embed(
+                title=f"✅Tile Completed",
+                description=f"**{team.name}**",
+                color=0x00ff00,
+            )
+            
+            embed.set_image(url=image.url)
+            
+            embed.add_field(
+                name="",
+                value=f"{info[tier.name][0]['Description']}"
+            )
+            
+            await changelog_channel.send(embed = embed)
+                                    
+            team = await bot.teams_service.assign_task(team, tier, bot.database, bot.dashboard_service, True)
+            dashboard_service = DashboardService()
+            await team_channel.send("# New board!")
+            message: Message = await team_channel.send(file = await dashboard_service.generate_board(team))
+            await team_channel.send(embed = await bot.embed_generator.make_team_embed(team))
+            
+            # Pin new board to channel
+            pins: list[Message] = await team_channel.pins()
+            for pin in range(len(pins)):
+                await pins[pin].unpin(reason=None)
+            await message.pin(reason=None)
+                
+            # Updating team
+            await bot.teams_service.updating_team(team, bot.database, False)
+        else:
+            # Tile is not complete yet
+            await interaction.response.send_message(f"Thank your for your submission. Your team needs {update[tier.name][0]['CompletionCounter']} more", ephemeral=True)
+            embed = Embed(
+                title=f"Drop Submission ({tier.name})",
+                description=f"{interaction.user.mention} submitted a drop towards **{info[tier.name][0]['Name']}**",
+                color=0x00ff00,
+            )
+            
+            embed.set_thumbnail(url=image.url)
+
+            embed.add_field(
+                name="Remaining Submissions",
+                value=f"Your team needs **{update[tier.name][0]['CompletionCounter']}** more submission(s)"
+            )
+            
+            await team_channel.send(embed = embed)        
         
     except Exception as e:
         print("Error with /submit command", e)
@@ -171,8 +215,14 @@ async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
 async def initialize_team(interaction: discord.Interaction):
     team = await bot.teams_service.initialize_team(interaction.channel.name, interaction.channel_id, bot.database, bot.dashboard_service)
     await interaction.response.send_message(f"Created team!", ephemeral=True)
-    await interaction.channel.send(file = await bot.dashboard_service.generate_board(team))
+    message = await interaction.channel.send(file = await bot.dashboard_service.generate_board(team))
     await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
+    
+    # Pin new board to channel
+    pins: list[Message] = await interaction.channel.pins()
+    for pin in range(len(pins)):
+        await pins[pin].unpin(reason=None)
+    await message.pin(reason=None)
 
 @initialize_team.error
 async def get_all_teams_error(interaction: discord.Interaction, error):

@@ -637,6 +637,20 @@
             "WikiUrl": "https://oldschool.runescape.wiki/w/Reward_casket_(elite)",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Reward_casket_%28elite%29_detail.png/130px-Reward_casket_%28elite%29_detail.png?1a29e",
             "CompletionCounter": 1
+        },
+        {
+            "Name": "Catch 100K minnows",
+            "Description": "Catch 100K minnows",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Minnow",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Minnow_detail.png/160px-Minnow_detail.png?d844c",
+            "CompletionCounter": 1
+        },
+        {
+            "Name": "Mine 50K daeyalt",
+            "Description": "Mine 50K daeyalt",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Daeyalt_essence_mine",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Daeyalt_shard_detail.png/100px-Daeyalt_shard_detail.png?9ca6b",
+            "CompletionCounter": 1
         }
     ]
 }

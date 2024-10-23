@@ -119,19 +119,15 @@ class TeamService:
             if not team.bucket_task and bucket_chance:
                 if tier == CandyTier.CANDYTIER["Mini-sized"]:
                     if random.randint(1, 50) == 1:
-                        print("Bucket!")
                         await self.assign_bucket_task(team, database, dashboard_service)
                 if tier == CandyTier.CANDYTIER["Fun-sized"]:
                     if random.randint(1, 30) == 1:
-                        print("Bucket!")
                         await self.assign_bucket_task(team, database, dashboard_service)
                 if tier == CandyTier.CANDYTIER["Full-sized"]:
                     if random.randint(1, 20) == 1:
-                        print("Bucket!")
                         await self.assign_bucket_task(team, database, dashboard_service)
                 if tier == CandyTier.CANDYTIER["Family-sized"]:
                     if random.randint(1, 1) == 1:
-                        print("Bucket!")
                         await self.assign_bucket_task(team, database, dashboard_service)
             
             update_data = {"$set": {tier.name: [random_task, twelve_hours_from_now]}}
