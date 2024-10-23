@@ -26,6 +26,7 @@ class Bot(commands.Bot):
         self.dashboard_service = DashboardService()
         self.teams_service = TeamService()
         self.embed_generator = EmbedGenerator()
+        self.show_points = False
 
         # Load bot token and public key from configuration
         with open('appSettings.local.json', 'r') as file:
@@ -256,6 +257,15 @@ async def add_member(interaction: discord.Interaction, user: discord.Member):
     except Exception as e:
         print("Error with /add command", e)
 
+@bot.tree.command(name="toggle_show_points", description="Show points (oooooo)")
+@app_commands.checks.has_permissions(administrator=True)
+async def toggle_show_points(interaction: discord.Interaction):
+    try:
+        bot.show_points = not bot.show_points
+        await interaction.response.send_message(f"Point visibility: {bot.show_points}", ephemeral=True)
+    except Exception as e:
+        print("Error with /toggle_show_points command", e)
+
 @bot.tree.command(name="list_users", description="List team members")
 @app_commands.checks.has_permissions(administrator=True)
 async def list_members(interaction: discord.Interaction):
@@ -274,14 +284,14 @@ async def list_members(interaction: discord.Interaction):
     except Exception as e:
         print("Error with /list_users command", e)
 
-@tasks.loop(minutes=5)
+@tasks.loop(seconds=5)
 async def update_leaderboard():
     try:
         channel = bot.get_channel(int(bot.leaderboard_channel_id))
         leaderboard_message = await channel.fetch_message(int(bot.leaderboard_message_id))
 
         teams = await bot.teams_service.get_all_teams(bot.database)
-        embed = await bot.embed_generator.make_topteams_embed(teams)
+        embed = await bot.embed_generator.make_topteams_embed(teams, bot.show_points)
 
         current_time = datetime.now() + timedelta(minutes=5)
         discord_timestamp = f"<t:{int(current_time.timestamp())}:R>"

@@ -64,7 +64,7 @@ class EmbedGenerator:
         except Exception as e:
             print(e)
 
-    async def make_topteams_embed(self, teams):
+    async def make_topteams_embed(self, teams, show_points: bool):
         try:
             teams.sort(key=lambda x: x['Points'], reverse=True)
             
@@ -85,7 +85,10 @@ class EmbedGenerator:
                 elif placement == 3:
                     desc += "🥉"
 
-                desc += f"**{team['Name']}**\n"
+                if show_points:
+                    desc += f"**{team['Name']}** - {team['Points']} candies\n"
+                else:
+                    desc += f"**{team['Name']}**\n"
 
             embed = discord.Embed(
                 title="🏆 **Current Top Teams** 🏆",
