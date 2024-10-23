@@ -8,11 +8,13 @@ from database import Database, Team
 from services.dashboard_service import DashboardService
 from services.embed_generator import EmbedGenerator
 from services.team_service import TeamService
+from services.user_sheet_service import UserSheetsService
 from discord.ext import commands
 from discord import app_commands, Message
 from discord.ext import tasks
 from datetime import datetime, timedelta
 from discord import Embed
+
 
 class Bot(commands.Bot):
     def __init__(self, *args, **kwargs):
@@ -26,6 +28,7 @@ class Bot(commands.Bot):
         self.dashboard_service = DashboardService()
         self.teams_service = TeamService()
         self.embed_generator = EmbedGenerator()
+        self.user_sheet_service = UserSheetsService('config/config.json', 'config/key.json')
         self.show_points = False
 
         # Load bot token and public key from configuration
@@ -231,6 +234,15 @@ async def leaderboard(interaction: discord.Interaction):
     try:
         teams = await bot.teams_service.get_all_teams(bot.database)
         await interaction.channel.send(embed = await bot.embed_generator.make_topteams_embed(teams))
+    except Exception as e:
+        print("Error with /leaderboard command", e)
+
+@bot.tree.command(name="create_sheet", description="Create sheet for team")
+@app_commands.checks.has_permissions(administrator=True)
+async def create_sheet(interaction: discord.Interaction):
+    try:
+        url = await bot.user_sheet_service.create_sheet(interaction.channel.name)
+        await interaction.response.send_message(url)
     except Exception as e:
         print("Error with /leaderboard command", e)
         

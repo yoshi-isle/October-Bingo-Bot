@@ -2,3 +2,4 @@ appSettings.local.json
 .idea
 templates
 *.pyc
+config
