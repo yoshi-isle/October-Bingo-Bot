@@ -57,7 +57,7 @@ async def my_team(interaction: discord.Interaction):
             return
         
         if team.updating:
-            await interaction.response.send_message(f"Your team's board is already being updated. Please wait ~30 seconds.", ephemeral=True)
+            await interaction.response.send_message(f"Your team's board is currently being updated. Please wait ~30 seconds.", ephemeral=True)
             return
         
         await interaction.response.send_message("Grabbing your latest board", ephemeral=True)
@@ -107,7 +107,7 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
         
         # Show changelog        
         changelog_channel = bot.get_channel(int(bot.changelog_channel_id))
-        await changelog_channel.send(f"{interaction.user.mention} submitted for {team.name}.\n {info[tier.name][0]['Name']}", file=await image.to_file())
+        await changelog_channel.send(f"{interaction.user.mention} completed a tile for {team.name}.\n {info[tier.name][0]['Description']}", file=await image.to_file())
         
         team = await bot.teams_service.assign_task(team, tier, bot.database, bot.dashboard_service, True)
         team_channel = bot.get_channel(int(team.channel_id))
@@ -137,7 +137,7 @@ async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
             return
         
         if team.updating:
-            await interaction.response.send_message(f"Your team's board is already being updated. Please wait ~30 seconds.", ephemeral=True)
+            await interaction.response.send_message(f"Your team's board is currently being updated. Please wait ~30 seconds.", ephemeral=True)
             return
 
         # Check to ensure bucket or not
