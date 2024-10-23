@@ -3,3 +3,5 @@ pillow==10.3.0
 requests
 pymongo
 datetime
+gspread
+gspread_formatting
