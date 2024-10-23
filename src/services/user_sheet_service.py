@@ -4,9 +4,11 @@ import json
 
 class UserSheetsService:
     def __init__(self, config_path, key_path):
+        print("init")
         self.config_path = config_path
         self.key_path = key_path
         self.client = self.authorize_client()
+        print(self.client)
 
     def authorize_client(self):
         try:
@@ -24,14 +26,14 @@ class UserSheetsService:
 
         try:
             new_sheet = self.client.create(sheet_name)
-            new_sheet.add_worksheet("Kitty PvM Diary", 30, 20)
+            # new_sheet.add_worksheet("Kitty PvM Diary", 30, 20)
             config = self.load_config()
             new_sheet.share(config['gmail'], 'user', 'writer')
             new_sheet.share(None, 'anyone', 'reader')
 
             pawWorksheet = new_sheet.get_worksheet(0)
             pawWorksheet.update_title("Paw Prints")
-            pawWorksheet.update_cell(1,1,"yoshe's Clan Profile")
+            pawWorksheet.update_cell(1,1,f"{sheet_name}'s bingo submission history")
             set_column_width(pawWorksheet, 'A', 240)
 
             fmt = cellFormat(

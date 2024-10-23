@@ -28,7 +28,7 @@ class Bot(commands.Bot):
         self.dashboard_service = DashboardService()
         self.teams_service = TeamService()
         self.embed_generator = EmbedGenerator()
-        self.user_sheet_service = UserSheetsService('config/config.json', 'config/key.json')
+        self.user_sheet_service = UserSheetsService('src/config/config.json', 'src/config/key.json')
         self.show_points = False
 
         # Load bot token and public key from configuration
@@ -241,10 +241,15 @@ async def leaderboard(interaction: discord.Interaction):
 @app_commands.checks.has_permissions(administrator=True)
 async def create_sheet(interaction: discord.Interaction):
     try:
-        url = await bot.user_sheet_service.create_sheet(interaction.channel.name)
-        await interaction.response.send_message(url)
+        # Acknowledge the interaction to prevent timeout
+        await interaction.response.defer()
+        
+        url = bot.user_sheet_service.create_sheet(interaction.channel.name)
+        
+        # Send the final response with the sheet URL
+        await interaction.followup.send(str(url), ephemeral=True)
     except Exception as e:
-        print("Error with /leaderboard command", e)
+        print("Error with /create_sheet command", e)
         
 @bot.tree.command(name="add", description="Add a user to a team")
 @app_commands.checks.has_permissions(administrator=True)
