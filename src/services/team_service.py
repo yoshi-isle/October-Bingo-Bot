@@ -142,7 +142,7 @@ class TeamService:
                     if random.randint(1, 20) == 1:
                         await self.assign_bucket_task(team, database, dashboard_service)
                 if tier == CandyTier.CANDYTIER["Family-sized"]:
-                    if random.randint(1, 1) == 1:
+                    if random.randint(1, 10) == 1:
                         await self.assign_bucket_task(team, database, dashboard_service)
             
             update_data = {"$set": {tier.name: [random_task, twelve_hours_from_now]}}
