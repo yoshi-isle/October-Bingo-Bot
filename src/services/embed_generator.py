@@ -57,7 +57,7 @@ class EmbedGenerator:
             if team.bucket_task:
                 desc += f"""\n\n**Candy bucket** (+600)\n> {team.bucket_task[0]["Name"]} - [wiki]({team.bucket_task[0]["WikiUrl"]})\n> {partial_counter_text_bucket}\n> {bucket_expire_text}"""
            
-            embed = discord.Embed(title=f"{team.name}",
+            embed = discord.Embed(title=f"{team.name} Board",
                         description= str(desc) ,
                         colour=0x700099)
             embed.set_thumbnail(url=team.image)
