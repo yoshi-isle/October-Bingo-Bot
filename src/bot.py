@@ -122,17 +122,12 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
             
             embed = Embed(
                 title=f"**{team.name}**",
-                description=f"Completed a tile!",
+                description=f"{interaction.user.display_name} completed a tile!",
                 color=0x00ff00,
             )
             
             embed.set_thumbnail(url=team.image)
             embed.set_image(url=image.url)
-            
-            embed.add_field(
-                name="",
-                value=f"{info[tier.name][0]['Description']}"
-            )
             
             await changelog_channel.send(embed = embed)
                                     
