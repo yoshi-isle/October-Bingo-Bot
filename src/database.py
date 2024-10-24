@@ -33,7 +33,7 @@ class Database:
         return [result for result in self.teams_collection.find()]
 
 class Team:
-    def __init__(self, _id, name, members, points, channel_id, mini_task, fun_task, full_task, family_task, bucket_task, submission_history, updating, spreadsheet):
+    def __init__(self, _id, name, members, points, channel_id, mini_task, fun_task, full_task, family_task, bucket_task, submission_history, updating, spreadsheet, image):
         self._id = _id
         self.name = name
         self.members = members
@@ -47,3 +47,4 @@ class Team:
         self.submission_history = submission_history
         self.updating = updating
         self.spreadsheet = spreadsheet
+        self.image = image

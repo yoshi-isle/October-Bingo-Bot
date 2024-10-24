@@ -60,6 +60,7 @@ class EmbedGenerator:
             embed = discord.Embed(title=f"{team.name}",
                         description= str(desc) ,
                         colour=0x700099)
+            embed.set_thumbnail(url=team.image)
             return embed
         except Exception as e:
             print(e)

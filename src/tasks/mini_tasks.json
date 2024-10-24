@@ -74,7 +74,7 @@
         {
             "Name": "Pet photo",
             "Description": "Post a picture of your pet IRL!",
-            "WikiUrl": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Cat",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Kitten_%28grey_and_black%29.png/180px-Kitten_%28grey_and_black%29.png?c9580",
             "CompletionCounter": 1
         },
@@ -102,7 +102,7 @@
         {
             "Name": "Draynor Step",
             "Description": "Clue step that requires you to go to Draynor Manor",
-            "WikiUrl": "https://oldschool.runescape.wiki/images/thumb/Clue_scroll_%28easy%29_detail.png/150px-Clue_scroll_%28easy%29_detail.png?87067",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Draynor_Manor",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Clue_scroll_%28easy%29_detail.png/150px-Clue_scroll_%28easy%29_detail.png?87067",
             "CompletionCounter": 1
         },

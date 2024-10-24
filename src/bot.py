@@ -121,11 +121,12 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
             changelog_channel = bot.get_channel(int(bot.changelog_channel_id))
             
             embed = Embed(
-                title=f"Tile Completed! ✅",
-                description=f"**{team.name}**",
+                title=f"**{team.name}**",
+                description=f"Completed a tile!",
                 color=0x00ff00,
             )
             
+            embed.set_thumbnail(url=team.image)
             embed.set_image(url=image.url)
             
             embed.add_field(
@@ -331,7 +332,7 @@ async def list_members(interaction: discord.Interaction):
     except Exception as e:
         print("Error with /list_users command", e)
 
-@tasks.loop(seconds=5)
+@tasks.loop(minutes=5)
 async def update_leaderboard():
     try:
         channel = bot.get_channel(int(bot.leaderboard_channel_id))
@@ -376,7 +377,8 @@ async def check_bucket_expiry():
                         bucket_task=None,
                         submission_history=team.get("SubmissionHistory", ""),
                         updating=team.get("Updating", ""),
-                        spreadsheet=team.get("Spreadsheet", ""))
+                        spreadsheet=team.get("Spreadsheet", ""),
+                        image=team.get("Image", ""))
                     team_channel = bot.get_channel(int(updated_team.channel_id))
                     await team_channel.send("## Your Candy-bucket task has expired.")
                     dashboard_service = DashboardService()

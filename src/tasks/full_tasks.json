@@ -313,7 +313,7 @@
             "Name": "Zalcano Unique",
             "Description": "Zalcano Unique",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Zalcano_shard",
-            "Image": "",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Zalcano_shard_detail.png/150px-Zalcano_shard_detail.png?f52af",
             "CompletionCounter": 1
         },
         {
@@ -423,7 +423,7 @@
         },
         {
             "Name": "1031 Combat",
-            "Description": "Kill npcs that add up to 1031 combat level (as a team)",
+            "Description": "Kill npcs that add up to 1031 combat level (as a team)\n(just submit once and post all in team channel)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Bestiary",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Goblin.png/150px-Goblin.png?3e49a",
             "CompletionCounter": 1
@@ -501,7 +501,7 @@
         {
             "Name": "Any Wildy Wep Upgrade",
             "Description": "Skull of Vet'ion, Claws of Callisto, or Fangs of venenatis",
-            "WikiUrl": "",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Wilderness_weapons",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Skull_of_vet%27ion_detail.png/130px-Skull_of_vet%27ion_detail.png?115b4",
             "CompletionCounter": 1
         },

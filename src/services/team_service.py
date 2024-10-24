@@ -36,7 +36,8 @@ class TeamService:
                 bucket_task=team_data.get("Candy-bucket", ""),
                 submission_history=team_data.get("SubmissionHistory", ""),
                 updating=team_data.get("Updating", ""),
-                spreadsheet=team_data.get("Spreadsheet", ""))
+                spreadsheet=team_data.get("Spreadsheet", ""),
+                image=team_data.get("Image", ""))
             return team, team_data
         else:
             return None, None
@@ -64,7 +65,8 @@ class TeamService:
                 "Candy-bucket": None,
                 "SubmissionHistory": [],
                 "Updating": False,
-                "Spreadsheet": None
+                "Spreadsheet": None,
+                "Image": None
             })
 
             created_team, data = await self.get_team_from_channel_id(channel_id, database)
@@ -168,7 +170,8 @@ class TeamService:
                 bucket_task=updated_team.get("Candy-bucket", ""),
                 submission_history=updated_team.get("SubmissionHistory", ""),
                 updating=updated_team.get("Updating", ""),
-                spreadsheet=updated_team.get("Spreadsheet", ""))
+                spreadsheet=updated_team.get("Spreadsheet", ""),
+                image=updated_team.get("Image", ""))
 
             return team
         except Exception as e:
@@ -199,7 +202,8 @@ class TeamService:
                 bucket_task=updated_team.get("Candy-bucket", ""),
                 submission_history=updated_team.get("SubmissionHistory", ""),
                 updating=updated_team.get("Updating", ""),
-                spreadsheet=updated_team.get("Spreadsheet", ""))
+                spreadsheet=updated_team.get("Spreadsheet", ""),
+                image=updated_team.get("Image", ""))
 
             return team
         except Exception as e:
@@ -221,7 +225,8 @@ class TeamService:
                 bucket_task=team_data.get("Candy-bucket", ""),
                 submission_history=team_data.get("SubmissionHistory", ""),
                 updating=team_data.get("Updating", ""),
-                spreadsheet=team_data.get("Spreadsheet", ""))
+                spreadsheet=team_data.get("Spreadsheet", ""),
+                image=team_data.get("Image", ""))
                 
             return team, team_data
         else:
@@ -296,7 +301,8 @@ class TeamService:
                 bucket_task=team.get("Candy-bucket", ""),
                 submission_history=team.get("SubmissionHistory", ""),
                 updating=team.get("Updating", ""),
-                spreadsheet=team.get("Spreadsheet", ""))
+                spreadsheet=team.get("Spreadsheet", ""),
+                image=team.get("Image", ""))
 
             return updated_team
         except Exception as e:

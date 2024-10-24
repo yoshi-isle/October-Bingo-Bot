@@ -47,11 +47,11 @@ class DashboardService:
         self.pointamount4_coords = [1230, 640]
         self.bucketamount_coords = [1670, 480]
 
-        self.tasktier1_coords = [600, 280]
-        self.tasktier2_coords = [1025, 280]
-        self.tasktier3_coords = [600, 655]
-        self.tasktier4_coords = [1025, 655]
-        self.buckettasktier_coords = [1450, 490]
+        self.tasktier1_coords = [600, 270]
+        self.tasktier2_coords = [1025, 270]
+        self.tasktier3_coords = [600, 645]
+        self.tasktier4_coords = [1018, 645]
+        self.buckettasktier_coords = [1456, 480]
         
         # Bucket panel coordinates
         self.bucketpanel = [1430, 460]
@@ -70,6 +70,17 @@ class DashboardService:
                 star_panel = Image.open("src/images/star.png").convert("RGBA")
                 
             with Image.open("src/images/dashboard.png") as img:
+                tier_image_mini = Image.open("src/images/mini_candy.png").convert("RGBA")
+                tier_image_fun = Image.open("src/images/fun_candy.png").convert("RGBA")
+                tier_image_full = Image.open("src/images/full_candy.png").convert("RGBA")
+                tier_image_family = Image.open("src/images/family_candy.png").convert("RGBA")
+                tier_image_bucket = Image.open("src/images/candy_bucket.png").convert("RGBA")
+                
+                img.paste(tier_image_mini, [830, 485], tier_image_mini)
+                img.paste(tier_image_fun, [1250, 485], tier_image_fun)
+                img.paste(tier_image_full, [825, 865], tier_image_full)
+                img.paste(tier_image_family, [1253, 885], tier_image_family)
+                
                 # Font and draw setup
                 draw = ImageDraw.Draw(img)
                 
@@ -113,6 +124,7 @@ class DashboardService:
                 if team.bucket_task:
                     img.paste(star_panel, self.bucketpanel, star_panel)
                     img.paste(img_bucket,  bucket_coords, img_bucket)
+                    img.paste(tier_image_bucket, [1690, 705], tier_image_bucket)
 
                 # Add task names as text
                 draw.text(self.taskname1_coords, team.mini_task[0]['Name'], font=small_font, fill=text_color_white)
@@ -120,7 +132,7 @@ class DashboardService:
                 draw.text(self.taskname3_coords, team.full_task[0]['Name'], font=small_font, fill=text_color_white)
                 draw.text(self.taskname4_coords, team.family_task[0]['Name'], font=small_font, fill=text_color_white)
                 if team.bucket_task:
-                    draw.text(self.bucketname_coords, team.bucket_task[0]['Name'], font=small_font, fill=text_color_yellow)
+                    draw.text(self.bucketname_coords, team.bucket_task[0]['Name'], font=small_font, fill=text_color_white)
                     
                 # Add task point amounts as text
                 draw.text(self.pointamount1_coords, "+5", font=big_font, fill=text_color_green)
@@ -136,7 +148,7 @@ class DashboardService:
                 draw.text(self.tasktier3_coords, "Full-sized", font=small_font, fill=text_color_orange)
                 draw.text(self.tasktier4_coords, "Family-sized", font=small_font, fill=text_color_orange)
                 if team.bucket_task:
-                    draw.text(self.buckettasktier_coords, "Candy bucket", font=small_font, fill=text_color_yellow)
+                    draw.text(self.buckettasktier_coords, "Candy bucket", font=small_font, fill=text_color_orange)
                     
                 # Save final image
                 img.save("final_dashboard.png")
