@@ -33,28 +33,28 @@ class DashboardService:
         self.slot2_box = [1047, 289, 1302, 544]
         self.slot3_box = [627, 656, 882, 911]
         self.slot4_box = [1047, 656, 1302, 911]
+        self.bucket_box = [1478, 503, 1738, 758]
 
         self.taskname1_coords = [600, 530]
         self.taskname2_coords = [1025, 530]
         self.taskname3_coords = [600, 900]
         self.taskname4_coords = [1025, 900]
+        self.bucketname_coords = [1450, 745]
 
-        self.pointamount1_coords = [850, 260]
-        self.pointamount2_coords = [1250, 260]
+        self.pointamount1_coords = [855, 260]
+        self.pointamount2_coords = [1255, 260]
         self.pointamount3_coords = [820, 640]
         self.pointamount4_coords = [1230, 640]
+        self.bucketamount_coords = [1670, 480]
 
         self.tasktier1_coords = [600, 280]
         self.tasktier2_coords = [1025, 280]
         self.tasktier3_coords = [600, 655]
         self.tasktier4_coords = [1025, 655]
+        self.buckettasktier_coords = [1450, 490]
         
-        # Bucket task coordinates
-        self.bucket_box = [1445, 400, 1700, 655]
-        self.bucketpanel = [1560, 500]
-        self.bucketname_coords = [1500, 714]
-        self.bucketamount_coords = [1711, 438]
-        self.buckettasktier_coords = [1500, 450]
+        # Bucket panel coordinates
+        self.bucketpanel = [1430, 460]
 
         self.max_image_size = (200, 200)
 
@@ -111,8 +111,8 @@ class DashboardService:
                 img.paste(img_full, full_coords, img_full)
                 img.paste(img_family, family_coords, img_family)
                 if team.bucket_task:
-                    img.paste(star_panel, bucket_coords, star_panel)
-                    img.paste(img_bucket,  self.bucketpanel, img_bucket)
+                    img.paste(star_panel, self.bucketpanel, star_panel)
+                    img.paste(img_bucket,  bucket_coords, img_bucket)
 
                 # Add task names as text
                 draw.text(self.taskname1_coords, team.mini_task[0]['Name'], font=small_font, fill=text_color_white)
