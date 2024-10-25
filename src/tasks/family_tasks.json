@@ -385,6 +385,13 @@
             "WikiUrl": "https://oldschool.runescape.wiki/w/Chugging_barrel",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Chugging_barrel_%28disassembled%29_detail.png/150px-Chugging_barrel_%28disassembled%29_detail.png?fa107",
             "CompletionCounter": 1
+        },
+        {
+            "Name": "Any Sigil",
+            "Description": "Any Corp Sigil",
+            "WikiUrl": "https://oldschool.runescape.wiki/w/Elysian_sigil",
+            "Image": "https://oldschool.runescape.wiki/images/thumb/Elysian_sigil_detail.png/130px-Elysian_sigil_detail.png?2fe74",
+            "CompletionCounter": 1
         }
     ]
 }
