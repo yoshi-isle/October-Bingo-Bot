@@ -247,9 +247,7 @@ async def create_sheet(interaction: discord.Interaction):
             await interaction.response.send_message(f"There's already a sheet for this team", ephemeral=True)
             return
         
-        # Acknowledge the interaction to prevent timeout
-        await interaction.response.defer()
-        
+        # Acknowledge the interaction to prevent timeout        
         url = bot.user_sheet_service.create_sheet(interaction.channel.name)
         
         # Send the final response with the sheet URL
@@ -258,7 +256,7 @@ async def create_sheet(interaction: discord.Interaction):
                         {"$set": {"Spreadsheet": url}},
                         return_document = ReturnDocument.AFTER
                     )
-        await interaction.followup.send(str(url))
+        print(url)
         
     except Exception as e:
         print("Error with /create_sheet command", e)
