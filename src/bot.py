@@ -230,7 +230,7 @@ async def get_all_teams_error(interaction: discord.Interaction, error):
 async def leaderboard(interaction: discord.Interaction):
     try:
         teams = await bot.teams_service.get_all_teams(bot.database)
-        await interaction.channel.send(embed = await bot.embed_generator.make_topteams_embed(teams))
+        await interaction.channel.send(embed = await bot.embed_generator.make_topteams_embed(teams, False))
     except Exception as e:
         print("Error with /leaderboard command", e)
 

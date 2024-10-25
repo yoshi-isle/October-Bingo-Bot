@@ -1,3 +1,3 @@
 class MongodbConstants:
-    cluster_name = "OctoberBingoTest"
+    cluster_name = "OctoberBingo"
     collection_teams = "Teams"
