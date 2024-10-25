@@ -6,7 +6,7 @@
             "Description": "Voidwaker from scratch",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Voidwaker",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Voidwaker_detail.png/150px-Voidwaker_detail.png?01835",
-            "CompletionCounter": 1
+            "CompletionCounter": 3
         },
         {
             "Name": "5 Armor Seeds",
@@ -141,6 +141,5 @@
             "Image": "https://oldschool.runescape.wiki/images/thumb/Zaryte_crossbow_detail.png/150px-Zaryte_crossbow_detail.png?cc833",
             "CompletionCounter": 2
         }
-
     ]
 }

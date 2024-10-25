@@ -423,7 +423,7 @@
         },
         {
             "Name": "1031 Combat",
-            "Description": "Kill npcs that add up to 1031 combat level (as a team)\n(just submit once and post all in team channel)",
+            "Description": "Kill npcs that add up to 1031 combat level (as a team)\n(just submit once and post in team channel)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Bestiary",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Goblin.png/150px-Goblin.png?3e49a",
             "CompletionCounter": 1
@@ -475,7 +475,7 @@
             "Description": "Moon key",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Moon_key",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Moon_key_detail.png/130px-Moon_key_detail.png?fa107",
-            "CompletionCounter": 1
+            "CompletionCounter": 2
         },
         {
             "Name": "Huberte",
@@ -633,7 +633,7 @@
         },
         {
             "Name": "Dragon thrownaxe",
-            "Description": "Dragon thrownaxe or knives",
+            "Description": "Dragon thrownaxe OR knives",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Dragon_thrownaxe",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Dragon_thrownaxe_detail.png/120px-Dragon_thrownaxe_detail.png?4da54",
             "CompletionCounter": 1
@@ -643,7 +643,7 @@
             "Description": "Master wand from scratch",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Master_wand",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Master_wand_detail.png/125px-Master_wand_detail.png?4f67e",
-            "CompletionCounter": 1
+            "CompletionCounter": 3
         },
         {
             "Name": "Lucky impling",

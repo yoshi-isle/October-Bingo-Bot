@@ -234,7 +234,7 @@
         },
         {
             "Name": "3 Warrior's Rings",
-            "Description": "3 Warrior's Rings",
+            "Description": "3 Warrior OR Berserker Rings",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Warrior_ring",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Warrior_ring_detail.png/150px-Warrior_ring_detail.png?4a4e9",
             "CompletionCounter": 3
@@ -262,7 +262,7 @@
         },
         {
             "Name": "100 Sweets",
-            "Description": "100 Purple Sweets from clues",
+            "Description": "100 Purple Sweets from clues\n(Just submit once and post in team channel)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Purple_sweets",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Purple_sweets_detail.png/120px-Purple_sweets_detail.png?41120",
             "CompletionCounter": 1
@@ -276,14 +276,14 @@
         },
         {
             "Name": "666k+ Master Casket",
-            "Description": "666k+ Master Clue Casket",
+            "Description": "666k+ value Master Clue Casket",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Reward_casket_(master)",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Reward_casket_%28master%29_detail.png/130px-Reward_casket_%28master%29_detail.png?2271d",
             "CompletionCounter": 1
         },
         {
             "Name": "Any big fish",
-            "Description": "Any big fish (bass, swordfish, shark, harpoonfish)",
+            "Description": "Any big fish (bass, swordfish, shark)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Big_shark",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Big_bass_detail.png/130px-Big_bass_detail.png?3e6a1",
             "CompletionCounter": 1
@@ -297,7 +297,7 @@
         },
         {
             "Name": "3x Scurrius Spines",
-            "Description": "3x Scurrius Spines",
+            "Description": "3x Scurrius Spines\n*If you know, you know...*",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Scurrius%27_spine",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Scurrius%27_spine_detail.png/130px-Scurrius%27_spine_detail.png?3f9d8",
             "CompletionCounter": 3
@@ -353,7 +353,7 @@
         },
         {
             "Name": "Hard Clue Unique",
-            "Description": "Hard Clue Unique (no shared)",
+            "Description": "Hard Clue Unique (NO shared)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Reward_casket_(hard)",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Reward_casket_%28hard%29_detail.png/130px-Reward_casket_%28hard%29_detail.png?1a29e",
             "CompletionCounter": 1
@@ -507,7 +507,7 @@
         },
         {
             "Name": "Perfect Zalcano",
-            "Description": "Perfect Zalcano",
+            "Description": "Perfect Zalcano CA",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Perfect_Zalcano",
             "Image": "https://oldschool.runescape.wiki/images/thumb/Tztok_slayer_helmet_detail.png/120px-Tztok_slayer_helmet_detail.png?6796d",
             "CompletionCounter": 1
