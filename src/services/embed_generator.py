@@ -55,7 +55,7 @@ class EmbedGenerator:
                     \n**Full-sized candy bar** (+120)\n> {team.full_task[0]["Description"]} - [wiki]({team.full_task[0]["WikiUrl"]})\n> {partial_counter_text_full}\n> {full_reroll_text}
                     \n**Family-sized candy bar** (+250)\n> {team.family_task[0]["Description"]} - [wiki]({team.family_task[0]["WikiUrl"]})\n> {partial_counter_text_family}\n> {family_reroll_text}"""
             if team.bucket_task:
-                desc += f"""\n\n**Candy bucket** (+600)\n> {team.bucket_task[0]["Name"]} - [wiki]({team.bucket_task[0]["WikiUrl"]})\n> {partial_counter_text_bucket}\n> {bucket_expire_text}"""
+                desc += f"""\n\n**Candy bucket** (+600)\n> {team.bucket_task[0]["Description"]} - [wiki]({team.bucket_task[0]["WikiUrl"]})\n> {partial_counter_text_bucket}\n> {bucket_expire_text}"""
            
             embed = discord.Embed(title=f"{team.name} Board",
                         description= str(desc) ,
