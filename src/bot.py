@@ -325,6 +325,50 @@ async def list_members(interaction: discord.Interaction):
     except Exception as e:
         print("Error with /list_users command", e)
 
+# @bot.tree.command(name="rollback", description="Rollback 1")
+# @app_commands.checks.has_permissions(administrator=True)
+# async def rollback(interaction: discord.Interaction):
+#     try:
+#         team, info  = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
+#         if team is None:
+#             await interaction.response.send_message(f"No team information was found for you. Please contact <@726237123857874975>", ephemeral=True)
+#             return
+        
+#         rollback_tile = info["SubmissionHistory"][-1]
+#         print(rollback_tile)
+        
+#         # Tile value
+#         if rollback_tile[1] == 5:
+#             bot.database.teams_collection.find_one_and_update(
+#                         {"_id": ObjectId(team._id)},
+#                         {"$set": {"Mini-sized": rollback_tile}},
+#                         return_document = ReturnDocument.AFTER
+#                     )
+#         if rollback_tile[1] == 30:
+#             bot.database.teams_collection.find_one_and_update(
+#                         {"_id": ObjectId(team._id)},
+#                         {"$set": {"Fun-sized": rollback_tile}},
+#                         return_document = ReturnDocument.AFTER
+#                     )
+        
+#         if rollback_tile[1] == 120:
+#             bot.database.teams_collection.find_one_and_update(
+#                         {"_id": ObjectId(team._id)},
+#                         {"$set": {"Full-sized": rollback_tile}},
+#                         return_document = ReturnDocument.AFTER
+#                     )
+        
+#         if rollback_tile[1] == 250:
+#             bot.database.teams_collection.find_one_and_update(
+#                         {"_id": ObjectId(team._id)},
+#                         {"$set": {"Family-sized": rollback_tile}},
+#                         return_document = ReturnDocument.AFTER
+#                     )
+        
+#     except Exception as e:
+#         print("error with rollback: ", e)
+    
+
 @tasks.loop(minutes=5)
 async def update_leaderboard():
     try:
