@@ -5,140 +5,140 @@
             "Name": "Voidwaker from scratch",
             "Description": "Voidwaker from scratch",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Voidwaker",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Voidwaker_detail.png/150px-Voidwaker_detail.png?01835",
+            "Image": "src/images/bucket/150px-Voidwaker_detail.png",
             "CompletionCounter": 3
         },
         {
             "Name": "5 Armor Seeds",
             "Description": "5 Armor Seeds OR 1 Enhanced Seed",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Crystal_armour_seed",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Crystal_armour_seed_detail.png/120px-Crystal_armour_seed_detail.png?fa149",
+            "Image": "src/images/fun/120px-Crystal_armour_seed_detail.png",
             "CompletionCounter": 5
         },
         {
             "Name": "Any NM orb",
             "Description": "Any Nightmare orb (Volatile, Eldritch, Harmonized)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Volatile_orb",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Volatile_orb_detail.png/150px-Volatile_orb_detail.png?4cd7c",
+            "Image": "src/images/bucket/150px-Volatile_orb_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Any Mutagen",
             "Description": "Any Mutagen from Zulrah",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Magma_mutagen",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Magma_helm_detail.png/120px-Magma_helm_detail.png?19a96",
+            "Image": "src/images/bucket/120px-Magma_helm_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Scythe of vitur",
             "Description": "Scythe of vitur",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Scythe_of_vitur",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Scythe_of_vitur_%28uncharged%29_detail.png/200px-Scythe_of_vitur_%28uncharged%29_detail.png?939b9",
+            "Image": "src/images/bucket/200px-Scythe_of_vitur_(uncharged)_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Twisted bow",
             "Description": "Twisted bow",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Twisted_bow",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Twisted_bow_detail.png/150px-Twisted_bow_detail.png?7aa10",
+            "Image": "src/images/bucket/150px-Twisted_bow_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Tumeken's shadow",
             "Description": "Tumeken's shadow",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Tumeken%27s_shadow",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Tumeken%27s_shadow_%28uncharged%29_detail.png/180px-Tumeken%27s_shadow_%28uncharged%29_detail.png?24f11",
+            "Image": "src/images/bucket/180px-Tumeken's_shadow_(uncharged)_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Spirit Shield from scratch",
             "Description": "Any Sigil + Spirit Shield + Holy Elixir",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Elysian_spirit_shield",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Elysian_spirit_shield_detail.png/120px-Elysian_spirit_shield_detail.png?e83cd",
+            "Image": "src/images/bucket/120px-Elysian_spirit_shield_detail.png",
             "CompletionCounter": 3
         },
         {
             "Name": "Godsword from scratch",
             "Description": "Godsword from scratch",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Godsword",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Bandos_godsword_detail.png/130px-Bandos_godsword_detail.png?2250a",
+            "Image": "src/images/bucket/130px-Bandos_godsword_detail.png",
             "CompletionCounter": 4
         },
         {
             "Name": "Inquisitor's mace",
             "Description": "Inquisitor's mace",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Inquisitor%27s_mace",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Inquisitor%27s_mace_detail.png/150px-Inquisitor%27s_mace_detail.png?37397",
+            "Image": "src/images/bucket/150px-Inquisitor's_mace_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "3 Ancestral Pieces",
             "Description": "Any 3 Ancestral Pieces",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Ancestral_robes",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Ancestral_robes_equipped_female.png/77px-Ancestral_robes_equipped_female.png?91894",
+            "Image": "src/images/bucket/77px-Ancestral_robes_equipped_female.png",
             "CompletionCounter": 3
         },
         {
             "Name": "3 Masori Pieces",
             "Description": "Any 3 Masori Pieces",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Masori_armour",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Masori_armour_equipped_female.png/120px-Masori_armour_equipped_female.png?d7d2c",
+            "Image": "src/images/bucket/120px-Masori_armour_equipped_female.png",
             "CompletionCounter": 3
         },
         {
             "Name": "3 Justi Pieces",
             "Description": "Any 3 Justiciar Armor Pieces",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Justiciar_armour",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Justiciar_armour_equipped_male.png/130px-Justiciar_armour_equipped_male.png?17b57",
+            "Image": "src/images/bucket/130px-Justiciar_armour_equipped_male.png",
             "CompletionCounter": 3
         },
         {
             "Name": "3 Inq Pieces",
             "Description": "Any 3 Inquisitor's armour pieces",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Inquisitor%27s_armour",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Inquisitor%27s_armour_equipped.png/120px-Inquisitor%27s_armour_equipped.png?26947",
+            "Image": "src/images/bucket/120px-Inquisitor's_armour_equipped.png",
             "CompletionCounter": 3
         },
         {
             "Name": "All 3 Wildy Rings",
             "Description": "All 3 Wilderness Rings (Treasonous, Gods, Tyrannical)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Treasonous_ring",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Treasonous_ring_detail.png/200px-Treasonous_ring_detail.png?859ba",
+            "Image": "src/images/bucket/200px-Treasonous_ring_detail.png",
             "CompletionCounter": 3
         },
         {
             "Name": "Rev Weapon + Upgrade",
             "Description": "Any Rev Weapon + it's cooresponding wilderness upgrade",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Webweaver_bow#Charged",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Webweaver_bow_detail.png/180px-Webweaver_bow_detail.png?d94c1",
+            "Image": "src/images/bucket/180px-Webweaver_bow_detail.png",
             "CompletionCounter": 2
         },
         {
             "Name": "Ancient hilt",
             "Description": "Ancient hilt",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Ancient_hilt",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Ancient_hilt_detail.png/120px-Ancient_hilt_detail.png?87a43",
+            "Image": "src/images/bucket/120px-Ancient_hilt_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Perfect Theatre",
             "Description":"Perfect Theatre (WITH TEAMMATES ONLY)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Perfect_Theatre",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Tzkal_slayer_helmet_detail.png/120px-Tzkal_slayer_helmet_detail.png?6796d",
+            "Image": "src/images/fun/120px-Tzkal_slayer_helmet_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Dragon full helm",
             "Description": "Dragon full helm",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Dragon_full_helm",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Dragon_full_helm_detail.png/170px-Dragon_full_helm_detail.png?6edab",
+            "Image": "src/images/bucket/170px-Dragon_full_helm_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "ZCB from scratch",
             "Description": "Zaryte crossbow + Armadyl crossbow",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Zaryte_crossbow",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Zaryte_crossbow_detail.png/150px-Zaryte_crossbow_detail.png?cc833",
+            "Image": "src/images/bucket/150px-Zaryte_crossbow_detail.png",
             "CompletionCounter": 2
         }
     ]
