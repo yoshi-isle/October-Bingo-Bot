@@ -68,14 +68,20 @@ async def my_team(interaction: discord.Interaction):
         
         await interaction.response.send_message("Grabbing your latest board", ephemeral=True)
         dashboard_service = DashboardService()
-        message = await interaction.channel.send(file = await dashboard_service.generate_board(team))
+        try:
+            message = await interaction.channel.send(file = await dashboard_service.generate_board(team))
+            
+            # Pin new board to channel
+            pins: list[Message] = await interaction.channel.pins()
+            for pin in range(len(pins)):
+                await pins[pin].unpin(reason=None)
+            await message.pin(reason=None)     
+        except Exception as e:
+            await interaction.channel.send("There's an issue with image generation at the moment")
+            print("Error making board", e)
+            
         await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
         
-        # Pin new board to channel
-        pins: list[Message] = await interaction.channel.pins()
-        for pin in range(len(pins)):
-            await pins[pin].unpin(reason=None)
-        await message.pin(reason=None)     
                     
     except Exception as e:
         print("Error with /board command", e)
@@ -134,14 +140,21 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
             team = await bot.teams_service.assign_task(team, tier, bot.database, bot.dashboard_service, True)
             dashboard_service = DashboardService()
             await team_channel.send("# New board!")
-            message: Message = await team_channel.send(file = await dashboard_service.generate_board(team))
-            await team_channel.send(embed = await bot.embed_generator.make_team_embed(team))
             
-            # Pin new board to channel
-            pins: list[Message] = await team_channel.pins()
-            for pin in range(len(pins)):
-                await pins[pin].unpin(reason=None)
-            await message.pin(reason=None)
+            
+            try:
+                message: Message = await team_channel.send(file = await dashboard_service.generate_board(team))
+                
+                # Pin new board to channel
+                pins: list[Message] = await team_channel.pins()
+                for pin in range(len(pins)):
+                    await pins[pin].unpin(reason=None)
+                await message.pin(reason=None)    
+            except Exception as e:
+                await interaction.channel.send("There's an issue with image generation at the moment")
+                print("Error making board", e)            
+        
+            await team_channel.send(embed = await bot.embed_generator.make_team_embed(team))
                 
             # Updating team
             await bot.teams_service.updating_team(team, bot.database, False)
@@ -191,7 +204,22 @@ async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
             await interaction.response.send_message(f"{interaction.user.mention} is re-rolling the {tier.name} slot for the team!")
             team, info = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
             dashboard_service = DashboardService()
-            message = await interaction.channel.send(file = await dashboard_service.generate_board(team))
+            
+            try:
+                message: Message = await interaction.channel.send(file = await dashboard_service.generate_board(team))
+                
+                # Pin new board to channel
+                pins: list[Message] = await interaction.channel.pins()
+                for pin in range(len(pins)):
+                    await pins[pin].unpin(reason=None)
+                await message.pin(reason=None)    
+            except Exception as e:
+                await interaction.channel.send("There's an issue with image generation at the moment")
+                print("Error making board", e)            
+        
+            # await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
+            
+            # message = await interaction.channel.send(file = await dashboard_service.generate_board(team))
             await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
             
             # Pin new board to channel
@@ -387,7 +415,7 @@ async def update_leaderboard():
     except Exception as e:
         print("Error with update_leaderboard timer", e)
 
-@tasks.loop(minutes=30)
+@tasks.loop(minutes=5)
 async def check_bucket_expiry():
     try:
         # Fetch all teams from the database
@@ -399,7 +427,7 @@ async def check_bucket_expiry():
                 if current_time > team["Candy-bucket"][1]:
                     team = bot.database.teams_collection.find_one_and_update(
                         {"_id": ObjectId(team["_id"])},
-                        {"$set": {"Candy-bucket": []}}
+                        {"$set": {"Candy-bucket": None}}
                     )
                     updated_team = Team(
                         _id=team.get("_id", ""),
