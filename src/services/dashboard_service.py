@@ -60,13 +60,13 @@ class DashboardService:
 
     async def generate_board(self, team: Team):
         try:
-            response_mini = requests.get(team.mini_task[0]['Image'])
-            response_fun = requests.get(team.fun_task[0]['Image'])
-            response_full = requests.get(team.full_task[0]['Image'])
-            response_family = requests.get(team.family_task[0]['Image'])
+            response_mini = Image.open(team.mini_task[0]['Image']).convert("RGBA")
+            response_fun = Image.open(team.fun_task[0]['Image']).convert("RGBA")
+            response_full = Image.open(team.full_task[0]['Image']).convert("RGBA")
+            response_family = Image.open(team.family_task[0]['Image']).convert("RGBA")
             
             if team.bucket_task:
-                response_bucket = requests.get(team.bucket_task[0]['Image'])
+                response_bucket = Image.open(team.bucket_task[0]['Image']).convert("RGBA")
                 star_panel = Image.open("src/images/star.png").convert("RGBA")
                 
             with Image.open("src/images/dashboard.png") as img:
