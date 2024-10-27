@@ -60,13 +60,14 @@ class DashboardService:
 
     async def generate_board(self, team: Team):
         try:
-            response_mini = Image.open(team.mini_task[0]['Image']).convert("RGBA")
-            response_fun = Image.open(team.fun_task[0]['Image']).convert("RGBA")
-            response_full = Image.open(team.full_task[0]['Image']).convert("RGBA")
-            response_family = Image.open(team.family_task[0]['Image']).convert("RGBA")
+            
+            image_mini = Image.open(team.mini_task[0]['Image']).convert("RGBA")
+            image_fun = Image.open(team.fun_task[0]['Image']).convert("RGBA")
+            image_full = Image.open(team.full_task[0]['Image']).convert("RGBA")
+            image_family = Image.open(team.family_task[0]['Image']).convert("RGBA")
             
             if team.bucket_task:
-                response_bucket = Image.open(team.bucket_task[0]['Image']).convert("RGBA")
+                image_bucket = Image.open(team.bucket_task[0]['Image']).convert("RGBA")
                 star_panel = Image.open("src/images/star.png").convert("RGBA")
                 
             with Image.open("src/images/dashboard.png") as img:
@@ -92,21 +93,13 @@ class DashboardService:
                 text_color_green = (0, 255, 0)
                 text_color_yellow = (255, 255, 0)
 
-                # Convert fetched images into RGBA format to ensure transparency is preserved
-                img_mini = Image.open(BytesIO(response_mini.content)).convert("RGBA")
-                img_fun = Image.open(BytesIO(response_fun.content)).convert("RGBA")
-                img_full = Image.open(BytesIO(response_full.content)).convert("RGBA")
-                img_family = Image.open(BytesIO(response_family.content)).convert("RGBA")
-                if team.bucket_task:
-                    img_bucket = Image.open(BytesIO(response_bucket.content)).convert("RGBA")
-
                 # Resize images while maintaining aspect ratio
-                img_mini = self._resize_image(img_mini)
-                img_fun = self._resize_image(img_fun)
-                img_full = self._resize_image(img_full)
-                img_family = self._resize_image(img_family)
+                img_mini = self._resize_image(image_mini)
+                img_fun = self._resize_image(image_fun)
+                img_full = self._resize_image(image_full)
+                img_family = self._resize_image(image_family)
                 if team.bucket_task:
-                    img_bucket = self._resize_image(img_bucket)
+                    img_bucket = self._resize_image(image_bucket)
 
                 # Calculate the center coordinates for each image based on the region box
                 mini_coords = self._get_center_coords(self.slot1_box, img_mini.size)
