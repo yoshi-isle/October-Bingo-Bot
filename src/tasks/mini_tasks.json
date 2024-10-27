@@ -5,553 +5,553 @@
             "Name": "Vorkath's Head",
             "Description": "Vorkath Head (not 50 kc head)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Vorkath%27s_head",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Vorkath%27s_head_detail.png/260px-Vorkath%27s_head_detail.png?d5b97",
+            "Image": "src/images/mini/260px-Vorkath's_head_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Awakener's Orb",
             "Description": "Awakener's Orb",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Awakener%27s_orb",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Awakener%27s_orb_detail.png/130px-Awakener%27s_orb_detail.png?fb7a8",
+            "Image": "src/images/mini/130px-Awakener's_orb_detail.webp",
             "CompletionCounter": 1
         },
         {
             "Name": "2 LMS Wins",
             "Description": "2 LMS Wins",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Last_Man_Standing",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Last_Man_Standing_logo.png/100px-Last_Man_Standing_logo.png?1e913",
+            "Image": "src/images/mini/100px-Last_Man_Standing_logo.png",
             "CompletionCounter": 2
         },
         {
             "Name": "Dark totem",
             "Description": "Dark totem from scratch",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Dark_totem",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Dark_totem_detail.png/140px-Dark_totem_detail.png?4f4ee",
+            "Image": "src/images/mini/140px-Dark_totem_detail.webp",
             "CompletionCounter": 3
         },
         {
             "Name": "Dark relic",
             "Description": "Dark relic",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Dark_relic",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Dark_relic_detail.png/150px-Dark_relic_detail.png?623e8",
+            "Image": "src/images/mini/150px-Dark_relic_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "3 Rogue kits",
             "Description": "3 Rogue kits",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Rogue_kit",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Rogue_kit_detail.png/170px-Rogue_kit_detail.png?d576d",
+            "Image": "src/images/mini/170px-Rogue_kit_detail.png",
             "CompletionCounter": 3
         },
         {
             "Name": "Any locks",
             "Description": "Any tier locks",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Shades_of_Mort%27ton_(minigame)",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Silver_locks_detail.png/170px-Silver_locks_detail.png?297df",
+            "Image": "src/images/mini/170px-Silver_locks_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Dragon Defender",
             "Description": "Dragon Defender",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Dragon_defender",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Dragon_defender_detail.png/150px-Dragon_defender_detail.png?c7be1",
+            "Image": "src/images/mini/150px-Dragon_defender_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "5 Ancient Pages",
             "Description": "Any 5 Ancient Pages",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Ancient_page",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Ancient_page_detail.png/130px-Ancient_page_detail.png?9f349",
+            "Image": "src/images/mini/130px-Ancient_page_detail.png",
             "CompletionCounter": 5
         },
         {
             "Name": "Grow a cat",
             "Description": "Grow a cat from scratch",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Kitten",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Kitten_%28grey_and_black%29.png/180px-Kitten_%28grey_and_black%29.png?c9580",
+            "Image": "src/images/mini/180px-Kitten_(grey_and_black).png",
             "CompletionCounter": 1
         },
         {
             "Name": "Pet photo",
             "Description": "Post a picture of your pet IRL!",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Cat",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Kitten_%28grey_and_black%29.png/180px-Kitten_%28grey_and_black%29.png?c9580",
+            "Image": "src/images/mini/180px-Kitten_(grey_and_black).png",
             "CompletionCounter": 1
         },
         {
             "Name": "Scurrius' spine",
             "Description": "Scurrius' spine",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Scurrius%27_spine",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Scurrius%27_spine_detail.png/130px-Scurrius%27_spine_detail.png?3f9d8",
+            "Image": "src/images/mini/130px-Scurrius'_spine_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Queen KC",
             "Description": "1 Queen Kill (all team members)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Penance_Queen",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Penance_Queen.png/290px-Penance_Queen.png?56343",
+            "Image": "src/images/mini/290px-Penance_Queen.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Vial of Blood",
             "Description": "Vial of Blood",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Vial_of_blood",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Vial_of_blood_detail.png/130px-Vial_of_blood_detail.png?cbd46",
+            "Image": "src/images/mini/130px-Vial_of_blood_detail.webp",
             "CompletionCounter": 1
         },
         {
             "Name": "Draynor Step",
             "Description": "Clue step that requires you to go to Draynor Manor",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Draynor_Manor",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Clue_scroll_%28easy%29_detail.png/150px-Clue_scroll_%28easy%29_detail.png?87067",
+            "Image": "src/images/mini/150px-Clue_scroll_(beginner)_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Creature Creation",
             "Description": "Obtain all of the Tower of Life satchels, including the Tea Flask",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Creature_Creation",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Red_satchel_detail.png/130px-Red_satchel_detail.png?4832b",
+            "Image": "src/images/mini/130px-Red_satchel_detail.png",
             "CompletionCounter": 7
         },
         {
             "Name": "1,000 Tokens",
             "Description": "Obtain 1,000 Warrior's Guild tokens (No animator room allowed)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Warrior_guild_token",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Warrior_guild_token_detail.png/120px-Warrior_guild_token_detail.png?7627d",
+            "Image": "src/images/mini/120px-Warrior_guild_token_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Vet'ion Skeleton Trip",
             "Description": "Vetion trip as a team wearing nothing but Skeleton outfit and weapon (minimum 3 participants)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Vet%27ion",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Skeleton_mask_detail.png/130px-Skeleton_mask_detail.png?780a5",
+            "Image": "src/images/mini/130px-Skeleton_mask_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Bankstand",
             "Description": "Spooky bankstanding, get 5 randoms to dress in costumes at the ge (cant be kittens/bingo participants)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Jack_lantern_mask",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Jack_lantern_mask_detail.png/150px-Jack_lantern_mask_detail.png?586cb",
+            "Image": "src/images/mini/150px-Jack_lantern_mask_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Hespori seed",
             "Description": "Find a Hespori seed",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Hespori_seed",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Hespori_seed_detail.png/120px-Hespori_seed_detail.png?e9975",
+            "Image": "src/images/mini/120px-Hespori_seed_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "God Egg",
             "Description": "God Egg (from birdhouse run)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Bird%27s_egg",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Bird%27s_egg_%28red%29_detail.png/120px-Bird%27s_egg_%28red%29_detail.png?0934a",
+            "Image": "src/images/mini/120px-Bird's_egg_(red)_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Pendant of Ates",
             "Description": "Pendant of Ates",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Pendant_of_ates#Charged",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Pendant_of_ates_detail.png/120px-Pendant_of_ates_detail.png?fa107",
+            "Image": "src/images/mini/120px-Pendant_of_ates_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Kill 100 Chompys",
             "Description": "Kill 100 Chompys",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Chompy_bird",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Chompy_bird.png/250px-Chompy_bird.png?6d30f",
+            "Image": "src/images/mini/250px-Chompy_bird.png",
             "CompletionCounter": 1
         },
         {
             "Name": "WOM Task",
             "Description": "Obtain an uncut gem from a Wise Old Man task",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Wise_Old_Man_tasks",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Partyhat_%26_specs_detail.png/120px-Partyhat_%26_specs_detail.png?3ed5c",
+            "Image": "src/images/mini/120px-Partyhat_&_specs_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Giant Egg Sac",
             "Description": "Giant Egg Sac",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Giant_egg_sac",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Giant_egg_sac%28full%29_detail.png/150px-Giant_egg_sac%28full%29_detail.png?5e19c",
+            "Image": "src/images/mini/150px-Giant_egg_sac(full)_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Barrows Piece",
             "Description": "Any 1 barrows piece",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Barrows",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Dharok%27s_greataxe_detail.png/130px-Dharok%27s_greataxe_detail.png?d8a0b",
+            "Image": "src/images/mini/130px-Dharok's_greataxe_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Perilous Moons",
             "Description": "Any perilous moons armor piece or weapon",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Perilous_Moons",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Blood_moon_chestplate_detail.png/140px-Blood_moon_chestplate_detail.png?2eba8",
+            "Image": "src/images/mini/140px-Blood_moon_chestplate_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Frozen Cache",
             "Description": "Frozen Cache",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Frozen_cache",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Frozen_cache_detail.png/120px-Frozen_cache_detail.png?4c466",
+            "Image": "src/images/mini/120px-Frozen_cache_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Any Quartz",
             "Description": "Any quartz from DT2 bosses",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Quartz",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Blood_quartz_detail.png/130px-Blood_quartz_detail.png?b410d",
+            "Image": "src/images/mini/130px-Blood_quartz_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Any Unique",
             "Description": "Any beginner clue unique",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Clue_scroll_(beginner)",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Clue_scroll_%28beginner%29_detail.png/150px-Clue_scroll_%28beginner%29_detail.png?a7f0a",
+            "Image": "src/images/mini/150px-Clue_scroll_(beginner)_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Any Unique",
             "Description": "Any easy clue unique (NO SHARED)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Clue_scroll_(easy)",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Clue_scroll_%28easy%29_detail.png/150px-Clue_scroll_%28easy%29_detail.png?87067",
+            "Image": "src/images/mini/150px-Clue_scroll_(easy)_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Any Unique",
             "Description": "Any medium clue unique (NO SHARED)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Clue_scroll_(medium)",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Clue_scroll_%28medium%29_detail.png/150px-Clue_scroll_%28medium%29_detail.png?87067",
+            "Image": "src/images/mini/150px-Clue_scroll_(medium)_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Runite Limbs",
             "Description": "Runite Limbs from Deranged Archeologist",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Deranged_archaeologist",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Runite_limbs_detail.png/130px-Runite_limbs_detail.png?7b4fd",
+            "Image": "src/images/mini/130px-Runite_limbs_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Soaked Pages",
             "Description": "Soaked Pages",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Soaked_page",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Soaked_page_detail.png/150px-Soaked_page_detail.png?d1139",
+            "Image": "src/images/mini/150px-Soaked_page_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Burnt Page",
             "Description": "Burnt Page",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Burnt_page",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Burnt_page_detail.png/150px-Burnt_page_detail.png?bc951",
+            "Image": "src/images/mini/150px-Burnt_page_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Soiled Page",
             "Description": "Soiled Page",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Soiled_page",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Soiled_page_detail.png/130px-Soiled_page_detail.png?fa107",
+            "Image": "src/images/mini/130px-Soiled_page_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Intricate Pouch",
             "Description": "Intricate Pouch",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Intricate_pouch",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Intricate_pouch_detail.png/120px-Intricate_pouch_detail.png?e0255",
+            "Image": "src/images/mini/120px-Intricate_pouch_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Huasca seed",
             "Description": "Huasca seed",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Huasca_seed",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Huasca_seed_detail.png/140px-Huasca_seed_detail.png?e0db4",
+            "Image": "src/images/mini/140px-Huasca_seed_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Onyx bolts (e)",
             "Description": "Onyx bolts (e) from Corporeal Beast",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Onyx_bolts_(e)",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Onyx_bolts_%28e%29_detail.png/130px-Onyx_bolts_%28e%29_detail.png?b6267",
+            "Image": "src/images/mini/130px-Onyx_bolts_(e)_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Sinister key",
             "Description": "Sinister key",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Sinister_key",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Sinister_key_detail.png/130px-Sinister_key_detail.png?19145",
+            "Image": "src/images/mini/130px-Sinister_key_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Long Bone",
             "Description": "Long Bone",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Long_bone",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Long_bone_detail.png/130px-Long_bone_detail.png?1e8a4",
+            "Image": "src/images/mini/130px-Long_bone_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Emblem 500k",
             "Description": "Revenant emblem 500k or 1M",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Ancient_artefacts",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Ancient_emblem_detail.png/120px-Ancient_emblem_detail.png?f448f",
+            "Image": "src/images/mini/120px-Ancient_emblem_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Zul-andra teleport",
             "Description": "Zul-andra teleport",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Zul-andra_teleport",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Zul-andra_teleport_detail.png/150px-Zul-andra_teleport_detail.png?04867",
+            "Image": "src/images/mini/150px-Zul-andra_teleport_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Torn prayer scroll",
             "Description": "Torn prayer scroll",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Torn_prayer_scroll",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Torn_prayer_scroll_detail.png/160px-Torn_prayer_scroll_detail.png?5c608",
+            "Image": "src/images/mini/160px-Torn_prayer_scroll_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Cache of runes",
             "Description": "Cache of runes",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Cache_of_runes",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Cache_of_runes_detail.png/120px-Cache_of_runes_detail.png?3d649",
+            "Image": "src/images/mini/120px-Cache_of_runes_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Bass from NM",
             "Description": "Bass drop from The Nightmare",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Bass",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Bass_detail.png/100px-Bass_detail.png?c5b58",
+            "Image": "src/images/mini/100px-Bass_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Crystal Grail",
             "Description": "Crystal Grail",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Crystal_grail",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Crystal_grail_detail.png/120px-Crystal_grail_detail.png?2315b",
+            "Image": "src/images/mini/120px-Crystal_grail_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Guild Hunter Piece",
             "Description": "Any Guild Hunter Piece",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Guild_hunter_top",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Guild_hunter_top_detail.png/130px-Guild_hunter_top_detail.png?be5ad",
+            "Image": "src/images/mini/130px-Guild_hunter_top_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Pyro Piece",
             "Description": "Any Pyro Piece",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Pyromancer_boots",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Pyromancer_boots_detail.png/130px-Pyromancer_boots_detail.png?0e275",
+            "Image": "src/images/mini/130px-Pyromancer_boots_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Spoils of War",
             "Description": "Uncut gem from spoils of war loot crate",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Spoils_of_war",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Uncut_emerald_detail.png/130px-Uncut_emerald_detail.png?6d28f",
+            "Image": "src/images/mini/130px-Uncut_emerald_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Halloween PK",
             "Description": "PK someone wearing a halloween costume",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Killer%27s_knife",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Killer%27s_knife_detail.png/130px-Killer%27s_knife_detail.png?51fc4",
+            "Image": "src/images/mini/130px-Killer's_knife_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Runite Ore",
             "Description": "Runite Ore from an ore pack",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Ore_pack_(Volcanic_Mine)",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Ore_pack_%28Volcanic_Mine%29_detail.png/150px-Ore_pack_%28Volcanic_Mine%29_detail.png?bb22e",
+            "Image": "src/images/mini/150px-Ore_pack_(Volcanic_Mine)_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Zalcano",
             "Description": "Soul Rune from Zalcano",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Zalcano",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Soul_rune_detail.png/120px-Soul_rune_detail.png?ad585",
+            "Image": "src/images/mini/120px-Soul_rune_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Rune Boots",
             "Description": "Rune Boots",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Rune_boots",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Rune_boots_detail.png/140px-Rune_boots_detail.png?d576d",
+            "Image": "src/images/mini/120px-Soul_rune_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Black Mask",
             "Description": "Black Mask",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Black_mask",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Black_mask_detail.png/130px-Black_mask_detail.png?5b902",
+            "Image": "src/images/mini/130px-Black_mask_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Granite Maul",
             "Description": "Granite Maul",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Granite_maul",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Granite_maul_detail.png/120px-Granite_maul_detail.png?75031",
+            "Image": "src/images/mini/120px-Granite_maul_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "500 Splinters",
             "Description": "500 Sunfire Splinters (from a singular Colosseum wave)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Sunfire_splinters",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Sunfire_splinters_4_detail.png/130px-Sunfire_splinters_4_detail.png?a1a45",
+            "Image": "src/images/mini/130px-Sunfire_splinters_4_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Castle Wars Win",
             "Description": "Win a game of Castle Wars",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Castle_wars_ticket",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Castle_wars_ticket_detail.png/160px-Castle_wars_ticket_detail.png?194c8",
+            "Image": "src/images/mini/160px-Castle_wars_ticket_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "1 LMS Win",
             "Description": "1 LMS Win",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Last_Man_Standing",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Last_Man_Standing_logo.png/100px-Last_Man_Standing_logo.png?1e913",
+            "Image": "src/images/mini/100px-Last_Man_Standing_logo.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Strange Old Lockpick",
             "Description": "Strange Old Lockpick",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Strange_old_lockpick",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Strange_old_lockpick_%28full%29_detail.png/120px-Strange_old_lockpick_%28full%29_detail.png?1925a",
+            "Image": "src/images/mini/120px-Strange_old_lockpick_(full)_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Pest Control",
             "Description": "1 Pest Control win",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Pest_control_teleport",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Pest_control_teleport_detail.png/150px-Pest_control_teleport_detail.png?d8e92",
+            "Image": "src/images/mini/150px-Pest_control_teleport_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Lumberjack Piece",
             "Description": "Any Lumberjack piece",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Lumberjack_outfit",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Lumberjack_top_detail.png/180px-Lumberjack_top_detail.png?1bf07",
+            "Image": "src/images/mini/180px-Lumberjack_top_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Sturdy Beehive Parts",
             "Description": "Sturdy Beehive Parts",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Sturdy_beehive_parts",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Sturdy_beehive_parts_detail.png/130px-Sturdy_beehive_parts_detail.png?f8400",
+            "Image": "src/images/mini/130px-Sturdy_beehive_parts_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Flippers",
             "Description": "Flippers",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Flippers",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Flippers_detail.png/110px-Flippers_detail.png?d3492",
+            "Image": "src/images/mini/110px-Flippers_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Mystic Robe Bottom",
             "Description": "Mystic Robe Bottom",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Mystic_robe_bottom_(dark)",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Mystic_robe_bottom_%28dark%29_detail.png/180px-Mystic_robe_bottom_%28dark%29_detail.png?d1fe6",
+            "Image": "src/images/mini/180px-Mystic_robe_bottom_(dark)_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Warped Sceptre",
             "Description": "Warped Sceptre",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Warped_sceptre",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Warped_sceptre_%28uncharged%29_detail.png/140px-Warped_sceptre_%28uncharged%29_detail.png?f7367",
+            "Image": "src/images/mini/140px-Warped_sceptre_(uncharged)_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Guthixian teleport",
             "Description": "Guthixian temple teleport",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Guthixian_temple_teleport",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Guthixian_temple_teleport_detail.png/150px-Guthixian_temple_teleport_detail.png?3d9a8",
+            "Image": "src/images/mini/150px-Guthixian_temple_teleport_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Ecumenical key",
             "Description": "Ecumenical key",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Ecumenical_key",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Ecumenical_key_detail.png/150px-Ecumenical_key_detail.png?0e275",
+            "Image": "src/images/mini/150px-Ecumenical_key_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Chewed bones",
             "Description": "Chewed bones",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Chewed_bones",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Chewed_bones_detail.png/150px-Chewed_bones_detail.png?26141",
+            "Image": "src/images/mini/150px-Chewed_bones_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Giant Key",
             "Description": "Giant Key",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Giant_key",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Giant_key_detail.png/130px-Giant_key_detail.png?ca5dd",
+            "Image": "src/images/mini/130px-Giant_key_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Mossy Key",
             "Description": "Mossy Key",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Mossy_key",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Mossy_key_detail.png/150px-Mossy_key_detail.png?cd4e3",
+            "Image": "src/images/mini/150px-Mossy_key_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Skull Sceptre",
             "Description": "Skull Sceptre from Scratch",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Skull_sceptre",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Skull_sceptre_detail.png/160px-Skull_sceptre_detail.png?ccd18",
+            "Image": "src/images/mini/160px-Skull_sceptre_detail.png",
             "CompletionCounter": 4
         },
         {
             "Name": "Either Sac",
             "Description": "Orange or Blue Egg Sac",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Orange_egg_sac",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Orange_egg_sac_detail.png/150px-Orange_egg_sac_detail.png?8395c",
+            "Image": "src/images/mini/150px-Orange_egg_sac_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Xeric's Talisman",
             "Description": "Xeric's Talisman",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Xeric%27s_talisman#Charged",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Xeric%27s_talisman_detail.png/130px-Xeric%27s_talisman_detail.png?50af0",
+            "Image": "src/images/mini/130px-Xeric's_talisman_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Merfolk trident",
             "Description": "Merfolk trident",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Merfolk_trident",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Merfolk_trident_detail.png/150px-Merfolk_trident_detail.png?c8bbf",
+            "Image": "src/images/mini/150px-Merfolk_trident_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Brine sabre",
             "Description": "Brine sabre",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Brine_sabre",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Brine_sabre_detail.png/110px-Brine_sabre_detail.png?1f853",
+            "Image": "src/images/mini/110px-Brine_sabre_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Any Unique",
             "Description": "Any Unique from a Barronite deposit",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Barronite_deposit",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Barronite_deposit_detail.png/104px-Barronite_deposit_detail.png?e78d7",
+            "Image": "src/images/mini/104px-Barronite_deposit_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "Dwarf Weed",
             "Description": "Receive a Dwarf Weed from a herb box",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Herb_box",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Herb_box_detail.png/130px-Herb_box_detail.png?0470b",
+            "Image": "src/images/mini/130px-Herb_box_detail.png",
             "CompletionCounter": 1
         },
         {
             "Name": "God Egg (Forestry)",
             "Description": "God Egg from a Forestry event",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Bird%27s_egg",
-            "Image": "https://oldschool.runescape.wiki/images/thumb/Bird%27s_egg_%28red%29_detail.png/120px-Bird%27s_egg_%28red%29_detail.png?0934a",
+            "Image": "src/images/mini/120px-Bird's_egg_(red)_detail.png",
             "CompletionCounter": 1
         }
     ]
