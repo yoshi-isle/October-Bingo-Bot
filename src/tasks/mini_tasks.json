@@ -87,7 +87,7 @@
         },
         {
             "Name": "Queen KC",
-            "Description": "1 Queen Kill (all team members)",
+            "Description": "1 Queen Kill (all BINGO/clan members)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Penance_Queen",
             "Image": "src/images/mini/290px-Penance_Queen.png",
             "CompletionCounter": 1
@@ -332,7 +332,7 @@
         },
         {
             "Name": "Guild Hunter Piece",
-            "Description": "Any Guild Hunter Piece",
+            "Description": "Any Guild Hunter Piece (OR Huntsman Kit)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Guild_hunter_top",
             "Image": "src/images/mini/130px-Guild_hunter_top_detail.png",
             "CompletionCounter": 1

@@ -66,7 +66,7 @@ async def my_team(interaction: discord.Interaction):
             await interaction.response.send_message(f"Your team's board is currently being updated. Please wait ~30 seconds.", ephemeral=True)
             return
         
-        await interaction.response.send_message("Grabbing your latest board", ephemeral=True)
+        await interaction.response.send_message("Grabbing your latest board")
         dashboard_service = DashboardService()
         try:
             message = await interaction.channel.send(file = await dashboard_service.generate_board(team))
@@ -82,7 +82,6 @@ async def my_team(interaction: discord.Interaction):
             
         await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
         
-                    
     except Exception as e:
         print("Error with /board command", e)
         
@@ -109,7 +108,7 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
         info[tier.name][0]["CompletionCounter"] -= 1
         update = bot.database.teams_collection.find_one_and_update(
                         {"_id": ObjectId(team._id)},
-                        {"$set": {tier.name: [info[tier.name][0], team.mini_task[1]]}},
+                        {"$set": {tier.name: [info[tier.name][0], info[tier.name][1]]}},
                         return_document = ReturnDocument.AFTER
                     )
         if update[tier.name][0]["CompletionCounter"] <= 0:
@@ -234,6 +233,26 @@ async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
     except Exception as e:
         print("Error with /reroll command", e)
 
+@bot.tree.command(name="give_bucket", description="Give a team a random bucket")
+@app_commands.checks.has_permissions(administrator=True)
+async def give_bucket(interaction: discord.Interaction):
+    try:
+        team, info = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
+        if team is None:
+            await interaction.response.send_message("Please use this command in your team's channel", ephemeral = True)
+            return
+        
+        if team.updating:
+            await interaction.response.send_message(f"The team's board is currently being updated. Please wait ~30 seconds.", ephemeral=True)
+            return
+        
+        bot.teams_service.assign_bucket_task(team, bot.database, bot.dashboard_service)
+        # bot.teams_service.assign_task(team, CandyTier.CANDYTIER["Candy-bucket"])
+        
+        
+    except Exception as e:
+        print("Error giving bucket", e)
+        
 @bot.tree.command(name="initialize_team", description="Create a team record in the database from this channel")
 @app_commands.checks.has_permissions(administrator=True)
 async def initialize_team(interaction: discord.Interaction):

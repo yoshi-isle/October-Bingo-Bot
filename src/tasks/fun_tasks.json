@@ -318,7 +318,7 @@
         },
         {
             "Name": "Huey Unique (no pages)",
-            "Description": "Any Huey unique (excluding soiled pages)",
+            "Description": "Any Huey unique (no page/seed)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Tome_of_earth",
             "Image": "src/images/fun/160px-Tome_of_earth_(empty)_detail.png",
             "CompletionCounter": 1
@@ -369,7 +369,7 @@
             "Name": "Dark Claw",
             "Description": "Dark Claw",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Dark_claw",
-            "Image": "src/images/fun/140px-Dragon_axe_detail.png",
+            "Image": "src/images/fun/160px-Dark_claw_detail.png",
             "CompletionCounter": 1
         },
         {
