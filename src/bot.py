@@ -70,7 +70,8 @@ async def my_team(interaction: discord.Interaction):
         dashboard_service = DashboardService()
         try:
             message = await interaction.channel.send(file = await dashboard_service.generate_board(team))
-            
+            await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
+
             # Pin new board to channel
             pins: list[Message] = await interaction.channel.pins()
             for pin in range(len(pins)):
@@ -78,9 +79,9 @@ async def my_team(interaction: discord.Interaction):
             await message.pin(reason=None)     
         except Exception as e:
             await interaction.channel.send("There's an issue with image generation at the moment")
+            await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
             print("Error making board", e)
             
-        await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
         
     except Exception as e:
         print("Error with /board command", e)
@@ -139,10 +140,10 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
             team = await bot.teams_service.assign_task(team, tier, bot.database, bot.dashboard_service, True)
             dashboard_service = DashboardService()
             await team_channel.send("# New board!")
-            
-            
+
             try:
                 message: Message = await team_channel.send(file = await dashboard_service.generate_board(team))
+                await team_channel.send(embed = await bot.embed_generator.make_team_embed(team))
                 
                 # Pin new board to channel
                 pins: list[Message] = await team_channel.pins()
@@ -151,10 +152,9 @@ async def submit(interaction: discord.Interaction, tier: CandyTier.CANDYTIER, im
                 await message.pin(reason=None)    
             except Exception as e:
                 await interaction.channel.send("There's an issue with image generation at the moment")
+                await team_channel.send(embed = await bot.embed_generator.make_team_embed(team))
                 print("Error making board", e)            
-        
-            await team_channel.send(embed = await bot.embed_generator.make_team_embed(team))
-                
+                        
             # Updating team
             await bot.teams_service.updating_team(team, bot.database, False)
         else:
@@ -206,6 +206,7 @@ async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
             
             try:
                 message: Message = await interaction.channel.send(file = await dashboard_service.generate_board(team))
+                await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
                 
                 # Pin new board to channel
                 pins: list[Message] = await interaction.channel.pins()
@@ -214,18 +215,14 @@ async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
                 await message.pin(reason=None)    
             except Exception as e:
                 await interaction.channel.send("There's an issue with image generation at the moment")
+                await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
                 print("Error making board", e)            
         
-            # await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
-            
-            # message = await interaction.channel.send(file = await dashboard_service.generate_board(team))
-            await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
-            
             # Pin new board to channel
-            pins: list[Message] = await interaction.channel.pins()
-            for pin in range(len(pins)):
-                await pins[pin].unpin(reason=None)
-            await message.pin(reason=None)
+            # pins: list[Message] = await interaction.channel.pins()
+            # for pin in range(len(pins)):
+            #     await pins[pin].unpin(reason=None)
+            # await message.pin(reason=None)
             
         else:
             await interaction.response.send_message("Your team cannot re-roll that slot yet.")
@@ -234,7 +231,6 @@ async def reroll(interaction: discord.Interaction, tier: CandyTier.CANDYTIER):
         print("Error with /reroll command", e)
 
 @bot.tree.command(name="give_bucket", description="Give a team a random bucket")
-@app_commands.checks.has_permissions(administrator=True)
 async def give_bucket(interaction: discord.Interaction):
     try:
         team, info = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
@@ -245,11 +241,31 @@ async def give_bucket(interaction: discord.Interaction):
         if team.updating:
             await interaction.response.send_message(f"The team's board is currently being updated. Please wait ~30 seconds.", ephemeral=True)
             return
+
+        if team.bucket_task:
+            await interaction.response.send_message(f"This team already has a bucket task", ephemeral=True)
+            return
         
-        bot.teams_service.assign_bucket_task(team, bot.database, bot.dashboard_service)
-        # bot.teams_service.assign_task(team, CandyTier.CANDYTIER["Candy-bucket"])
+        await bot.teams_service.assign_bucket_task(team, bot.database, bot.dashboard_service)
         
+        team, info = await bot.teams_service.get_team_from_channel_id(interaction.channel_id, bot.database)
         
+        dashboard_service = DashboardService()
+            
+        try:
+            message: Message = await interaction.channel.send(file = await dashboard_service.generate_board(team))
+            await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
+            
+            # Pin new board to channel
+            pins: list[Message] = await interaction.channel.pins()
+            for pin in range(len(pins)):
+                await pins[pin].unpin(reason=None)
+            await message.pin(reason=None)    
+        except Exception as e:
+            await interaction.channel.send("There's an issue with image generation at the moment")
+            await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
+            print("Error making board", e)
+
     except Exception as e:
         print("Error giving bucket", e)
         
@@ -258,14 +274,6 @@ async def give_bucket(interaction: discord.Interaction):
 async def initialize_team(interaction: discord.Interaction):
     team = await bot.teams_service.initialize_team(interaction.channel.name, interaction.channel_id, bot.database, bot.dashboard_service)
     await interaction.response.send_message(f"Created team!", ephemeral=True)
-    # message = await interaction.channel.send(file = await bot.dashboard_service.generate_board(team))
-    # await interaction.channel.send(embed = await bot.embed_generator.make_team_embed(team))
-    
-    # # Pin new board to channel
-    # pins: list[Message] = await interaction.channel.pins()
-    # for pin in range(len(pins)):
-    #     await pins[pin].unpin(reason=None)
-    # await message.pin(reason=None)
 
 @initialize_team.error
 async def get_all_teams_error(interaction: discord.Interaction, error):

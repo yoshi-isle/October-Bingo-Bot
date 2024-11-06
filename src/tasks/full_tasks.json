@@ -374,7 +374,7 @@
         },
         {
             "Name": "Araxxor Unique",
-            "Description": "Araxxor Unique (NO venom sack or coag. venom)",
+            "Description": "Araxxor Unique (NO tele, venom sack, or coag. venom)",
             "WikiUrl": "https://oldschool.runescape.wiki/w/Araxxor#Drops",
             "Image": "src/images/full/280px-Araxxor.png",
             "CompletionCounter": 1
